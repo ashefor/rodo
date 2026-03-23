@@ -34,7 +34,7 @@ export function ServicesScroll() {
       >
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
           <motion.div
-            className="flex gap-6 md:gap-8 pl-[10vw]"
+            className="flex gap-8 md:gap-12 pl-[10vw]"
             style={{ x }}
           >
             {SERVICES.map((service, index) => (

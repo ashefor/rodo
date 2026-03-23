@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Video background with fallback gradient */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black" />
@@ -27,24 +27,24 @@ export function HeroSection() {
 
       {/* Floating animated elements */}
       <motion.div
-        className="absolute top-1/4 right-[15%] w-20 h-20 rounded-full bg-accent/20 blur-xl"
+        className="absolute top-1/4 right-[15%] w-20 h-20 rounded-full bg-primary/20 blur-xl"
         animate={{ y: [-20, 20, -20], scale: [1, 1.2, 1] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-1/3 left-[10%] w-32 h-32 rounded-full bg-accent/10 blur-2xl"
+        className="absolute bottom-1/3 left-[10%] w-32 h-32 rounded-full bg-primary/10 blur-2xl"
         animate={{ y: [20, -20, 20], scale: [1.2, 1, 1.2] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      {/* Content — editorial left-aligned */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-left">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span className="inline-block text-accent font-medium text-sm tracking-widest uppercase mb-6">
+          <span className="inline-block text-primary font-medium text-sm tracking-widest uppercase mb-6">
             Rodo Lens &mdash; Abuja
           </span>
         </motion.div>
@@ -56,11 +56,13 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           Capturing Moments.{" "}
-          <span className="text-accent">Creating Experiences.</span>
+          <span className="bg-gradient-to-r from-primary to-primary-container bg-clip-text text-transparent">
+            Creating Experiences.
+          </span>
         </motion.h1>
 
         <motion.p
-          className="mt-6 text-white/70 text-base md:text-lg lg:text-xl max-w-2xl mx-auto"
+          className="mt-6 text-white/70 text-base md:text-lg lg:text-xl max-w-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -69,7 +71,7 @@ export function HeroSection() {
         </motion.p>
 
         <motion.div
-          className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+          className="mt-10 flex flex-col sm:flex-row gap-4 justify-start"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
@@ -78,7 +80,7 @@ export function HeroSection() {
             <Play size={18} />
             View Portfolio
           </Button>
-          <Button href="/contact" variant="outline" className="!border-white/30 !text-white hover:!border-accent">
+          <Button href="/contact" variant="outline" className="!border-outline-variant-dark !text-white hover:!border-primary">
             <Calendar size={18} />
             Book a Session
           </Button>
@@ -90,7 +92,7 @@ export function HeroSection() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
             <div className="w-1 h-2 bg-white/60 rounded-full" />
           </div>
         </motion.div>

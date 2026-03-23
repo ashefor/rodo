@@ -47,12 +47,18 @@ export function ContactForm() {
         <h3 className="font-heading text-2xl font-bold mb-2">
           Message Sent!
         </h3>
-        <p className="text-text-muted dark:text-text-dark-muted">
+        <p className="text-on-surface-variant dark:text-on-surface-dark-variant">
           Thank you for reaching out. I&rsquo;ll get back to you soon.
         </p>
       </motion.div>
     );
   }
+
+  const inputClasses =
+    "peer w-full px-4 py-3 pt-6 rounded-3xl border-0 bg-surface-container-high dark:bg-surface-dark-container-high focus:bg-surface-bright dark:focus:bg-surface-dark-bright focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm";
+
+  const labelClasses =
+    "absolute left-4 top-2 text-xs text-on-surface-variant dark:text-on-surface-dark-variant peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-secondary transition-all pointer-events-none";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -62,13 +68,10 @@ export function ContactForm() {
           {...register("name")}
           type="text"
           placeholder=" "
-          className="peer w-full px-4 py-3 pt-6 rounded-2xl border border-foreground/10 dark:border-white/10 bg-transparent focus:border-accent focus:outline-none transition-colors text-sm"
+          className={inputClasses}
           id="name"
         />
-        <label
-          htmlFor="name"
-          className="absolute left-4 top-2 text-xs text-text-muted dark:text-text-dark-muted peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-accent transition-all pointer-events-none"
-        >
+        <label htmlFor="name" className={labelClasses}>
           Name
         </label>
         {errors.name && (
@@ -82,13 +85,10 @@ export function ContactForm() {
           {...register("email")}
           type="email"
           placeholder=" "
-          className="peer w-full px-4 py-3 pt-6 rounded-2xl border border-foreground/10 dark:border-white/10 bg-transparent focus:border-accent focus:outline-none transition-colors text-sm"
+          className={inputClasses}
           id="email"
         />
-        <label
-          htmlFor="email"
-          className="absolute left-4 top-2 text-xs text-text-muted dark:text-text-dark-muted peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-accent transition-all pointer-events-none"
-        >
+        <label htmlFor="email" className={labelClasses}>
           Email
         </label>
         {errors.email && (
@@ -100,7 +100,7 @@ export function ContactForm() {
       <div className="relative">
         <select
           {...register("service")}
-          className="w-full px-4 py-3 pt-6 rounded-2xl border border-foreground/10 dark:border-white/10 bg-transparent focus:border-accent focus:outline-none transition-colors text-sm appearance-none cursor-pointer"
+          className="w-full px-4 py-3 pt-6 rounded-3xl border-0 bg-surface-container-high dark:bg-surface-dark-container-high focus:bg-surface-bright dark:focus:bg-surface-dark-bright focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm appearance-none cursor-pointer"
           id="service"
           defaultValue=""
         >
@@ -115,7 +115,7 @@ export function ContactForm() {
         </select>
         <label
           htmlFor="service"
-          className="absolute left-4 top-2 text-xs text-text-muted dark:text-text-dark-muted pointer-events-none"
+          className="absolute left-4 top-2 text-xs text-on-surface-variant dark:text-on-surface-dark-variant pointer-events-none"
         >
           Service
         </label>
@@ -130,13 +130,10 @@ export function ContactForm() {
           {...register("message")}
           placeholder=" "
           rows={4}
-          className="peer w-full px-4 py-3 pt-6 rounded-2xl border border-foreground/10 dark:border-white/10 bg-transparent focus:border-accent focus:outline-none transition-colors text-sm resize-none"
+          className={`${inputClasses} resize-none`}
           id="message"
         />
-        <label
-          htmlFor="message"
-          className="absolute left-4 top-2 text-xs text-text-muted dark:text-text-dark-muted peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-accent transition-all pointer-events-none"
-        >
+        <label htmlFor="message" className={labelClasses}>
           Message
         </label>
         {errors.message && (
@@ -147,7 +144,7 @@ export function ContactForm() {
       <motion.button
         type="submit"
         disabled={isSubmitting}
-        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-accent text-white font-medium text-sm hover:bg-accent-dark transition-colors disabled:opacity-50 cursor-pointer"
+        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-primary to-primary-container text-white font-medium text-sm hover:shadow-[0_0_24px_rgba(164,56,0,0.3)] transition-all disabled:opacity-50 cursor-pointer"
         whileTap={{ scale: 0.98 }}
       >
         {isSubmitting ? (

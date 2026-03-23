@@ -6,18 +6,19 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function SkillsTags() {
   return (
-    <section className="py-16 md:py-24 bg-surface-alt dark:bg-surface-dark-alt">
+    <section className="py-16 md:py-24 bg-surface-container dark:bg-surface-dark-container">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <SectionHeading
           label="Expertise"
           title="Skills & Specialties"
+          centered
         />
 
         <div className="flex flex-wrap justify-center gap-3">
           {SKILLS.map((skill, index) => (
             <motion.span
               key={skill}
-              className="px-5 py-2.5 rounded-full text-sm font-medium border border-foreground/10 dark:border-white/10 bg-background dark:bg-surface-dark hover:border-accent hover:text-accent transition-colors cursor-default"
+              className="px-5 py-2.5 rounded-full text-sm font-medium bg-surface-container-high dark:bg-surface-dark-container-high hover:bg-secondary-container hover:text-secondary transition-colors cursor-default"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}

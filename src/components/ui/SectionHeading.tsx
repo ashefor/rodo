@@ -13,7 +13,7 @@ export function SectionHeading({
   label,
   title,
   subtitle,
-  centered = true,
+  centered = false,
 }: SectionHeadingProps) {
   return (
     <motion.div
@@ -24,7 +24,7 @@ export function SectionHeading({
       transition={{ duration: 0.5 }}
     >
       {label && (
-        <span className="text-accent font-medium text-sm tracking-widest uppercase mb-3 block">
+        <span className="text-primary font-medium text-sm tracking-widest uppercase mb-3 block">
           {label}
         </span>
       )}
@@ -32,7 +32,7 @@ export function SectionHeading({
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-text-muted dark:text-text-dark-muted text-base md:text-lg max-w-2xl mx-auto">
+        <p className={`mt-4 text-on-surface-variant dark:text-on-surface-dark-variant text-base md:text-lg max-w-2xl ${centered ? "mx-auto" : ""}`}>
           {subtitle}
         </p>
       )}

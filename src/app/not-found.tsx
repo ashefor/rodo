@@ -12,13 +12,13 @@ export default function NotFound() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="font-heading text-8xl md:text-9xl font-bold text-accent">
+        <h1 className="font-heading text-8xl md:text-9xl font-bold text-primary">
           404
         </h1>
         <p className="mt-4 text-xl md:text-2xl font-heading font-semibold">
           Page Not Found
         </p>
-        <p className="mt-2 text-text-muted dark:text-text-dark-muted mb-8">
+        <p className="mt-2 text-on-surface-variant dark:text-on-surface-dark-variant mb-8">
           The page you&rsquo;re looking for doesn&rsquo;t exist or has been
           moved.
         </p>

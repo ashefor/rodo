@@ -30,7 +30,7 @@ export function PortfolioItem({ item, index }: PortfolioItemProps) {
 
   return (
     <motion.div
-      className={`relative ${heightClass} rounded-2xl overflow-hidden group cursor-pointer`}
+      className={`relative ${heightClass} rounded-3xl overflow-hidden group cursor-pointer`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}

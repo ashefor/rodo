@@ -9,7 +9,7 @@ export function CTASection() {
     <section className="py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-accent to-accent-dark p-12 md:p-20 text-center"
+          className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary to-primary-container p-12 md:p-20 text-center"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -17,7 +17,7 @@ export function CTASection() {
         >
           {/* Decorative blurs */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-secondary/10 rounded-full blur-3xl" />
 
           <div className="relative z-10">
             <Sparkles size={32} className="text-white/80 mx-auto mb-6" />
@@ -33,7 +33,7 @@ export function CTASection() {
             <Button
               href="/contact"
               variant="outline"
-              className="!border-white !text-white hover:!bg-white hover:!text-accent-dark"
+              className="!border-white !text-white hover:!bg-white hover:!text-primary"
             >
               Book Now
             </Button>

@@ -30,7 +30,7 @@ export function Navbar() {
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "glass shadow-md"
+            ? "glass shadow-ambient"
             : "bg-transparent"
         }`}
         initial={{ y: -100 }}
@@ -41,7 +41,7 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-heading text-2xl md:text-3xl font-bold tracking-tighter hover:text-accent transition-colors"
+            className="font-heading text-2xl md:text-3xl font-bold tracking-tighter hover:text-primary transition-colors"
           >
             RL
           </Link>
@@ -52,9 +52,9 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-accent ${
+                className={`text-sm font-medium transition-colors hover:text-primary ${
                   pathname === link.href
-                    ? "text-accent"
+                    ? "text-primary"
                     : "text-foreground/70 dark:text-white/70"
                 }`}
               >

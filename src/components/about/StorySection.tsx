@@ -6,12 +6,12 @@ const storyBlocks = [
   {
     title: "The Journey",
     text: "It all started with a smartphone and a dream. What began as capturing everyday moments for fun quickly evolved into a burning passion for visual storytelling. I discovered that the best stories aren't always told with the most expensive equipment — they're told with heart, creativity, and an understanding of what makes moments special.",
-    gradient: "from-orange-400/20 to-red-500/20",
+    gradient: "from-[#a43800]/20 to-[#cd4800]/20",
   },
   {
     title: "The Craft",
     text: "Mobile videography isn't a limitation — it's a superpower. The accessibility and intimacy of mobile filmmaking allows me to capture authentic, raw moments that traditional setups might miss. Combined with professional editing and color grading, the results speak for themselves.",
-    gradient: "from-purple-400/20 to-pink-500/20",
+    gradient: "from-[#5b00df]/20 to-[#7c3aed]/20",
   },
   {
     title: "Beyond The Lens",
@@ -33,10 +33,10 @@ export function StorySection() {
             <div
               className={`flex flex-col ${
                 index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              } gap-8 lg:gap-16 items-center mb-16 md:mb-24 last:mb-0`}
+              } gap-8 lg:gap-16 items-center mb-20 md:mb-32 last:mb-0`}
             >
-              {/* Image placeholder */}
-              <div className="w-full lg:w-1/2">
+              {/* Image placeholder — bleeding edges */}
+              <div className="w-full lg:w-1/2 lg:-mx-8">
                 <div
                   className={`aspect-[4/3] rounded-3xl bg-gradient-to-br ${block.gradient} dark:opacity-60`}
                 >
@@ -53,7 +53,7 @@ export function StorySection() {
                 <h3 className="font-heading text-2xl md:text-3xl font-bold mb-4">
                   {block.title}
                 </h3>
-                <p className="text-text-muted dark:text-text-dark-muted text-base md:text-lg leading-relaxed">
+                <p className="text-on-surface-variant dark:text-on-surface-dark-variant text-base md:text-lg leading-relaxed">
                   {block.text}
                 </p>
               </div>

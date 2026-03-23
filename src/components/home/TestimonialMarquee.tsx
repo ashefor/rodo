@@ -27,8 +27,8 @@ export function TestimonialMarquee({
       )}
 
       {/* Row 1 - scrolls left */}
-      <div className="marquee-row mb-4">
-        <div className="flex gap-4 animate-marquee-left">
+      <div className="marquee-row mb-6">
+        <div className="flex gap-6 animate-marquee-left">
           {[...row1, ...row1].map((testimonial, i) => (
             <TestimonialCard key={`r1-${i}`} testimonial={testimonial} />
           ))}
@@ -37,7 +37,7 @@ export function TestimonialMarquee({
 
       {/* Row 2 - scrolls right */}
       <div className="marquee-row">
-        <div className="flex gap-4 animate-marquee-right">
+        <div className="flex gap-6 animate-marquee-right">
           {[...row2, ...row2].map((testimonial, i) => (
             <TestimonialCard key={`r2-${i}`} testimonial={testimonial} />
           ))}

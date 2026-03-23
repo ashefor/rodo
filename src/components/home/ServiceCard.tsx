@@ -31,9 +31,9 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
         <div
           className={`absolute inset-0 ${
             index === 0
-              ? "bg-gradient-to-br from-orange-600 to-red-700"
+              ? "bg-gradient-to-br from-[#a43800] to-[#cd4800]"
               : index === 1
-              ? "bg-gradient-to-br from-purple-600 to-pink-700"
+              ? "bg-gradient-to-br from-[#5b00df] to-[#7c3aed]"
               : "bg-gradient-to-br from-blue-600 to-teal-700"
           }`}
         />
@@ -43,7 +43,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-12">
         <motion.div
-          className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6"
+          className="w-16 h-16 rounded-3xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6"
           whileHover={{ rotate: 5, scale: 1.1 }}
         >
           <Icon size={28} className="text-white" />

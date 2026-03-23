@@ -35,7 +35,7 @@ export function PortfolioGrid() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3, delay: index * 0.04 }}
-              className="relative aspect-square rounded-2xl overflow-hidden group cursor-pointer"
+              className="relative aspect-square rounded-3xl overflow-hidden group cursor-pointer"
               onClick={() =>
                 item.category === "video"
                   ? setSelectedItem(item)
@@ -85,7 +85,7 @@ export function PortfolioGrid() {
         <div className="mt-10 text-center">
           <button
             onClick={() => setVisibleCount((prev) => prev + 6)}
-            className="px-8 py-3 rounded-full border-2 border-foreground/20 dark:border-white/20 text-sm font-medium hover:border-accent hover:text-accent transition-all cursor-pointer"
+            className="px-8 py-3 rounded-full text-sm font-medium bg-surface-container dark:bg-surface-dark-container hover:bg-primary hover:text-white transition-all cursor-pointer"
           >
             Load More
           </button>

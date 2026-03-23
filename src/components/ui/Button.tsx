@@ -5,7 +5,7 @@ import Link from "next/link";
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "outline";
+  variant?: "primary" | "secondary" | "outline";
   href?: string;
   external?: boolean;
   type?: "button" | "submit";
@@ -26,9 +26,11 @@ export function Button({
     "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 cursor-pointer";
   const variants = {
     primary:
-      "bg-accent text-white hover:bg-accent-dark shadow-lg hover:shadow-xl hover:scale-105",
+      "bg-gradient-to-r from-primary to-primary-container text-white hover:shadow-[0_0_24px_rgba(164,56,0,0.3)] hover:scale-105",
+    secondary:
+      "bg-secondary-container text-secondary backdrop-blur-md hover:backdrop-blur-xl hover:shadow-[0_0_20px_rgba(91,0,223,0.2)] hover:scale-105",
     outline:
-      "border-2 border-foreground/20 text-foreground hover:border-accent hover:text-accent hover:scale-105 dark:border-white/20",
+      "border-2 border-outline-variant text-foreground hover:border-primary hover:text-primary hover:scale-105 dark:border-outline-variant-dark",
   };
 
   const classes = `${base} ${variants[variant]} ${className}`;

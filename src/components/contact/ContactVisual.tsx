@@ -13,7 +13,7 @@ export function ContactVisual() {
       transition={{ duration: 0.7, delay: 0.2 }}
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent to-accent-dark" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-container" />
       <div className="absolute inset-0 bg-black/10" />
 
       {/* Content */}

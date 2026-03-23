@@ -36,13 +36,13 @@ export function VideoModal({ item, onClose }: VideoModalProps) {
         >
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#1a1c1d]/85 backdrop-blur-sm"
             onClick={onClose}
           />
 
           {/* Modal */}
           <motion.div
-            className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden bg-black"
+            className="relative w-full max-w-4xl aspect-video rounded-3xl overflow-hidden bg-[#1a1c1d] shadow-float"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -54,7 +54,7 @@ export function VideoModal({ item, onClose }: VideoModalProps) {
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-black/70 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-[#1a1c1d]/60 flex items-center justify-center text-white hover:bg-[#1a1c1d]/80 transition-colors cursor-pointer"
               aria-label="Close video"
             >
               <X size={20} />

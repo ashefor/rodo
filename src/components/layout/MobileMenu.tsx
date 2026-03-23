@@ -33,7 +33,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-[#1a1c1d]/50 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -42,13 +42,13 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
           {/* Panel */}
           <motion.div
-            className="fixed top-0 right-0 bottom-0 z-50 w-[80%] max-w-sm bg-background shadow-2xl flex flex-col"
+            className="fixed top-0 right-0 bottom-0 z-50 w-[80%] max-w-sm bg-background shadow-float flex flex-col"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
           >
-            <div className="flex items-center justify-between p-4 border-b border-foreground/10 dark:border-white/10">
+            <div className="flex items-center justify-between p-4 bg-surface-container dark:bg-surface-dark-container">
               <span className="font-heading text-2xl font-bold">RL</span>
               <button
                 onClick={onClose}
@@ -70,9 +70,9 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                   <Link
                     href={link.href}
                     onClick={onClose}
-                    className={`block py-3 text-lg font-medium transition-colors hover:text-accent ${
+                    className={`block py-3 text-lg font-medium transition-colors hover:text-primary ${
                       pathname === link.href
-                        ? "text-accent"
+                        ? "text-primary"
                         : "text-foreground/70 dark:text-white/70"
                     }`}
                   >
@@ -82,7 +82,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               ))}
             </nav>
 
-            <div className="p-6 border-t border-foreground/10 dark:border-white/10">
+            <div className="p-6 bg-surface-container dark:bg-surface-dark-container">
               <Button href="/contact" variant="primary" className="w-full">
                 Book Me
               </Button>

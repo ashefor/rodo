@@ -7,20 +7,20 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
-    <div className="flex-shrink-0 w-[320px] md:w-[380px] p-6 rounded-2xl bg-surface-alt dark:bg-surface-dark-alt border border-foreground/5 dark:border-white/5">
-      <Quote size={20} className="text-accent mb-3" />
+    <div className="flex-shrink-0 w-[320px] md:w-[380px] p-6 rounded-3xl bg-surface-container dark:bg-surface-dark-container">
+      <Quote size={20} className="text-primary mb-3" />
       <p className="text-sm text-foreground/80 dark:text-white/80 leading-relaxed mb-4">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-          <span className="text-accent font-bold text-sm">
+        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+          <span className="text-primary font-bold text-sm">
             {testimonial.name.charAt(0)}
           </span>
         </div>
         <div>
           <p className="text-sm font-semibold">{testimonial.name}</p>
-          <p className="text-xs text-text-muted dark:text-text-dark-muted">
+          <p className="text-xs text-on-surface-variant dark:text-on-surface-dark-variant">
             {testimonial.role}
           </p>
         </div>

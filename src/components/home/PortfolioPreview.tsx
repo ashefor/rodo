@@ -16,10 +16,11 @@ export function PortfolioPreview() {
           label="My Work"
           title="Portfolio"
           subtitle="A glimpse into the stories I&rsquo;ve told and the moments I&rsquo;ve captured."
+          centered={false}
         />
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
           {previewItems.map((item, index) => (
             <PortfolioItem key={item.id} item={item} index={index} />
           ))}

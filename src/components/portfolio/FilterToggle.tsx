@@ -16,7 +16,7 @@ const filters = [
 export function FilterToggle({ activeFilter, onFilterChange }: FilterToggleProps) {
   return (
     <div className="flex justify-center mb-12">
-      <div className="inline-flex gap-1 p-1 rounded-full bg-surface-alt dark:bg-surface-dark-alt border border-foreground/5 dark:border-white/5">
+      <div className="inline-flex gap-1 p-1 rounded-full bg-surface-container dark:bg-surface-dark-container">
         {filters.map((filter) => (
           <button
             key={filter.key}
@@ -24,13 +24,13 @@ export function FilterToggle({ activeFilter, onFilterChange }: FilterToggleProps
             className={`relative px-5 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer ${
               activeFilter === filter.key
                 ? "text-white"
-                : "text-text-muted dark:text-text-dark-muted hover:text-foreground dark:hover:text-white"
+                : "text-on-surface-variant dark:text-on-surface-dark-variant hover:text-foreground dark:hover:text-white"
             }`}
           >
             {activeFilter === filter.key && (
               <motion.div
                 layoutId="filter-pill"
-                className="absolute inset-0 bg-accent rounded-full"
+                className="absolute inset-0 bg-primary rounded-full"
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
               />
             )}
