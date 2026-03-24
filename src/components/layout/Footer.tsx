@@ -17,7 +17,7 @@ export function Footer() {
             </Link>
             <p className="mt-3 text-gray-600 text-sm max-w-xs">
               Capturing moments and creating unforgettable experiences through
-              mobile videography, content creation, and event planning in Abuja.
+              mobile videography, content creation, and event planning in Abuja & Lagos. Available to travel globally ✈️.
             </p>
           </div>
 
@@ -57,7 +57,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <MapPin size={16} className="text-primary" />
-                <span>Abuja, Nigeria</span>
+                <span>Abuja & Lagos (Available to ✈️)</span>
               </li>
             </ul>
 

@@ -4,18 +4,18 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const storyBlocks = [
   {
-    title: "The Journey",
-    text: "It all started with a smartphone and a dream. What began as capturing everyday moments for fun quickly evolved into a burning passion for visual storytelling. I discovered that the best stories aren't always told with the most expensive equipment — they're told with heart, creativity, and an understanding of what makes moments special.",
+    title: "The Passion",
+    text: "Our brand was built from a passion for capturing life as it unfolds: the laughter, the elegance, the quiet emotions, and the unforgettable celebrations. Through intentional storytelling and refined visuals, we ensure your most beautiful moments are remembered forever.",
     gradient: "from-[#a43800]/20 to-[#cd4800]/20",
   },
   {
-    title: "The Craft",
-    text: "Mobile videography isn't a limitation — it's a superpower. The accessibility and intimacy of mobile filmmaking allows me to capture authentic, raw moments that traditional setups might miss. Combined with professional editing and color grading, the results speak for themselves.",
+    title: "The Experience",
+    text: "Over the years, we've had the absolute privilege of capturing luxury decor and premium events alongside prestigious vendors like Blue Velvet, Alveena, Perfect Integrated Decor, Wedding Guru, Exquisite Luxury, and The Planning Comp.",
     gradient: "from-[#5b00df]/20 to-[#7c3aed]/20",
   },
   {
-    title: "Beyond The Lens",
-    text: "Event planning came naturally. Understanding how to capture events led me to understand how to create them. Today, I offer end-to-end services — from conceptualizing and planning events to capturing every beautiful moment and delivering content that keeps the memories alive forever.",
+    title: "The Vision",
+    text: "Every frame we create is intentional. Every story we tell is peculiar. Our vision is simple: to craft visuals that not only document moments, but elevate them into lasting experiences.",
     gradient: "from-blue-400/20 to-teal-500/20",
   },
 ];

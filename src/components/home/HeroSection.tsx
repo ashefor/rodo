@@ -17,7 +17,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <span className="inline-block text-primary font-bold text-xs tracking-[0.2em] uppercase mb-6 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-              Rodo Lens &mdash; Abuja
+              Rodo Lens &mdash; Abuja & Lagos (Available to ✈️)
             </span>
           </motion.div>
 
@@ -39,7 +39,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Mobile videography, content creation, and event planning in Abuja. We tell your story with stunning clarity and endless creativity.
+            Visual Storyteller 🎥 • Events | Brands | Lifestyle. Based in Abuja & Lagos, available for global travel. We tell your story with stunning clarity and endless creativity.
           </motion.p>
 
           <motion.div

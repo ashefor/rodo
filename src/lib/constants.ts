@@ -162,7 +162,7 @@ export const SKILLS = [
 ];
 
 export const SOCIAL_LINKS = {
-  instagram: "https://instagram.com/rodolens",
+  instagram: "https://instagram.com/_rodos__lens_",
   twitter: "https://twitter.com/rodolens",
   tiktok: "https://tiktok.com/@rodolens",
   email: "hello@rodolens.com",

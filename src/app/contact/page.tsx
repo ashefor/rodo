@@ -6,7 +6,7 @@ import { ContactVisual } from "@/components/contact/ContactVisual";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Rodo Lens for mobile videography, content creation, and event planning services in Abuja. Book your session today.",
+    "Get in touch with Rodo Lens for mobile videography, visual storytelling, and content creation services in Abuja, Lagos, and worldwide. Book your session today.",
 };
 
 export default function ContactPage() {

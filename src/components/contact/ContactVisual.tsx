@@ -37,7 +37,7 @@ export function ContactVisual() {
 
           <div className="flex items-center gap-5">
             <MapPin size={18} className="text-white/70" />
-            <p className="text-sm font-medium">Abuja, Nigeria</p>
+            <p className="text-sm font-medium">Abuja & Lagos (Available to ✈️)</p>
           </div>
         </div>
       </div>

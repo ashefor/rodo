@@ -8,7 +8,7 @@ import { CTASection } from "@/components/home/CTASection";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Meet Divine Agbanigbi — the creative mind behind Rodo Lens. Content creator, mobile videographer, and event planner based in Abuja, Nigeria.",
+    "Meet Rodo — the creative mind behind Rodo Lens. Content creator, visual storyteller, and mobile videographer based in Abuja and Lagos, available to travel globally.",
 };
 
 export default function AboutPage() {

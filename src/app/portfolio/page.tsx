@@ -3,15 +3,33 @@ import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import { SOCIAL_LINKS, PORTFOLIO_ITEMS } from "@/lib/constants";
+import { getInstagramVideos } from "@/lib/instagram";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Portfolio | Event Content Creator & Mobile Videography",
   description:
-    "Browse the portfolio of Rodo Lens — mobile videography, content creation, and event coverage projects in Abuja and beyond.",
+    "Browse the portfolio of Rodo Lens. Expert event content creation, mobile videography, and luxury decor coverage in Abuja, Lagos, and globally. View weddings, setups, and event highlights.",
+  keywords: [
+    "Rodo Lens",
+    "Rodo Event Content Creator",
+    "Abuja Content Creator",
+    "Event Videography Nigeria",
+    "Wedding Content Creator Abuja",
+    "Mobile Videography Nigeria",
+    "Event Decor Video",
+    "Abuja Event Photographer",
+    "Instagram Reel Creator Events",
+    "Luxury Event Coverage",
+    "Decor Setups Videography",
+  ],
 };
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const liveVideos = await getInstagramVideos();
+  // If the .env token isn't set or fetching fails, safely fallback to the mock PORTFOLIO_ITEMS
+  const itemsToDisplay = liveVideos.length > 0 ? liveVideos : PORTFOLIO_ITEMS;
+
   return (
     <section className="pt-28 md:pt-36 pb-20 md:pb-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +39,7 @@ export default function PortfolioPage() {
           subtitle="Explore a collection of projects that showcase my creative journey and storytelling skills."
         />
 
-        <PortfolioGrid />
+        <PortfolioGrid initialItems={itemsToDisplay} />
 
         {/* Bottom CTA */}
         <div className="mt-16 text-center">

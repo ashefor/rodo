@@ -6,23 +6,27 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Rodo Lens | Content Creator & Mobile Videographer in Abuja",
+    default: "Rodo Lens | Visual Storyteller in Abuja & Lagos",
     template: "%s | Rodo Lens",
   },
   description:
-    "Divine Agbanigbi — content creator, mobile videographer, and event planner based in Abuja. View portfolio, services, and book your next project.",
+    "Rodo Lens — visual storyteller, event content creator, brands, and lifestyle. Based in Abuja & Lagos, available to travel globally.",
   keywords: [
     "Abuja videographer",
+    "Lagos videographer",
     "mobile videography Nigeria",
-    "event planner Abuja",
+    "event planner Abuja & Lagos",
     "content creator Abuja",
+    "content creator Lagos",
+    "traveling videographer",
+    "visual storyteller",
     "Rodo Lens",
-    "Divine Agbanigbi",
+    "Rodo",
   ],
   openGraph: {
     title: "Rodo Lens | Creative Portfolio",
     description:
-      "Content creation, mobile videography, and event planning in Abuja.",
+      "Visual storytelling, events, brands, and lifestyle in Abuja, Lagos, and worldwide.",
     type: "website",
     locale: "en_NG",
     siteName: "Rodo Lens",
