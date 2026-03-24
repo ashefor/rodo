@@ -121,22 +121,14 @@ body {
   background: linear-gradient(135deg, #a43800, #cd4800);
 }
 
-/* Scrollbar styling */
+/* Hide scrollbars globally per user request */
 ::-webkit-scrollbar {
-  width: 6px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #404040;
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* Hide scrollbar for horizontal scroll areas */

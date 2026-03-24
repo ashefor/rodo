@@ -19,14 +19,14 @@ export default function ContactPage() {
           subtitle="Ready to bring your vision to life? Let's talk."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="bg-white rounded-[2rem] shadow-xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row mx-auto w-full">
           {/* Form */}
-          <div className="order-2 lg:order-1">
+          <div className="order-2 lg:order-1 w-full lg:w-[60%] p-8 md:p-12 lg:p-14">
             <ContactForm />
           </div>
 
           {/* Visual panel */}
-          <div className="order-1 lg:order-2">
+          <div className="order-1 lg:order-2 w-full lg:w-[40%]">
             <ContactVisual />
           </div>
         </div>

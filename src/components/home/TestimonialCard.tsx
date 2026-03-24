@@ -7,9 +7,9 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
-    <div className="flex-shrink-0 w-[320px] md:w-[380px] p-6 rounded-3xl bg-surface-container dark:bg-surface-dark-container">
+    <div className="flex-shrink-0 w-[320px] md:w-[380px] p-6 rounded-lg bg-white shadow-sm border border-gray-100">
       <Quote size={20} className="text-primary mb-3" />
-      <p className="text-sm text-foreground/80 dark:text-white/80 leading-relaxed mb-4">
+      <p className="text-sm text-gray-700 leading-relaxed mb-4">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
       <div className="flex items-center gap-3">
@@ -20,7 +20,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         </div>
         <div>
           <p className="text-sm font-semibold">{testimonial.name}</p>
-          <p className="text-xs text-on-surface-variant dark:text-on-surface-dark-variant">
+          <p className="text-xs text-gray-500">
             {testimonial.role}
           </p>
         </div>

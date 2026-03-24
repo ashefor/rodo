@@ -11,8 +11,9 @@ interface TestimonialMarqueeProps {
 export function TestimonialMarquee({
   showHeading = true,
 }: TestimonialMarqueeProps) {
-  const row1 = TESTIMONIALS.slice(0, 4);
-  const row2 = TESTIMONIALS.slice(4);
+  const row1 = TESTIMONIALS;
+  const row2 = [...TESTIMONIALS].reverse();
+  const row3 = [...TESTIMONIALS].slice(3).concat([...TESTIMONIALS].slice(0, 3));
 
   return (
     <section className="py-20 md:py-28 overflow-hidden">
@@ -27,9 +28,9 @@ export function TestimonialMarquee({
       )}
 
       {/* Row 1 - scrolls left */}
-      <div className="marquee-row mb-6">
-        <div className="flex gap-6 animate-marquee-left">
-          {[...row1, ...row1].map((testimonial, i) => (
+      <div className="marquee-row mb-4">
+        <div className="flex gap-4 w-max animate-[marquee-left_90s_linear_infinite] hover:[animation-play-state:paused]">
+          {[...row1, ...row1, ...row1, ...row1].map((testimonial, i) => (
             <TestimonialCard key={`r1-${i}`} testimonial={testimonial} />
           ))}
         </div>
@@ -37,8 +38,8 @@ export function TestimonialMarquee({
 
       {/* Row 2 - scrolls right */}
       <div className="marquee-row">
-        <div className="flex gap-6 animate-marquee-right">
-          {[...row2, ...row2].map((testimonial, i) => (
+        <div className="flex gap-4 w-max animate-[marquee-left_60s_linear_infinite] hover:[animation-play-state:paused]">
+          {[...row2, ...row2, ...row2, ...row2].map((testimonial, i) => (
             <TestimonialCard key={`r2-${i}`} testimonial={testimonial} />
           ))}
         </div>

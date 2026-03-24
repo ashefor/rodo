@@ -8,6 +8,7 @@ export interface Service {
   description: string;
   icon: string;
   image: string;
+  videoUrl?: string;
 }
 
 export interface Testimonial {

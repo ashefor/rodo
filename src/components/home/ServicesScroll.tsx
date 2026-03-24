@@ -1,46 +1,46 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import { SERVICES } from "@/lib/constants";
 import { ServiceCard } from "./ServiceCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function ServicesScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66.666%"]);
+  const scrollIndex = useTransform(scrollYProgress, [0, 1], [0, SERVICES.length - 1]);
 
   return (
-    <section>
-      {/* Section heading (outside the scroll area) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-28">
-        <SectionHeading
-          label="What I Do"
-          title="Services"
-          subtitle="From concept to creation, I bring your vision to life with passion and precision."
-        />
-      </div>
+    <section 
+      ref={containerRef} 
+      className="bg-background relative z-10"
+      style={{ height: `${SERVICES.length * 100}vh` }}
+    >
+      <div className="sticky top-0 h-screen w-full flex flex-col overflow-hidden pt-24 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full shrink-0 mb-8 md:mb-12">
+          <SectionHeading
+            label="What I Do"
+            title="Services"
+            subtitle="From concept to creation, I bring your vision to life with passion and precision."
+          />
+        </div>
 
-      {/* Scroll container */}
-      <div
-        ref={containerRef}
-        className="relative"
-        style={{ height: `${SERVICES.length * 100}vh` }}
-      >
-        <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          <motion.div
-            className="flex gap-8 md:gap-12 pl-[10vw]"
-            style={{ x }}
-          >
-            {SERVICES.map((service, index) => (
-              <ServiceCard key={service.title} service={service} index={index} />
-            ))}
-          </motion.div>
+        <div className="relative w-full flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {SERVICES.map((service, index) => (
+            <ServiceCard 
+              key={service.title} 
+              service={service} 
+              index={index} 
+              scrollIndex={scrollIndex}
+              totalCards={SERVICES.length} 
+            />
+          ))}
         </div>
       </div>
     </section>

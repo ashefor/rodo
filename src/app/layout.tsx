@@ -44,11 +44,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('rodo-theme');if(t==='dark')document.documentElement.classList.add('dark')})();`,
-          }}
-        />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>

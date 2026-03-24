@@ -15,25 +15,15 @@ export const ThemeContext = createContext<ThemeContextType>({
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme] = useState<Theme>("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("rodo-theme") as Theme | null;
-    const initial = stored || "light";
-    setTheme(initial);
-    document.documentElement.classList.toggle("dark", initial === "dark");
+    document.documentElement.classList.remove("dark");
     setMounted(true);
   }, []);
 
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === "light" ? "dark" : "light";
-      localStorage.setItem("rodo-theme", next);
-      document.documentElement.classList.toggle("dark", next === "dark");
-      return next;
-    });
-  }, []);
+  const toggleTheme = useCallback(() => {}, []);
 
   if (!mounted) {
     return <>{children}</>;

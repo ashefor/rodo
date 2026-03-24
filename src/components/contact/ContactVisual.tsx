@@ -1,92 +1,62 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Globe, Mail, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone, Mail, Globe, Share2 } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
 export function ContactVisual() {
   return (
-    <motion.div
-      className="relative h-full min-h-[400px] lg:min-h-0 rounded-3xl overflow-hidden"
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.7, delay: 0.2 }}
-    >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-container" />
-      <div className="absolute inset-0 bg-black/10" />
+    <div className="relative h-full w-full min-h-[500px] bg-indigo-900 text-white overflow-hidden p-8 md:p-12 lg:p-14 flex flex-col justify-between">
+      {/* Decorative Circles matching the screenshot */}
+      <div className="absolute -bottom-24 -right-24 w-[350px] h-[350px] rounded-full bg-red-400/90 mix-blend-multiply" />
+      <div className="absolute -bottom-10 right-10 w-48 h-48 rounded-full bg-indigo-500/90 mix-blend-multiply" />
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-between p-8 md:p-12 text-white">
-        <div>
-          <h3 className="font-heading text-2xl md:text-3xl font-bold mb-4">
-            Let&rsquo;s work together
-          </h3>
-          <p className="text-white/80 text-sm md:text-base max-w-sm leading-relaxed">
-            Have a project in mind? Fill out the form and I&rsquo;ll get back to
-            you within 24 hours.
-          </p>
-        </div>
+      {/* Content Top */}
+      <div className="relative z-10 w-full">
+        <h3 className="font-heading text-2xl font-bold mb-4">
+          Contact Information
+        </h3>
+        <p className="text-white/80 text-sm mb-12 max-w-[250px] leading-relaxed">
+          Fill up the form and our Team will get back to you within 24 hours.
+        </p>
 
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-              <Mail size={18} />
-            </div>
-            <div>
-              <p className="text-xs text-white/60">Email</p>
-              <a
-                href={`mailto:${SOCIAL_LINKS.email}`}
-                className="text-sm font-medium hover:underline"
-              >
-                {SOCIAL_LINKS.email}
-              </a>
-            </div>
+        <div className="space-y-6">
+          <div className="flex items-center gap-5">
+            <Phone size={18} className="text-indigo-200" />
+            <a href={`tel:${SOCIAL_LINKS.phone}`} className="text-sm font-medium hover:text-indigo-200 transition-colors">
+              +0123 4567 8910
+            </a>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-              <Phone size={18} />
-            </div>
-            <div>
-              <p className="text-xs text-white/60">Phone</p>
-              <a
-                href={`tel:${SOCIAL_LINKS.phone}`}
-                className="text-sm font-medium hover:underline"
-              >
-                {SOCIAL_LINKS.phone}
-              </a>
-            </div>
+          <div className="flex items-center gap-5">
+            <Mail size={18} className="text-indigo-200" />
+            <a href={`mailto:${SOCIAL_LINKS.email}`} className="text-sm font-medium hover:text-indigo-200 transition-colors">
+              hello@flowbase.com
+            </a>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-              <MapPin size={18} />
-            </div>
-            <div>
-              <p className="text-xs text-white/60">Location</p>
-              <p className="text-sm font-medium">Abuja, Nigeria</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-              <Globe size={18} />
-            </div>
-            <div>
-              <p className="text-xs text-white/60">Instagram</p>
-              <a
-                href={SOCIAL_LINKS.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-medium hover:underline"
-              >
-                @rodolens
-              </a>
-            </div>
+          <div className="flex items-center gap-5">
+            <MapPin size={18} className="text-indigo-200" />
+            <p className="text-sm font-medium">102 Street 2714 Don</p>
           </div>
         </div>
       </div>
-    </motion.div>
+
+      {/* Content Bottom: Socials */}
+      <div className="relative z-10 flex items-center gap-4 mt-20">
+        <a href="#" aria-label="Facebook" className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+          <span className="font-serif italic font-bold">f</span>
+        </a>
+        <a href={SOCIAL_LINKS.twitter} aria-label="Twitter" className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+          <Share2 size={16} />
+        </a>
+        <a href={SOCIAL_LINKS.instagram} aria-label="Instagram" className="w-9 h-9 rounded-full bg-white text-indigo-900 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+          <Globe size={16} />
+        </a>
+        <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+          <span className="font-serif italic font-bold">in</span>
+        </a>
+      </div>
+    </div>
   );
 }
