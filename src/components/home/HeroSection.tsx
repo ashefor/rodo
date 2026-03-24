@@ -33,14 +33,22 @@ export function HeroSection() {
             </span>
           </motion.h1>
 
-          <motion.p
-            className="mt-6 text-slate-600 text-base md:text-xl max-w-xl leading-relaxed"
+          <motion.div
+            className="mt-6 text-slate-600 text-base md:text-xl max-w-xl leading-relaxed space-y-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Visual Storyteller 🎥 • Events | Brands | Lifestyle. Based in Abuja & Lagos, available for global travel. We tell your story with stunning clarity and endless creativity.
-          </motion.p>
+            <p className="font-medium text-slate-900 dark:text-white flex items-center gap-2">
+              Visual Storyteller 🎥 <span className="text-slate-300 mx-1">|</span> Events • Brands • Lifestyle
+            </p>
+            <p>
+              Based in Abuja & Lagos <span className="text-slate-300 mx-1">•</span> Available for global travel ✈️
+            </p>
+            <p className="pt-2 italic border-l-2 border-primary/20 pl-4">
+              We tell your story with stunning clarity and endless creativity.
+            </p>
+          </motion.div>
 
           <motion.div
             className="mt-10 flex flex-col sm:flex-row gap-4 justify-start"
