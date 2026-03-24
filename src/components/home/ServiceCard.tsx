@@ -46,7 +46,7 @@ export function ServiceCard({ service, index, totalCards, scrollIndex }: Service
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => { });
     }
   }, []);
 
@@ -60,8 +60,8 @@ export function ServiceCard({ service, index, totalCards, scrollIndex }: Service
         scale,
         rotateX,
         zIndex,
-        perspective: 1200,
-        transformOrigin: "center top",
+        perspective: 500,
+        transformOrigin: "center bottom",
       }}
     >
       {/* Left Column - Text Content */}
