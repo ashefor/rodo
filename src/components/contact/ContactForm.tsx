@@ -7,8 +7,7 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
-// The service options mapped to what's likely offered or common in standard templates
-const RADIO_OPTIONS = ["Web Design", "Web Development", "Logo Design", "Other"];
+import { SERVICE_OPTIONS } from "@/lib/constants";
 
 const contactSchema = z.object({
   firstName: z.string().min(2, "Required"),
@@ -31,7 +30,7 @@ export function ContactForm() {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      service: "Web Development",
+      service: SERVICE_OPTIONS[0],
     }
   });
 
@@ -98,9 +97,9 @@ export function ContactForm() {
 
       {/* Radio Service Group */}
       <div className="pt-2">
-        <label className="text-sm font-bold text-gray-900 mb-4 block">What type of website do you need?</label>
+        <label className="text-sm font-bold text-gray-900 mb-4 block">What type of service do you need?</label>
         <div className="flex flex-wrap gap-4 md:gap-6">
-          {RADIO_OPTIONS.map((opt) => (
+          {SERVICE_OPTIONS.map((opt) => (
             <label key={opt} className="flex items-center gap-2 cursor-pointer group">
               <input
                 type="radio"
@@ -108,7 +107,7 @@ export function ContactForm() {
                 {...register("service")}
                 className="hidden"
               />
-              <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${selectedService === opt ? 'border-indigo-600 bg-indigo-600' : 'border-gray-300 group-hover:border-indigo-400'}`}>
+              <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${selectedService === opt ? 'border-primary bg-primary' : 'border-gray-300 group-hover:border-primary/50'}`}>
                 {selectedService === opt && <Check size={10} className="text-white" strokeWidth={4} />}
               </div>
               <span className={`text-sm ${selectedService === opt ? 'text-gray-900 font-medium' : 'text-gray-500'}`}>{opt}</span>
@@ -129,7 +128,7 @@ export function ContactForm() {
         <motion.button
           type="submit"
           disabled={isSubmitting}
-          className="px-8 py-3.5 rounded-lg bg-indigo-900 text-white font-medium text-sm hover:bg-indigo-800 transition-colors disabled:opacity-50 min-w-[160px]"
+          className="px-8 py-3.5 rounded-lg bg-primary text-white font-medium text-sm hover:bg-primary/90 transition-colors disabled:opacity-50 min-w-[160px]"
           whileTap={{ scale: 0.98 }}
         >
           {isSubmitting ? (
