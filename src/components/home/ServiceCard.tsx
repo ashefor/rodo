@@ -24,7 +24,7 @@ export function ServiceCard({ service, index, totalCards, scrollIndex }: Service
   const yOffset = useTransform(
     scrollIndex,
     [index - 2, index - 1, index, index + 0.4, index + 1],
-    [60, 30, 0, 0, -150]
+    [60, 30, 0, 0, -300]
   );
 
   const scale = useTransform(
@@ -67,7 +67,7 @@ export function ServiceCard({ service, index, totalCards, scrollIndex }: Service
         rotateX,
         opacity,
         zIndex,
-        transformOrigin: "center bottom",
+        transformOrigin: "center top",
       }}
     >
       {/* Left Column - Text Content */}
