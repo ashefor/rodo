@@ -20,10 +20,11 @@ const colors = [
 export function ServiceCard({ service, index, totalCards, scrollIndex }: ServiceCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Stack peek: cards waiting below are slightly offset & scaled
   const yOffset = useTransform(
     scrollIndex,
     [index - 2, index - 1, index, index + 0.4, index + 1],
-    [60, 30, 0, 0, -300]
+    [40, 20, 0, 0, -800]
   );
 
   const scale = useTransform(
@@ -32,6 +33,7 @@ export function ServiceCard({ service, index, totalCards, scrollIndex }: Service
     [0.88, 0.94, 1]
   );
 
+  // 3D exit: card tilts as it peels away upward
   const rotateX = useTransform(
     scrollIndex,
     [index, index + 0.3, index + 1],
@@ -50,7 +52,7 @@ export function ServiceCard({ service, index, totalCards, scrollIndex }: Service
 
   return (
     <motion.div
-      className={`absolute inset-0 max-w-6xl w-[90vw] mx-auto rounded-[32px] overflow-hidden shadow-2xl ${bgColor} flex flex-col md:flex-row p-6 md:p-12 gap-8 md:gap-16 sm:h-auto h-full max-h-[85vh] my-auto`}
+      className={`absolute top-0 left-0 w-full h-full rounded-[32px] overflow-hidden shadow-2xl ${bgColor} flex flex-col md:flex-row p-6 md:p-12 gap-8 md:gap-16`}
       style={{
         y: yOffset,
         scale,
