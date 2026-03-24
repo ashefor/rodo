@@ -39,7 +39,7 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("Form data:", data);
+    // console.log("Form data:", data);
     setSubmitted(true);
   };
 
