@@ -20,10 +20,10 @@ export function ServicesScroll() {
     <section
       ref={containerRef}
       className="bg-background relative z-10"
-      style={{ height: `${(SERVICES.length + 1) * 100}vh` }}
+      style={{ height: `${SERVICES.length * 80}vh` }}
     >
       {/* Normal heading — scrolls away naturally */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 mb-[40vh]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 mb-16">
         <SectionHeading
           label="What I Do"
           title="Services"

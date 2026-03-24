@@ -15,6 +15,8 @@ const colors = [
   "bg-[#b05b15]", // Brown/Orange
   "bg-[#087b8f]", // Teal
   "bg-[#8a0d78]", // Purple/Magenta
+  "bg-[#1a5e3a]", // Deep Green
+  "bg-[#2d3a8c]", // Navy Blue
 ];
 
 export function ServiceCard({ service, index, totalCards, scrollIndex }: ServiceCardProps) {

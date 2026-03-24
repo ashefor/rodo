@@ -29,6 +29,20 @@ export const SERVICES: Service[] = [
     icon: "CalendarHeart",
     image: "/images/service-events.jpg",
   },
+  {
+    title: "Photo Editing",
+    description:
+      "Professional photo retouching, color grading, and compositing that transforms raw captures into polished visual masterpieces.",
+    icon: "Camera",
+    image: "/images/service-editing.jpg",
+  },
+  {
+    title: "Brand Strategy",
+    description:
+      "Crafting visual identities and brand narratives that resonate. From creative direction to full brand kits, I help you stand out.",
+    icon: "CalendarHeart",
+    image: "/images/service-brand.jpg",
+  },
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
