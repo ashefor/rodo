@@ -26,9 +26,9 @@ export function PortfolioItem({ item, index }: PortfolioItemProps) {
 
   return (
     <motion.div
-      className="flex-shrink-0 w-[75vw] md:w-[55vw] lg:w-[45vw] aspect-video relative rounded-3xl overflow-hidden group cursor-pointer snap-start"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      className="relative w-[85vw] md:w-auto md:aspect-video h-[450px] md:h-[500px] flex-shrink-0 snap-center rounded-[32px] overflow-hidden group cursor-pointer bg-black"
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
       onMouseEnter={handleMouseEnter}
@@ -38,12 +38,26 @@ export function PortfolioItem({ item, index }: PortfolioItemProps) {
       <div
         className={`absolute inset-0 ${
           index % 3 === 0
-            ? "bg-gradient-to-br from-gray-800 to-gray-900"
+            ? "bg-gradient-to-br from-[#111] to-[#333]"
             : index % 3 === 1
-            ? "bg-gradient-to-br from-neutral-700 to-neutral-900"
-            : "bg-gradient-to-br from-zinc-700 to-zinc-900"
+            ? "bg-gradient-to-br from-[#222] to-[#444]"
+            : "bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a]"
         }`}
       />
+
+      {/* Image thumbnail mimicking the screenshot style */}
+      {item.thumbnail && (
+        <div 
+          className="absolute right-0 top-0 bottom-0 w-full md:w-3/4 opacity-80 transition-opacity duration-500 group-hover:opacity-100"
+          style={{
+            backgroundImage: `url(${item.thumbnail})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)'
+          }}
+        />
+      )}
 
       {/* Video preview (plays on hover) */}
       {item.videoUrl && (
@@ -57,33 +71,30 @@ export function PortfolioItem({ item, index }: PortfolioItemProps) {
         />
       )}
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300" />
+      {/* Overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent md:from-black md:via-black/70 md:to-transparent" />
 
-      {/* Content */}
-      <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-        <div className="flex items-end justify-between gap-4">
-          <div className="transform group-hover:translate-y-0 translate-y-1 transition-transform duration-300">
-            <p className="text-white font-heading font-bold text-lg md:text-xl">
-              {item.title}
-            </p>
-            <p className="text-white/50 text-sm mt-1 capitalize">
-              {item.category}
-            </p>
-          </div>
+      {/* Content mimicking the screenshot */}
+      <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between">
+        <div className="w-[85%] md:w-2/3 transform group-hover:-translate-y-1 transition-transform duration-300">
+          <h2 className="text-white font-black text-[2.5rem] leading-[1.05] tracking-tight mb-2 md:text-[3.5rem]">
+            {item.title}
+          </h2>
+          <p className="text-white/60 text-sm md:text-base uppercase font-bold tracking-[0.2em]">{item.category}</p>
+        </div>
 
-          {/* Learn more button */}
-          <span className="hidden md:inline-flex px-5 py-2 bg-white text-black text-xs font-semibold uppercase tracking-wider rounded-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+        <div className="transform group-hover:-translate-y-1 transition-transform duration-300 mt-auto">
+          <div className="bg-white text-black font-extrabold text-sm uppercase tracking-wide px-6 py-3.5 rounded-xl inline-block shadow-lg hover:bg-gray-200 transition-colors">
             Learn More
-          </span>
+          </div>
         </div>
       </div>
 
       {/* Play icon for video items */}
       {item.category === "video" && (
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-            <Play size={24} className="text-white ml-1" />
+        <div className="absolute top-6 right-6 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10">
+            <Play size={20} className="text-white ml-1" />
           </div>
         </div>
       )}
