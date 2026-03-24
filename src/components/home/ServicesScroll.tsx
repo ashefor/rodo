@@ -1,45 +1,120 @@
 "use client";
 
 import { useRef } from "react";
-import { useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { SERVICES } from "@/lib/constants";
 import { ServiceCard } from "./ServiceCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
+function StackCard({
+  index,
+  total,
+  scrollYProgress,
+  children,
+}: {
+  index: number;
+  total: number;
+  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+  children: React.ReactNode;
+}) {
+  const segmentSize = 1 / total;
+  const start = index * segmentSize;
+  const end = (index + 1) * segmentSize;
+
+  // Card enters from below and settles in place
+  const y = useTransform(
+    scrollYProgress,
+    index === 0
+      ? [0, 1]
+      : [start - segmentSize * 0.1, start + segmentSize * 0.5, end],
+    index === 0
+      ? ["0%", "-5%"]
+      : ["100%", "0%", "-5%"]
+  );
+
+  // Rotation: card arrives straight, then tilts back as next card pushes it
+  const rotate = useTransform(
+    scrollYProgress,
+    index === 0
+      ? [0, end]
+      : [start, start + segmentSize * 0.5, end],
+    index === 0
+      ? [0, -3]
+      : [6, 0, -3]
+  );
+
+  // Scale down slightly as card gets pushed back
+  const scale = useTransform(
+    scrollYProgress,
+    index === 0
+      ? [0, end]
+      : [start, start + segmentSize * 0.5, end],
+    index === 0
+      ? [1, 0.95]
+      : [0.92, 1, 0.95]
+  );
+
+  // Opacity: last card stays fully visible
+  const opacity = useTransform(
+    scrollYProgress,
+    index === total - 1
+      ? [start, start + segmentSize * 0.5]
+      : [start, start + segmentSize * 0.3, end + segmentSize * 0.2],
+    index === total - 1
+      ? [0, 1]
+      : [index === 0 ? 1 : 0, 1, 0.6]
+  );
+
+  return (
+    <motion.div
+      className="absolute inset-0 flex items-center justify-center will-change-transform"
+      style={{
+        y,
+        rotate,
+        scale,
+        opacity,
+        zIndex: index + 1,
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export function ServicesScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const scrollIndex = useTransform(scrollYProgress, [0, 1], [0, SERVICES.length - 1]);
-
   return (
-    <section 
-      ref={containerRef} 
-      className="bg-background relative z-10"
-      style={{ height: `${SERVICES.length * 100}vh` }}
-    >
-      <div className="sticky top-0 h-screen w-full flex flex-col overflow-hidden pt-24 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full shrink-0 mb-8 md:mb-12">
-          <SectionHeading
-            label="What I Do"
-            title="Services"
-            subtitle="From concept to creation, I bring your vision to life with passion and precision."
-          />
-        </div>
+    <section>
+      {/* Section heading */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-28">
+        <SectionHeading
+          label="What I Do"
+          title="Services"
+          subtitle="From concept to creation, I bring your vision to life with passion and precision."
+        />
+      </div>
 
-        <div className="relative w-full flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Stack scroll container */}
+      <div
+        ref={containerRef}
+        className="relative"
+        style={{ height: `${(SERVICES.length + 1) * 100}vh` }}
+      >
+        <div className="sticky top-0 h-screen overflow-hidden">
           {SERVICES.map((service, index) => (
-            <ServiceCard 
-              key={service.title} 
-              service={service} 
-              index={index} 
-              scrollIndex={scrollIndex}
-              totalCards={SERVICES.length} 
-            />
+            <StackCard
+              key={service.title}
+              index={index}
+              total={SERVICES.length}
+              scrollYProgress={scrollYProgress}
+            >
+              <ServiceCard service={service} index={index} />
+            </StackCard>
           ))}
         </div>
       </div>

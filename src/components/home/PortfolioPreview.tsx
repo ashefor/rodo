@@ -1,92 +1,63 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { useRef, useState, useCallback } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { PORTFOLIO_ITEMS, SOCIAL_LINKS } from "@/lib/constants";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { PortfolioItem } from "./PortfolioItem";
 
 export function PortfolioPreview() {
-  const previewItems = PORTFOLIO_ITEMS.slice(0, 6);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const previewItems = PORTFOLIO_ITEMS.slice(0, 6);
 
-  const checkScroll = () => {
-    if (trackRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = trackRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
-    }
-  };
-
-  useEffect(() => {
-    checkScroll();
-    window.addEventListener("resize", checkScroll);
-    return () => window.removeEventListener("resize", checkScroll);
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
   }, []);
 
   const scroll = (direction: "left" | "right") => {
-    if (trackRef.current) {
-      const track = trackRef.current;
-      const trackCenter = track.scrollLeft + track.clientWidth / 2;
-      
-      let closestElement: HTMLElement | null = null;
-      let closestDistance = Infinity;
-      
-      const items = Array.from(track.children[0].children) as HTMLElement[];
-
-      items.forEach((child) => {
-         const childCenter = child.offsetLeft + child.clientWidth / 2;
-         const distance = Math.abs(childCenter - trackCenter);
-         if (distance < closestDistance) {
-           closestDistance = distance;
-           closestElement = child;
-         }
-      });
-
-      if (closestElement) {
-        const activeIndex = items.indexOf(closestElement);
-        const nextIndex = direction === "left" 
-           ? Math.max(0, activeIndex - 1) 
-           : Math.min(items.length - 1, activeIndex + 1);
-        
-        const nextElement = items[nextIndex];
-        if (nextElement) {
-           const targetScrollLeft = nextElement.offsetLeft - track.clientWidth / 2 + nextElement.clientWidth / 2;
-           track.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
-        }
-      }
-    }
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.querySelector<HTMLElement>(":scope > div")?.offsetWidth ?? 400;
+    el.scrollBy({
+      left: direction === "left" ? -cardWidth - 24 : cardWidth + 24,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <section className="py-20 md:py-28 overflow-hidden">
+    <section className="py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12">
-          <div className="flex-1 [&>div]:mb-0">
-            <SectionHeading
-              label="My Work"
-              title="Our Programs"
-              subtitle="A glimpse into the stories I&rsquo;ve told and the moments I&rsquo;ve captured."
-              centered={false}
-            />
-          </div>
-          <div className="hidden md:flex gap-3 pb-2 shrink-0">
+        {/* Header row */}
+        <div className="flex items-end justify-between mb-10 md:mb-14">
+          <SectionHeading
+            label="My Work"
+            title="Portfolio"
+            subtitle="A glimpse into the stories I&rsquo;ve told and the moments I&rsquo;ve captured."
+            centered={false}
+          />
+          <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+            <Button href={SOCIAL_LINKS.instagram} external variant="primary">
+              View Portfolio
+            </Button>
             <button
               onClick={() => scroll("left")}
-              className="w-12 h-12 rounded-lg border border-outline-variant dark:border-outline-variant-dark flex items-center justify-center hover:bg-surface-container dark:hover:bg-surface-dark-container transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-              aria-label="Scroll left"
               disabled={!canScrollLeft}
+              className="w-12 h-12 rounded-2xl bg-surface-container dark:bg-surface-dark-container flex items-center justify-center transition-all hover:bg-surface-container-high dark:hover:bg-surface-dark-container-high disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+              aria-label="Previous"
             >
               <ArrowLeft size={20} />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="w-12 h-12 rounded-lg border border-outline-variant dark:border-outline-variant-dark flex items-center justify-center hover:bg-surface-container dark:hover:bg-surface-dark-container transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-              aria-label="Scroll right"
               disabled={!canScrollRight}
+              className="w-12 h-12 rounded-2xl bg-surface-container dark:bg-surface-dark-container flex items-center justify-center transition-all hover:bg-surface-container-high dark:hover:bg-surface-dark-container-high disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+              aria-label="Next"
             >
               <ArrowRight size={20} />
             </button>
@@ -95,32 +66,22 @@ export function PortfolioPreview() {
       </div>
 
       {/* Carousel */}
-      <div 
-        className="w-full overflow-x-auto no-scrollbar snap-x snap-mandatory"
-        ref={trackRef}
+      <div
+        ref={scrollRef}
         onScroll={checkScroll}
+        className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pl-[max(1rem,calc((100vw-80rem)/2+1rem))] pr-6"
       >
-        <div className="flex gap-5 md:gap-8 pb-8 w-max px-4 sm:px-6 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))]">
-           {previewItems.map((item, index) => (
-             <div key={item.id} data-portfolio-item className="snap-center shrink-0">
-               <PortfolioItem item={item} index={index} />
-             </div>
-           ))}
-        </div>
+        {previewItems.map((item, index) => (
+          <PortfolioItem key={item.id} item={item} index={index} />
+        ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* View More CTA */}
-        <div className="mt-8 text-center">
-          <Button
-            href={SOCIAL_LINKS.instagram}
-            external
-            variant="outline"
-          >
-            View More on Instagram
-            <ArrowRight size={16} />
-          </Button>
-        </div>
+      {/* Mobile CTA */}
+      <div className="mt-10 text-center md:hidden px-4">
+        <Button href={SOCIAL_LINKS.instagram} external variant="outline">
+          View More on Instagram
+          <ArrowRight size={16} />
+        </Button>
       </div>
     </section>
   );
