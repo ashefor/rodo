@@ -20,7 +20,6 @@ const colors = [
 export function ServiceCard({ service, index, totalCards, scrollIndex }: ServiceCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // --- Stack peek: cards waiting below are slightly offset & scaled ---
   const yOffset = useTransform(
     scrollIndex,
     [index - 2, index - 1, index, index + 0.4, index + 1],
@@ -33,21 +32,12 @@ export function ServiceCard({ service, index, totalCards, scrollIndex }: Service
     [0.88, 0.94, 1]
   );
 
-  // --- 3D exit: card tilts backward (rotateX) as it peels away ---
   const rotateX = useTransform(
     scrollIndex,
     [index, index + 0.3, index + 1],
-    [0, 0, 45]
+    [0, 0, 15]
   );
 
-  // --- Fade out as card exits ---
-  const opacity = useTransform(
-    scrollIndex,
-    [index, index + 0.6, index + 1],
-    [1, 1, 0]
-  );
-
-  // First card on top (highest z-index)
   const zIndex = totalCards - index;
 
   useEffect(() => {
@@ -65,8 +55,8 @@ export function ServiceCard({ service, index, totalCards, scrollIndex }: Service
         y: yOffset,
         scale,
         rotateX,
-        opacity,
         zIndex,
+        perspective: 1200,
         transformOrigin: "center top",
       }}
     >
