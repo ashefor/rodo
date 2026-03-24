@@ -16,10 +16,10 @@ export function PortraitHero() {
             transition={{ duration: 0.7 }}
           >
             <div className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-[#050505] shadow-2xl">
-              <Image 
-                src="/images/rodo-portrait.png" 
-                alt="Portrait of Rodo" 
-                fill 
+              <Image
+                src="/images/rodo-portrait.png"
+                alt="Portrait of Rodo"
+                fill
                 className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
@@ -42,7 +42,7 @@ export function PortraitHero() {
               We create timeless visual stories from{" "}
               <span className="text-primary">life’s most meaningful moments.</span>
             </h1>
-            
+
             <p className="text-on-surface-variant dark:text-on-surface-dark-variant text-base md:text-lg leading-relaxed">
               Hi, I’m Rodo, the visual storyteller behind Rodo Lens. We specialize in transforming ordinary moments into cinematic experiences that last far beyond the day they happen.
             </p>

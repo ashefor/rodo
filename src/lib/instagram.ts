@@ -39,3 +39,8 @@ export async function getInstagramVideos(): Promise<PortfolioItem[]> {
     return [];
   }
 }
+
+export async function getLatestReel(): Promise<PortfolioItem | null> {
+  const videos = await getInstagramVideos();
+  return videos.length > 0 ? videos[0] : null;
+}

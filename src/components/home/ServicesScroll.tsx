@@ -19,7 +19,7 @@ export function ServicesScroll() {
   return (
     <>
       {/* Heading — outside scroll tracking, normal flow */}
-      <div style={{ position: 'relative', minHeight: '150vh', marginBottom: '20vh' }}>
+      <div style={{ position: 'relative', height: `calc(100vh + ${3 * 500}px)` }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 md:pt-28">
           <SectionHeading
             label="What I Do"
@@ -28,14 +28,10 @@ export function ServicesScroll() {
           />
         </div>
 
-        {/* Scroll-tracked card deck only */}
         <section
           ref={containerRef}
-          style={{ height: `200vh`, position: 'absolute', top: 0, left: 0, zIndex: 1, width: '100%' }}
+          style={{ height: `calc(100vh + ${3 * 500}px)`, position: 'absolute', top: 0, left: 0, zIndex: 1, width: '100%' }}
         >
-          {/* <div style={{ height: 152, overflow: 'clip', flex: 'none', width: '100%', position: 'relative' }}>
-
-          </div> */}
           <div className="sticky top-0 h-screen flex items-center justify-center p-4 overflow-hidden">
             <div
               className="relative max-w-6xl w-full h-[500px]"

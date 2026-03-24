@@ -4,7 +4,14 @@ import { motion } from "framer-motion";
 import { Play, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  videoUrl?: string;
+}
+
+export function HeroSection({ videoUrl }: HeroSectionProps) {
+  // Use a high-quality placeholder if no Instagram URL is provided yet
+  const defaultVideo = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+  const finalVideoUrl = videoUrl || defaultVideo;
   return (
     <section className="relative min-h-screen bg-slate-50 flex items-center pt-28 pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
@@ -86,7 +93,7 @@ export function HeroSection() {
             className="absolute inset-0 w-full h-full object-cover"
             poster="/images/hero-poster.jpg"
           >
-            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+            <source src={finalVideoUrl} type="video/mp4" />
           </video>
         </motion.div>
 

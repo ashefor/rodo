@@ -3,11 +3,14 @@ import { ServicesScroll } from "@/components/home/ServicesScroll";
 import { PortfolioPreview } from "@/components/home/PortfolioPreview";
 import { TestimonialMarquee } from "@/components/home/TestimonialMarquee";
 import { CTASection } from "@/components/home/CTASection";
+import { getLatestReel } from "@/lib/instagram";
 
-export default function Home() {
+export default async function Home() {
+  const latestReel = await getLatestReel();
+  
   return (
     <>
-      <HeroSection />
+      <HeroSection videoUrl={latestReel?.videoUrl} />
       <ServicesScroll />
       <PortfolioPreview />
       <TestimonialMarquee />
