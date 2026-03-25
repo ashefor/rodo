@@ -9,39 +9,39 @@ export const NAV_LINKS: NavLink[] = [
 
 export const SERVICES: Service[] = [
   {
-    title: "Mobile Videography",
+    title: "Weddings",
     description:
       "Cinematic mobile video production that captures the essence of every moment. From events to brand stories, I create compelling visual narratives.",
     icon: "Video",
     image: "/images/service-videography.jpg",
   },
   {
-    title: "Content Creation",
+    title: "Birthdays",
     description:
       "Scroll-stopping content for social media and digital platforms. Creative concepts, filming, and editing tailored to your brand voice.",
     icon: "Camera",
     image: "/images/service-content.jpg",
   },
   {
-    title: "Event Planning",
+    title: "Real Estate Shoots",
     description:
       "End-to-end event coordination that brings your vision to life. From intimate gatherings to large celebrations, every detail is covered.",
     icon: "CalendarHeart",
     image: "/images/service-events.jpg",
   },
   {
-    title: "Photo Editing",
-    description:
-      "Professional photo retouching, color grading, and compositing that transforms raw captures into polished visual masterpieces.",
-    icon: "Camera",
-    image: "/images/service-editing.jpg",
-  },
-  {
-    title: "Brand Strategy",
+    title: "Corporate & Brand",
     description:
       "Crafting visual identities and brand narratives that resonate. From creative direction to full brand kits, I help you stand out.",
     icon: "CalendarHeart",
     image: "/images/service-brand.jpg",
+  },
+  {
+    title: "Fashion",
+    description:
+      "Professional photo retouching, color grading, and compositing that transforms raw captures into polished visual masterpieces.",
+    icon: "Camera",
+    image: "/images/service-editing.jpg",
   },
 ];
 
