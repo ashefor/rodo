@@ -1,3 +1,4 @@
+import { BirthdayCard, CorporateCard, FashionCard, RealEstateCard, WeddingCard } from "@/components/home/services/service-card";
 import type { NavLink, Service, Testimonial, PortfolioItem } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
@@ -10,38 +11,48 @@ export const NAV_LINKS: NavLink[] = [
 export const SERVICES: Service[] = [
   {
     title: "Weddings",
+    id: "weddings",
     description:
       "Cinematic mobile video production that captures the essence of every moment. From events to brand stories, I create compelling visual narratives.",
     icon: "Video",
-    image: "/images/service-videography.jpg",
+    image: "/images/wedding-shoot.png",
+    card: WeddingCard
   },
   {
     title: "Birthdays",
+    id: "birthdays",
     description:
       "Scroll-stopping content for social media and digital platforms. Creative concepts, filming, and editing tailored to your brand voice.",
     icon: "Camera",
-    image: "/images/service-content.jpg",
+    image: "/images/birthday-shoot.png",
+    card: BirthdayCard
   },
   {
     title: "Real Estate Shoots",
+    id: "real-estate-shoots",
     description:
       "End-to-end event coordination that brings your vision to life. From intimate gatherings to large celebrations, every detail is covered.",
     icon: "CalendarHeart",
-    image: "/images/service-events.jpg",
+    image: "/images/real-estate-shoot.png",
+    card: RealEstateCard
   },
   {
     title: "Corporate & Brand",
+    id: "corporate-brand",
     description:
       "Crafting visual identities and brand narratives that resonate. From creative direction to full brand kits, I help you stand out.",
     icon: "CalendarHeart",
-    image: "/images/service-brand.jpg",
+    image: "/images/corporate-shoot.png",
+    card: CorporateCard
   },
   {
     title: "Fashion",
+    id: "fashion",
     description:
       "Professional photo retouching, color grading, and compositing that transforms raw captures into polished visual masterpieces.",
     icon: "Camera",
-    image: "/images/service-editing.jpg",
+    image: "/images/fashion-shoot.png",
+    card: FashionCard
   },
 ];
 
@@ -102,7 +113,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: "Lagos Brand Launch",
     category: "video",
     thumbnail: "/images/portfolio/project-01.jpg",
-    videoUrl: "#",
+    videoUrl: "/videos/video.mp4",
   },
   {
     id: "2",

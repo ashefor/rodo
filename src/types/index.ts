@@ -4,11 +4,13 @@ export interface NavLink {
 }
 
 export interface Service {
+  id: string;
   title: string;
   description: string;
   icon: string;
   image: string;
   videoUrl?: string;
+  card: React.ComponentType<{ id: string, imageUrl?: string }>;
 }
 
 export interface Testimonial {

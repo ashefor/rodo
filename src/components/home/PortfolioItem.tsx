@@ -14,7 +14,7 @@ export function PortfolioItem({ item, index }: PortfolioItemProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleMouseEnter = () => {
-    videoRef.current?.play();
+    videoRef.current?.play().catch(() => {});
   };
 
   const handleMouseLeave = () => {
@@ -63,10 +63,11 @@ export function PortfolioItem({ item, index }: PortfolioItemProps) {
       {item.videoUrl && (
         <video
           ref={videoRef}
+          src={item.videoUrl}
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         />
       )}

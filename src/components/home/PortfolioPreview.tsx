@@ -31,31 +31,31 @@ export function PortfolioPreview() {
     if (trackRef.current) {
       const track = trackRef.current;
       const trackCenter = track.scrollLeft + track.clientWidth / 2;
-      
+
       let closestElement: HTMLElement | null = null;
       let closestDistance = Infinity;
-      
+
       const items = Array.from(track.children[0].children) as HTMLElement[];
 
       items.forEach((child) => {
-         const childCenter = child.offsetLeft + child.clientWidth / 2;
-         const distance = Math.abs(childCenter - trackCenter);
-         if (distance < closestDistance) {
-           closestDistance = distance;
-           closestElement = child;
-         }
+        const childCenter = child.offsetLeft + child.clientWidth / 2;
+        const distance = Math.abs(childCenter - trackCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestElement = child;
+        }
       });
 
       if (closestElement) {
         const activeIndex = items.indexOf(closestElement);
-        const nextIndex = direction === "left" 
-           ? Math.max(0, activeIndex - 1) 
-           : Math.min(items.length - 1, activeIndex + 1);
-        
+        const nextIndex = direction === "left"
+          ? Math.max(0, activeIndex - 1)
+          : Math.min(items.length - 1, activeIndex + 1);
+
         const nextElement = items[nextIndex];
         if (nextElement) {
-           const targetScrollLeft = nextElement.offsetLeft - track.clientWidth / 2 + nextElement.clientWidth / 2;
-           track.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+          const targetScrollLeft = nextElement.offsetLeft - track.clientWidth / 2 + nextElement.clientWidth / 2;
+          track.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
         }
       }
     }
@@ -95,17 +95,17 @@ export function PortfolioPreview() {
       </div>
 
       {/* Carousel */}
-      <div 
+      <div
         className="w-full overflow-x-auto no-scrollbar snap-x snap-mandatory"
         ref={trackRef}
         onScroll={checkScroll}
       >
         <div className="flex gap-5 md:gap-8 pb-8 w-max px-4 sm:px-6 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))]">
-           {previewItems.map((item, index) => (
-             <div key={item.id} data-portfolio-item className="snap-center shrink-0">
-               <PortfolioItem item={item} index={index} />
-             </div>
-           ))}
+          {previewItems.map((item, index) => (
+            <div key={item.id} data-portfolio-item className="snap-center shrink-0">
+              <PortfolioItem item={item} index={index} />
+            </div>
+          ))}
         </div>
       </div>
 
