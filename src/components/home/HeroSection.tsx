@@ -2,161 +2,138 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Calendar } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { SERVICES } from "@/lib/constants";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] lg:min-h-screen bg-foreground overflow-hidden flex flex-col justify-center py-20 lg:py-0">
+    <section className="relative xl:min-h-screen bg-foreground overflow-hidden flex flex-col items-center justify-center pt-24 pb-20">
 
-      {/* Background Pattern/Glow */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div
-          className="absolute top-[20%] left-[10%] w-[60%] aspect-square opacity-20"
-          style={{
-            backgroundImage: 'radial-gradient(#FF8D28 1px, transparent 1px)',
-            backgroundSize: '30px 30px',
-            maskImage: 'radial-gradient(circle at center, black 30%, transparent 70%)',
-            WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 70%)'
-          }}
-        />
-        <div className="absolute top-[30%] right-[10%] w-[40%] h-[40%] bg-tertiary/10 blur-[120px] rounded-full" />
+      {/* Background Watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
+        <h1 className="text-[25vw] font-black text-[#8B1A1A]/[0.02] leading-none uppercase tracking-tighter">
+          RODO
+        </h1>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* Main Brand Title - Positioned absolutely at the top, perfectly centered, z-10 (behind image) */}
+      <div className="absolute top-[12%] md:top-[15%] xl:top-[18%] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-10">
+        <h2 className="text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[10rem] xl:text-[12.5rem] font-heading font-black text-white leading-none uppercase tracking-tighter drop-shadow-sm whitespace-nowrap">
+          RODO LENS
+        </h2>
+      </div>
 
-          {/* Left Content side (Cols 1-7) */}
-          <div className="lg:col-span-7 flex flex-col pt-10 lg:pt-0">
 
-            {/* Satisfied Clients Badge */}
+      {/* Content Grid (Bio, Image, Services) - Shifted below the title area, z-20 (above title) */}
+      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative z-20 mt-32 md:mt-48">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-center">
+
+          {/* Left Column: Bio & CTA */}
+          <div className="md:col-span-4 lg:col-span-3 order-2 md:order-1 relative z-20 h-full">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center gap-4 mb-10"
-            >
-              <div className="flex -space-x-3">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-foreground overflow-hidden bg-neutral-800">
-                    <img
-                      src={`https://i.pravatar.cc/100?u=${i + 10}`}
-                      alt="Client"
-                      className="w-full h-full object-cover grayscale"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div>
-                <p className="text-white font-bold text-lg leading-none">120+</p>
-                <p className="text-white/50 text-xs mt-1 uppercase tracking-wider font-medium">Total Satisfied Clients</p>
-              </div>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
+              className="flex flex-col justify-between h-full lg:py-[15vh]"
             >
-              <h1 className="text-6xl md:text-8xl xl:text-[7.5rem] font-heading font-black text-white leading-[0.8] mb-4 tracking-tighter uppercase italic">
-                IT'S ME
-              </h1>
-              <h2 className="text-6xl md:text-8xl xl:text-[8.5rem] font-heading font-black leading-[0.8] mb-10 tracking-tighter uppercase italic text-transparent bg-clip-text bg-gradient-to-r from-[#7c3aed] via-[#a78bfa] to-[#7c3aed] drop-shadow-[0_0_30px_rgba(124,58,237,0.3)]">
-                RODO LENS
-              </h2>
-            </motion.div>
+              <p className="text-[#fff5f8] font-bold text-lg md:text-xl leading-relaxed mb-12 max-w-[320px]">
+                Hey there! I'm a Visual Storyteller & Cinematographer working in the global marketplace.
+              </p>
 
-            {/* Bio */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-white font-medium text-lg md:text-xl max-w-xl leading-relaxed mb-16 font-sans italic opacity-80"
-            >
-              I've earned the trust of over 250 clients and 40 brands, all of whom are very satisfied with my service!
-            </motion.p>
-
-
-            {/* Stats Row */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="grid grid-cols-3 gap-8 md:gap-12"
-            >
-              <div>
-                <p className="text-4xl font-heading font-black text-white mb-2 italic">600+</p>
-                <p className="text-white/50 text-sm font-medium leading-tight">Projects<br />Done</p>
-              </div>
-              <div>
-                <p className="text-4xl font-heading font-black text-white mb-2 italic">50+</p>
-                <p className="text-white/50 text-sm font-medium leading-tight">Brand<br />Partnership</p>
-              </div>
-              <div>
-                <p className="text-4xl font-heading font-black text-white mb-2 italic">12+</p>
-                <p className="text-white/50 text-sm font-medium leading-tight">Years of<br />Experience</p>
-              </div>
+              <Link
+                href="/contact"
+                className="group flex items-center gap-3 text-[#fff5f8] font-black text-sm uppercase tracking-[0.2em] hover:text-[#8B1A1A] transition-colors"
+              >
+                // HIRE ME <ArrowRight size={18} className="transition-transform group-hover:translate-x-2" />
+              </Link>
             </motion.div>
           </div>
 
-          {/* Right Visual side (Cols 8-12) */}
-          <div className="lg:col-span-5 relative flex justify-center items-center lg:h-[80vh]">
-
-            {/* Portrait Container */}
+          {/* Center Column: Portrait */}
+          <div className="md:col-span-4 lg:col-span-6 order-1 md:order-2 flex justify-center relative z-20">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.1 }}
-              className="relative w-full h-full max-w-lg"
+              className="relative w-full max-w-[500px] aspect-square md:aspect-[4/5] flex justify-center items-end"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
+              {/* Dotted Pattern Background behind the head */}
+              <div
+                className="absolute top-[0%] left-1/2 -translate-x-1/2 w-[130%] aspect-square -z-10 opacity-30 pointer-events-none"
+                style={{
+                  backgroundImage: 'radial-gradient(#FF8D28 2px, transparent 2px)',
+                  backgroundSize: '20px 20px',
+                  maskImage: 'radial-gradient(circle at center, black 25%, transparent 60%)',
+                  WebkitMaskImage: 'radial-gradient(circle at center, black 25%, transparent 60%)'
+                }}
+              />
+
+              {/* Portrait Image with soft bottom mask fade */}
               <img
                 src="/images/rodo-portrait.png"
                 alt="Rodo Portrait"
-                className="w-full h-full object-contain relative z-10"
+                className="w-full h-auto max-h-full object-contain filter brightness-[1.05] contrast-[1.05] drop-shadow-xl"
                 style={{
-                  maskImage: 'linear-gradient(to top, transparent 0%, black 15%)',
-                  WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 15%)'
+                  maskImage: 'linear-gradient(to top, transparent 0%, black 20%)',
+                  WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)'
                 }}
               />
             </motion.div>
+          </div>
 
-            {/* Side Navigation links */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-8 items-end z-20">
-              {['Works', 'Services', 'Contact'].map((item) => (
-                <Link
-                  key={item}
-                  href={`/${item.toLowerCase()}`}
-                  className="text-white/60 hover:text-white transition-colors tracking-widest uppercase text-sm font-bold rotate-0"
-                >
-                  {item}
-                </Link>
-              ))}
-            </div>
-
-            {/* Schedule a Call CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute bottom-10 lg:bottom-20 right-0 z-30"
+          {/* Right Column: Services List */}
+          <div className="md:col-span-4 lg:col-span-3 order-3 hidden md:flex flex-col flex-1 lg:py-[15vh] justify-end items-center md:items-start md:pl-8 relative z-20">
+            <motion.ul
+              className="space-y-4 w-full"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Link
-                href="/contact"
-                className="bg-[#7c3aed] text-white px-8 py-5 rounded-3xl flex items-center gap-4 group shadow-xl hover:shadow-[#7c3aed]/20 transition-all hover:scale-105 active:scale-95"
-              >
-                <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                  <Calendar size={20} className="text-white" />
-                </div>
-                <span className="font-bold text-lg pr-2">Schedule a Call</span>
-              </Link>
-            </motion.div>
+              {SERVICES.map((service, idx) => (
+                <li key={service.id} className="group cursor-default md:text-left text-center">
+                  <span className={`text-lg md:text-xl tracking-tight transition-all duration-300 ${idx === 0 ? "text-tertiary font-black" : "text-[#fff5f8] group-hover:text-[#ffffff]"
+                    }`}>
+                    {service.title}
+                  </span>
+                </li>
+              ))}
+            </motion.ul>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom Logo Bar / Trusted By */}
+      <div className="hidden xl:block absolute bottom-0 left-0 right-0 py-10 md:py-14 bg-transparent backdrop-blur-[4px] z-30">
+        <div className="max-w-7xl mx-auto px-6 overflow-hidden">
+          <div className="flex flex-wrap justify-between items-center opacity-80 gap-8 md:gap-12 grayscale">
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-sm " /> Overlay
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-sm rotate-45" /> FrameFlow
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-full" /> DataStack
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm   text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-sm scale-x-150" /> IntelliSpark
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-full border-2 border-black bg-transparent text-[#fff5f8]" /> NeuroLink
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-full border-2 border-black bg-transparent text-[#fff5f8]" /> NeuroLink
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
 
 
 

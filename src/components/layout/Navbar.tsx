@@ -31,41 +31,51 @@ export function Navbar() {
 
           {/* Left: Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-sm flex items-center justify-center text-white">
-              <img src="/images/rodo-logo.png" alt="Rodo Logo" className="w-full h-full object-contain" />
+            <div className="w-9 h-9 rounded-sm flex items-center justify-center text-white">
+              <img src="/images/rodo-logo.png" alt="" />
             </div>
-            <span className="font-heading font-black text-xl tracking-tighter uppercase text-white group-hover:text-tertiary transition-colors">
+            <span className="font-heading font-black text-lg tracking-tighter uppercase text-[#fff5f8] group-hover:text-tertiary transition-colors">
               RODO LENS
             </span>
           </Link>
 
-          {/* Center: Status (Desktop) */}
-          <div className="hidden md:flex items-center gap-3">
-            <div className="flex items-center gap-2.5 px-4 py-2 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
-              <div className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#17FF00] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#17FF00]"></span>
+          {/* Center: Links (Desktop) */}
+          <div className="hidden md:flex items-center gap-12">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`text-[12px] font-black uppercase tracking-[0.2em] transition-all duration-300 text-[#fff5f8] hover:text-tertiary ${pathname === link.href ? "text-tertiary border-b-2 border-tertiary" : "text-[#fff5f8]"
+                  }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Right: Status Bubble (Desktop) */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center gap-3 px-5 py-2.5">
+              <div className="relative">
+                <div className="w-2.5 h-2.5 bg-[#17FF00] rounded-full" />
+                <motion.div
+                  animate={{ scale: [1, 2, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 bg-[#17FF00] rounded-full"
+                />
               </div>
-              <span className="text-[11px] font-medium text-white/90">Available for Freelance</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white">Open to work</span>
             </div>
           </div>
 
-          {/* Right: Menu Toggle */}
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setMobileOpen(true)}
-              className="flex items-center gap-3 group cursor-pointer"
-            >
-              <span className="hidden md:block text-sm font-bold text-white uppercase tracking-wider group-hover:text-tertiary transition-colors">
-                Menu
-              </span>
-              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-black group-hover:bg-tertiary transition-colors">
-                <Menu size={20} />
-              </div>
-            </button>
-          </div>
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-gray-200"
+            onClick={() => setMobileOpen(true)}
+          >
+            <Menu size={20} className="text-foreground" />
+          </button>
         </div>
-
       </nav>
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
