@@ -7,7 +7,7 @@ import { SERVICES } from "@/lib/constants";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-foreground overflow-hidden flex flex-col items-center justify-center pt-24 pb-20">
+    <section className="relative xl:min-h-screen bg-foreground overflow-hidden flex flex-col items-center justify-center pt-24 pb-20">
 
       {/* Background Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
@@ -17,11 +17,12 @@ export function HeroSection() {
       </div>
 
       {/* Main Brand Title - Positioned absolutely at the top, perfectly centered, z-10 (behind image) */}
-      <div className="absolute top-[16%] md:top-[18%] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-10">
-        <h2 className="text-[18rem] md:text-[17rem] xl:text-[15rem] font-black text-white leading-none uppercase tracking-tighter drop-shadow-sm whitespace-nowrap">
+      <div className="absolute top-[12%] md:top-[15%] xl:top-[18%] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-10">
+        <h2 className="text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[10rem] xl:text-[12.5rem] font-heading font-black text-white leading-none uppercase tracking-tighter drop-shadow-sm whitespace-nowrap">
           RODO LENS
         </h2>
       </div>
+
 
       {/* Content Grid (Bio, Image, Services) - Shifted below the title area, z-20 (above title) */}
       <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative z-20 mt-32 md:mt-48">
@@ -34,7 +35,7 @@ export function HeroSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="flex flex-col justify-between h-full py-[15vh]"
+              className="flex flex-col justify-between h-full lg:py-[15vh]"
             >
               <p className="text-[#fff5f8] font-bold text-lg md:text-xl leading-relaxed mb-12 max-w-[320px]">
                 Hey there! I'm a Visual Storyteller & Cinematographer working in the global marketplace.
@@ -83,7 +84,7 @@ export function HeroSection() {
           </div>
 
           {/* Right Column: Services List */}
-          <div className="md:col-span-4 lg:col-span-3 order-3 flex flex-col flex-1 py-[15vh] justify-end items-center md:items-start md:pl-8 relative z-20">
+          <div className="md:col-span-4 lg:col-span-3 order-3 hidden md:flex flex-col flex-1 lg:py-[15vh] justify-end items-center md:items-start md:pl-8 relative z-20">
             <motion.ul
               className="space-y-4 w-full"
               initial={{ opacity: 0, x: 30 }}
@@ -106,9 +107,9 @@ export function HeroSection() {
       </div>
 
       {/* Bottom Logo Bar / Trusted By */}
-      <div className="absolute bottom-0 left-0 right-0 py-10 md:py-14 bg-transparent backdrop-blur-[4px] z-30">
+      <div className="hidden xl:block absolute bottom-0 left-0 right-0 py-10 md:py-14 bg-transparent backdrop-blur-[4px] z-30">
         <div className="max-w-7xl mx-auto px-6 overflow-hidden">
-          <div className="flex flex-wrap justify-between items-center opacity-40 gap-8 md:gap-12 grayscale">
+          <div className="flex flex-wrap justify-between items-center opacity-80 gap-8 md:gap-12 grayscale">
             <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
               <div className="w-2.5 h-2.5 bg-black rounded-sm " /> Overlay
             </div>
@@ -124,7 +125,7 @@ export function HeroSection() {
             <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
               <div className="w-2.5 h-2.5 bg-black rounded-full border-2 border-black bg-transparent text-[#fff5f8]" /> NeuroLink
             </div>
-            <div className="flex items-center gap-2 font-black uppercase text-sm">
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
               <div className="w-2.5 h-2.5 bg-black rounded-full border-2 border-black bg-transparent text-[#fff5f8]" /> NeuroLink
             </div>
           </div>

@@ -18,7 +18,7 @@ export function SkillsTags() {
           {SKILLS.map((skill, index) => (
             <motion.span
               key={skill}
-              className="px-5 py-2.5 rounded-full text-sm font-medium bg-surface-container-high dark:bg-surface-dark-container-high hover:bg-secondary-container hover:text-secondary transition-colors cursor-default"
+              className="px-5 py-2.5 rounded-full text-sm font-medium bg-surface-container-high hover:bg-secondary hover:text-white transition-colors cursor-default"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}

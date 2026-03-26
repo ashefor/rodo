@@ -114,8 +114,7 @@ export function PortfolioPreview() {
         <div className="mt-8 text-center">
           <Button
             href={SOCIAL_LINKS.instagram}
-            external
-            variant="outline"
+            external variant="outline" className="!border-white !text-white hover:!bg-white hover:!text-tertiary"
           >
             View More on Instagram
             <ArrowRight size={16} />

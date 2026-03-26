@@ -48,18 +48,20 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
           >
-            <div className="flex items-center justify-between p-4 bg-surface-container dark:bg-surface-dark-container">
-              <span className="font-heading text-2xl font-bold">RL</span>
+            <div className="flex items-center justify-between p-4 bg-surface-dark-container">
+              <div className="w-9 h-9 rounded-sm flex items-center justify-center text-white">
+                <img src="/images/rodo-logo.png" alt="" />
+              </div>
               <button
                 onClick={onClose}
-                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-foreground/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
+                className="w-10 h-10 flex items-center text-white justify-center rounded-full hover:bg-white/10 transition-colors cursor-pointer"
                 aria-label="Close menu"
               >
                 <X size={22} />
               </button>
             </div>
 
-            <nav className="flex-1 flex flex-col gap-2 p-6">
+            <nav className="flex-1 flex flex-col gap-2 p-6 bg-surface-dark-container">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -70,11 +72,10 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                   <Link
                     href={link.href}
                     onClick={onClose}
-                    className={`block py-3 text-lg font-medium transition-colors hover:text-primary ${
-                      pathname === link.href
-                        ? "text-primary"
-                        : "text-foreground/70 dark:text-white/70"
-                    }`}
+                    className={`block py-3 text-lg font-medium transition-colors hover:text-primary ${pathname === link.href
+                      ? "text-primary"
+                      : "text-white"
+                      }`}
                   >
                     {link.label}
                   </Link>
@@ -83,7 +84,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             </nav>
 
             <div className="p-6 bg-surface-container dark:bg-surface-dark-container">
-              <Button href="/contact" variant="primary" className="w-full">
+              <Button href="/contact" variant="tertiary" className="w-full">
                 Book Me
               </Button>
             </div>

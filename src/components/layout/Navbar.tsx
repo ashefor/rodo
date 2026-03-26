@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Menu, Sparkles } from "lucide-react";
+import { Menu } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { MobileMenu } from "./MobileMenu";
 
@@ -31,10 +31,10 @@ export function Navbar() {
 
           {/* Left: Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-tertiary rounded-sm flex items-center justify-center text-white">
-              <Sparkles size={16} />
+            <div className="w-9 h-9 rounded-sm flex items-center justify-center text-white">
+              <img src="/images/rodo-logo.png" alt="" />
             </div>
-            <span className="font-heading font-black text-xl tracking-tighter uppercase text-[#fff5f8] group-hover:text-tertiary transition-colors">
+            <span className="font-heading font-black text-lg tracking-tighter uppercase text-[#fff5f8] group-hover:text-tertiary transition-colors">
               RODO
             </span>
           </Link>
@@ -73,7 +73,7 @@ export function Navbar() {
             className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-gray-200"
             onClick={() => setMobileOpen(true)}
           >
-            <Menu size={20} className="text-[#fff5f8]" />
+            <Menu size={20} className="text-foreground" />
           </button>
         </div>
       </nav>

@@ -27,8 +27,8 @@ export const SERVICES: Service[] = [
     card: BirthdayCard
   },
   {
-    title: "Real Estate Shoots",
-    id: "real-estate-shoots",
+    title: "Real Estate",
+    id: "real-estate",
     description:
       "End-to-end event coordination that brings your vision to life. From intimate gatherings to large celebrations, every detail is covered.",
     icon: "CalendarHeart",
@@ -36,8 +36,8 @@ export const SERVICES: Service[] = [
     card: RealEstateCard
   },
   {
-    title: "Corporate & Brand",
-    id: "corporate-brand",
+    title: "Brand",
+    id: "brand",
     description:
       "Crafting visual identities and brand narratives that resonate. From creative direction to full brand kits, I help you stand out.",
     icon: "CalendarHeart",

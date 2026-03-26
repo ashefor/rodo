@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { fontVariableClass } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -49,7 +50,7 @@ export default function RootLayout({
     <html data-scroll-behavior="smooth" lang="en" className="h-full" suppressHydrationWarning>
       <head>
       </head>
-      <body className="min-h-full flex flex-col antialiased">
+      <body className={`${fontVariableClass} min-h-full flex flex-col antialiased`}>
         <ThemeProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
@@ -59,3 +60,4 @@ export default function RootLayout({
     </html>
   );
 }
+

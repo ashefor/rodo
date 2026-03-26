@@ -31,7 +31,7 @@ export function StorySection() {
             <div
               key={block.title}
               className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-                } gap-12 lg:gap-24 items-center mb-40 md:mb-60 last:mb-0`}
+                } gap-12 lg:gap-24 items-center mb-20 md:mb-40 last:mb-0`}
             >
               {/* Image box - slides from side */}
               <motion.div

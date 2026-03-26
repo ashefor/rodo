@@ -28,11 +28,11 @@ export function SectionHeading({
           {label}
         </span>
       )}
-      <h2 className="font-heading text-3xl text-white md:text-4xl lg:text-5xl font-bold tracking-tight">
+      <h2 className="font-brand text-3xl text-white md:text-4xl lg:text-5xl font-bold tracking-tight">
         {title}
       </h2>
       {subtitle && (
-        <p className={`mt-4 text-[#efefef] text-base md:text-lg max-w-2xl ${centered ? "mx-auto" : ""}`}>
+        <p className={`mt-4 text-[#efefef] font-sans text-base md:text-lg max-w-2xl ${centered ? "mx-auto" : ""}`}>
           {subtitle}
         </p>
       )}

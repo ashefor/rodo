@@ -1,7 +1,23 @@
-// Using system fonts with self-hosted Plus Jakarta Sans for headings.
-// Plus Jakarta Sans is loaded via @font-face in globals.css.
-// To use Inter from Google Fonts, uncomment the import below and update layout.tsx.
-// import { Inter } from "next/font/google";
-// export const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+import { Inter, Archivo_Black, Plus_Jakarta_Sans } from "next/font/google";
 
-export const fontVariableClass = "font-sans";
+export const inter = Inter({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-inter",
+});
+
+export const archivoBlack = Archivo_Black({
+    weight: "400",
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-archivo-black",
+});
+
+export const plusJakartaSans = Plus_Jakarta_Sans({
+    weight: "400",
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-plus-jakarta-sans",
+});
+
+export const fontVariableClass = `${inter.variable} ${archivoBlack.variable} ${plusJakartaSans.variable}`;

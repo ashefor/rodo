@@ -16,7 +16,7 @@ export function TestimonialMarquee({
   const row2 = [...TESTIMONIALS].slice(3).concat([...TESTIMONIALS].slice(0, 3));
 
   return (
-    <section className="py-20 md:py-28 bg-foreground">
+    <section className="py-20 md:py-28 bg-foreground overflow-hidden">
       {showHeading && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading

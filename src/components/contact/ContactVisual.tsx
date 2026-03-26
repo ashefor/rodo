@@ -15,27 +15,27 @@ export function ContactVisual() {
         <h3 className="font-heading text-2xl font-bold mb-4">
           Contact Information
         </h3>
-        <p className="text-white/80 text-sm mb-12 max-w-[250px] leading-relaxed">
+        <p className="text-white text-sm mb-12 max-w-[250px] leading-relaxed">
           Fill up the form and our Team will get back to you within 24 hours.
         </p>
 
         <div className="space-y-6">
           <div className="flex items-center gap-5">
-            <Phone size={18} className="text-white/70" />
+            <Phone size={18} className="text-white" />
             <a href={`tel:${SOCIAL_LINKS.phone}`} className="text-sm font-medium hover:text-white/70 transition-colors">
               {SOCIAL_LINKS.phone}
             </a>
           </div>
 
           <div className="flex items-center gap-5">
-            <Mail size={18} className="text-white/70" />
+            <Mail size={18} className="text-white" />
             <a href={`mailto:${SOCIAL_LINKS.email}`} className="text-sm font-medium hover:text-white/70 transition-colors">
               {SOCIAL_LINKS.email}
             </a>
           </div>
 
           <div className="flex items-center gap-5">
-            <MapPin size={18} className="text-white/70" />
+            <MapPin size={18} className="text-white" />
             <p className="text-sm font-medium">Abuja & Lagos (Available to ✈️)</p>
           </div>
         </div>

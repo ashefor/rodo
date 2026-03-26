@@ -43,7 +43,7 @@ export default async function PortfolioPage() {
 
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
-          <p className="text-text-muted dark:text-text-dark-muted mb-4">
+          <p className="text-white mb-4">
             Want to see more of my work?
           </p>
           <Button href={SOCIAL_LINKS.instagram} external variant="outline" className="!border-white !text-white hover:!bg-white hover:!text-tertiary">

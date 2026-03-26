@@ -84,7 +84,7 @@ export function PortfolioGrid({ initialItems }: PortfolioGridProps) {
         <div className="mt-12 text-center">
           <button
             onClick={() => setVisibleCount((prev) => prev + 8)}
-            className="px-8 py-3 rounded-full text-sm font-medium bg-surface-container dark:bg-surface-dark-container hover:bg-tertiary hover:text-white transition-all cursor-pointer"
+            className="px-8 py-3 rounded-full text-sm font-medium bg-surface-dark-container text-white hover:bg-tertiary hover:text-white transition-all cursor-pointer"
           >
             Load More
           </button>
