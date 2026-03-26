@@ -31,7 +31,7 @@ export default async function PortfolioPage() {
   const itemsToDisplay = liveVideos.length > 0 ? liveVideos : PORTFOLIO_ITEMS;
 
   return (
-    <section className="pt-28 md:pt-36 pb-20 md:pb-28">
+    <section className="pt-28 md:pt-36 pb-20 md:pb-28 bg-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="Portfolio"
@@ -46,7 +46,7 @@ export default async function PortfolioPage() {
           <p className="text-text-muted dark:text-text-dark-muted mb-4">
             Want to see more of my work?
           </p>
-          <Button href={SOCIAL_LINKS.instagram} external variant="primary">
+          <Button href={SOCIAL_LINKS.instagram} external variant="outline" className="!border-white !text-white hover:!bg-white hover:!text-tertiary">
             View Full Portfolio on Instagram
             <ArrowRight size={16} />
           </Button>

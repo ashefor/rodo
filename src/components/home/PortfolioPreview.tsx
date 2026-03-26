@@ -62,7 +62,7 @@ export function PortfolioPreview() {
   };
 
   return (
-    <section className="py-20 md:py-28 overflow-hidden">
+    <section className="py-20 md:py-28 bg-foreground overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12">
           <div className="flex-1 [&>div]:mb-0">
@@ -76,7 +76,7 @@ export function PortfolioPreview() {
           <div className="hidden md:flex gap-3 pb-2 shrink-0">
             <button
               onClick={() => scroll("left")}
-              className="w-12 h-12 rounded-lg border border-outline-variant dark:border-outline-variant-dark flex items-center justify-center hover:bg-surface-container dark:hover:bg-surface-dark-container transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-12 h-12 rounded-lg border border-surface-container flex items-center justify-center hover:bg-surface-container text-surface-container hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               aria-label="Scroll left"
               disabled={!canScrollLeft}
             >
@@ -84,7 +84,7 @@ export function PortfolioPreview() {
             </button>
             <button
               onClick={() => scroll("right")}
-              className="w-12 h-12 rounded-lg border border-outline-variant dark:border-outline-variant-dark flex items-center justify-center hover:bg-surface-container dark:hover:bg-surface-dark-container transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-12 h-12 rounded-lg border border-surface-container flex items-center justify-center hover:bg-surface-container text-surface-container hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               aria-label="Scroll right"
               disabled={!canScrollRight}
             >

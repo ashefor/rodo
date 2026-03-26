@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, ExternalLink } from "lucide-react";
+import { Play } from "lucide-react";
 import type { PortfolioItem } from "@/types";
 import { VideoModal } from "./VideoModal";
 
@@ -33,30 +33,29 @@ export function PortfolioGrid({ initialItems }: PortfolioGridProps) {
               onClick={() => setSelectedItem(item)}
             >
               {/* Image Container with varied aspect ratios to build the masonry */}
-              <div 
-                className={`relative w-full rounded-lg overflow-hidden ${
-                  index % 5 === 0
-                    ? "aspect-video"
-                    : index % 5 === 1
+              <div
+                className={`relative w-full rounded-lg overflow-hidden ${index % 5 === 0
+                  ? "aspect-video"
+                  : index % 5 === 1
                     ? "aspect-[4/5]"
                     : index % 5 === 2
-                    ? "aspect-square"
-                    : index % 5 === 3
-                    ? "aspect-[3/4]"
-                    : "aspect-[4/3]"
-                }`}
+                      ? "aspect-square"
+                      : index % 5 === 3
+                        ? "aspect-[3/4]"
+                        : "aspect-[4/3]"
+                  }`}
               >
                 {/* As requested, cards are effectively videos, keeping consistent thumbnail structure for performance/mocking, but treating as a video playable thumbnail */}
-                <div 
+                <div
                   className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
                   style={{
                     backgroundImage: `url(${item.thumbnail})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    backgroundColor: '#e5e5e5'
+                    backgroundColor: '#242424'
                   }}
                 />
-                
+
                 {/* Hover overlay with icon */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
                   <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-50 group-hover:scale-100">
@@ -69,10 +68,10 @@ export function PortfolioGrid({ initialItems }: PortfolioGridProps) {
 
               {/* Text Info Below Image */}
               <div className="mt-3 px-1 mb-2">
-                <h3 className="font-bold text-base md:text-lg text-foreground dark:text-white line-clamp-1">
+                <h3 className="font-bold text-base md:text-lg text-background dark:text-white line-clamp-1">
                   {item.title}
                 </h3>
-                <p className="text-sm text-on-surface-variant dark:text-on-surface-dark-variant mt-1 capitalize font-medium tracking-wide">
+                <p className="text-sm text-on-surface-dark-variant mt-1 capitalize font-medium tracking-wide">
                   {item.category}
                 </p>
               </div>
@@ -85,7 +84,7 @@ export function PortfolioGrid({ initialItems }: PortfolioGridProps) {
         <div className="mt-12 text-center">
           <button
             onClick={() => setVisibleCount((prev) => prev + 8)}
-            className="px-8 py-3 rounded-full text-sm font-medium bg-surface-container dark:bg-surface-dark-container hover:bg-primary hover:text-white transition-all cursor-pointer"
+            className="px-8 py-3 rounded-full text-sm font-medium bg-surface-container dark:bg-surface-dark-container hover:bg-tertiary hover:text-white transition-all cursor-pointer"
           >
             Load More
           </button>

@@ -1,15 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Globe, Share2 } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
 export function ContactVisual() {
   return (
-    <div className="relative h-full w-full min-h-[500px] bg-primary text-white overflow-hidden p-8 md:p-12 lg:p-14 flex flex-col justify-between">
+    <div className="relative h-full w-full min-h-[500px] bg-tertiary text-white overflow-hidden p-8 md:p-12 lg:p-14 flex flex-col justify-between">
       {/* Decorative Circles matching the screenshot */}
       <div className="absolute -bottom-24 -right-24 w-[350px] h-[350px] rounded-full bg-red-400/90 mix-blend-multiply" />
-      <div className="absolute -bottom-10 right-10 w-48 h-48 rounded-full bg-primary-container/90 mix-blend-multiply" />
+      <div className="absolute -bottom-10 right-10 w-48 h-48 rounded-full bg-tertiary-container/90 mix-blend-multiply" />
 
       {/* Content Top */}
       <div className="relative z-10 w-full">
@@ -50,7 +49,7 @@ export function ContactVisual() {
         <a href={SOCIAL_LINKS.twitter} aria-label="Twitter" className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
           <Share2 size={16} />
         </a>
-        <a href={SOCIAL_LINKS.instagram} aria-label="Instagram" className="w-9 h-9 rounded-full bg-white text-primary flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+        <a href={SOCIAL_LINKS.instagram} aria-label="Instagram" className="w-9 h-9 rounded-full bg-white text-tertiary flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
           <Globe size={16} />
         </a>
         <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">

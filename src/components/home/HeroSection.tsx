@@ -1,119 +1,138 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Play, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { SERVICES } from "@/lib/constants";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-slate-50 flex items-center pt-28 pb-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
-        
-        {/* Left Column: Typography & CTAs */}
-        <div className="text-left order-2 lg:order-1 pt-10 lg:pt-0">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span className="inline-block text-primary font-bold text-xs tracking-[0.2em] uppercase mb-6 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-              Rodo Lens &mdash; Abuja & Lagos (Available to ✈️)
-            </span>
-          </motion.div>
+    <section className="relative min-h-screen bg-foreground overflow-hidden flex flex-col items-center justify-center pt-24 pb-20">
 
-          <motion.h1
-            className="font-heading text-5xl sm:text-6xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Capturing Moments.{" "}
-            <span className="bg-gradient-to-r from-primary to-primary-container bg-clip-text text-transparent block mt-2">
-              Creating Experiences.
-            </span>
-          </motion.h1>
-
-          <motion.div
-            className="mt-6 text-slate-600 text-base md:text-xl max-w-xl leading-relaxed space-y-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <p className="font-medium text-slate-900 dark:text-white flex items-center gap-2">
-              Visual Storyteller 🎥 <span className="text-slate-300 mx-1">|</span> Events • Brands • Lifestyle
-            </p>
-            <p>
-              Based in Abuja & Lagos <span className="text-slate-300 mx-1">•</span> Available for global travel ✈️
-            </p>
-            <p className="pt-2 italic border-l-2 border-primary/20 pl-4">
-              We tell your story with stunning clarity and endless creativity.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="mt-10 flex flex-col sm:flex-row gap-4 justify-start"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <Button href="/contact" variant="primary" className="!px-8 !py-4 shadow-xl shadow-primary/20">
-              <Calendar size={18} />
-              Book a Session
-            </Button>
-            <Button href="/portfolio" variant="outline" className="!px-8 !py-4 hover:bg-slate-200 transition-colors !border-slate-300 !text-slate-800">
-              <Play size={18} />
-              View Portfolio
-            </Button>
-          </motion.div>
-        </div>
-
-        {/* Right Column: Video Frame */}
-        <motion.div
-          className="order-1 lg:order-2 relative aspect-[4/5] lg:aspect-auto lg:h-[75vh] w-full rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white"
-          initial={{ opacity: 0, scale: 0.95, x: 20 }}
-          animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          {/* Subtle gradient overlay to enhance visual richness */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent z-10 pointer-events-none" />
-          
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="absolute inset-0 w-full h-full object-cover"
-            poster="/images/hero-poster.jpg"
-          >
-            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-          </video>
-        </motion.div>
-
+      {/* Background Watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
+        <h1 className="text-[25vw] font-black text-[#8B1A1A]/[0.02] leading-none uppercase tracking-tighter">
+          RODO
+        </h1>
       </div>
-      
-      {/* Background Decorative Blur Elements */}
-      <motion.div
-        className="absolute top-1/4 right-[15%] w-64 h-64 rounded-full bg-primary/10 blur-3xl pointer-events-none"
-        animate={{ y: [-20, 20, -20], scale: [1, 1.1, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 left-[5%] w-72 h-72 rounded-full bg-secondary/10 blur-3xl pointer-events-none"
-        animate={{ y: [20, -20, 20], scale: [1.1, 1, 1.1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 border-2 border-slate-300 rounded-full flex justify-center pt-2">
-          <div className="w-1 h-2 bg-slate-400 rounded-full" />
+      {/* Main Brand Title - Positioned absolutely at the top, perfectly centered, z-10 (behind image) */}
+      <div className="absolute top-[16%] md:top-[18%] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-10">
+        <h2 className="text-[18rem] md:text-[17rem] xl:text-[15rem] font-black text-white leading-none uppercase tracking-tighter drop-shadow-sm whitespace-nowrap">
+          RODO LENS
+        </h2>
+      </div>
+
+      {/* Content Grid (Bio, Image, Services) - Shifted below the title area, z-20 (above title) */}
+      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative z-20 mt-32 md:mt-48">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-center">
+
+          {/* Left Column: Bio & CTA */}
+          <div className="md:col-span-4 lg:col-span-3 order-2 md:order-1 relative z-20 h-full">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="flex flex-col justify-between h-full py-[15vh]"
+            >
+              <p className="text-[#fff5f8] font-bold text-lg md:text-xl leading-relaxed mb-12 max-w-[320px]">
+                Hey there! I'm a Visual Storyteller & Cinematographer working in the global marketplace.
+              </p>
+
+              <Link
+                href="/contact"
+                className="group flex items-center gap-3 text-[#fff5f8] font-black text-sm uppercase tracking-[0.2em] hover:text-[#8B1A1A] transition-colors"
+              >
+                // HIRE ME <ArrowRight size={18} className="transition-transform group-hover:translate-x-2" />
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Center Column: Portrait */}
+          <div className="md:col-span-4 lg:col-span-6 order-1 md:order-2 flex justify-center relative z-20">
+            <motion.div
+              className="relative w-full max-w-[500px] aspect-square md:aspect-[4/5] flex justify-center items-end"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Dotted Pattern Background behind the head */}
+              <div
+                className="absolute top-[0%] left-1/2 -translate-x-1/2 w-[130%] aspect-square -z-10 opacity-30 pointer-events-none"
+                style={{
+                  backgroundImage: 'radial-gradient(#FF8D28 2px, transparent 2px)',
+                  backgroundSize: '20px 20px',
+                  maskImage: 'radial-gradient(circle at center, black 25%, transparent 60%)',
+                  WebkitMaskImage: 'radial-gradient(circle at center, black 25%, transparent 60%)'
+                }}
+              />
+
+              {/* Portrait Image with soft bottom mask fade */}
+              <img
+                src="/images/rodo-portrait.png"
+                alt="Rodo Portrait"
+                className="w-full h-auto max-h-full object-contain filter brightness-[1.05] contrast-[1.05] drop-shadow-xl"
+                style={{
+                  maskImage: 'linear-gradient(to top, transparent 0%, black 20%)',
+                  WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)'
+                }}
+              />
+            </motion.div>
+          </div>
+
+          {/* Right Column: Services List */}
+          <div className="md:col-span-4 lg:col-span-3 order-3 flex flex-col flex-1 py-[15vh] justify-end items-center md:items-start md:pl-8 relative z-20">
+            <motion.ul
+              className="space-y-4 w-full"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              {SERVICES.map((service, idx) => (
+                <li key={service.id} className="group cursor-default md:text-left text-center">
+                  <span className={`text-lg md:text-xl tracking-tight transition-all duration-300 ${idx === 0 ? "text-tertiary font-black" : "text-[#fff5f8] group-hover:text-[#ffffff]"
+                    }`}>
+                    {service.title}
+                  </span>
+                </li>
+              ))}
+            </motion.ul>
+          </div>
+
         </div>
-      </motion.div>
+      </div>
+
+      {/* Bottom Logo Bar / Trusted By */}
+      <div className="absolute bottom-0 left-0 right-0 py-10 md:py-14 bg-transparent backdrop-blur-[4px] z-30">
+        <div className="max-w-7xl mx-auto px-6 overflow-hidden">
+          <div className="flex flex-wrap justify-between items-center opacity-40 gap-8 md:gap-12 grayscale">
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-sm " /> Overlay
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-sm rotate-45" /> FrameFlow
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-full" /> DataStack
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm   text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-sm scale-x-150" /> IntelliSpark
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm text-[#fff5f8]">
+              <div className="w-2.5 h-2.5 bg-black rounded-full border-2 border-black bg-transparent text-[#fff5f8]" /> NeuroLink
+            </div>
+            <div className="flex items-center gap-2 font-black uppercase text-sm">
+              <div className="w-2.5 h-2.5 bg-black rounded-full border-2 border-black bg-transparent text-[#fff5f8]" /> NeuroLink
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
+
+
+

@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/Button";
 
 export function CTASection() {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary to-primary-container p-12 md:p-20 text-center"
+          className="relative rounded-3xl overflow-hidden bg-tertiary/50 p-12 md:p-20 text-center"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}

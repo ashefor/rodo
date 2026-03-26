@@ -62,8 +62,8 @@ export function ContactForm() {
     );
   }
 
-  const labelStyle = "text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1";
-  const inputStyle = "w-full border-0 border-b border-gray-300 px-0 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-indigo-600 focus:ring-0 transition-colors bg-transparent";
+  const labelStyle = "text-[11px] font-bold text-white uppercase tracking-wider mb-1";
+  const inputStyle = "w-full border-0 border-b border-gray-300 px-0 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-600 focus:ring-0 transition-colors bg-transparent";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
@@ -97,7 +97,7 @@ export function ContactForm() {
 
       {/* Radio Service Group */}
       <div className="pt-2">
-        <label className="text-sm font-bold text-gray-900 mb-4 block">What type of service do you need?</label>
+        <label className="text-sm font-bold text-tertiary mb-4 block">What type of service do you need?</label>
         <div className="flex flex-wrap gap-4 md:gap-6">
           {SERVICE_OPTIONS.map((opt) => (
             <label key={opt} className="flex items-center gap-2 cursor-pointer group">
@@ -107,10 +107,10 @@ export function ContactForm() {
                 {...register("service")}
                 className="hidden"
               />
-              <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${selectedService === opt ? 'border-primary bg-primary' : 'border-gray-300 group-hover:border-primary/50'}`}>
+              <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${selectedService === opt ? 'border-tertiary bg-tertiary' : 'border-gray-300 group-hover:border-tertiary/50'}`}>
                 {selectedService === opt && <Check size={10} className="text-white" strokeWidth={4} />}
               </div>
-              <span className={`text-sm ${selectedService === opt ? 'text-gray-900 font-medium' : 'text-gray-500'}`}>{opt}</span>
+              <span className={`text-sm ${selectedService === opt ? 'text-tertiary' : 'text-white'}`}>{opt}</span>
             </label>
           ))}
         </div>
@@ -128,7 +128,7 @@ export function ContactForm() {
         <motion.button
           type="submit"
           disabled={isSubmitting}
-          className="px-8 py-3.5 rounded-lg bg-primary text-white font-medium text-sm hover:bg-primary/90 transition-colors disabled:opacity-50 min-w-[160px]"
+          className="px-8 py-3.5 rounded-lg bg-tertiary text-white font-medium text-sm hover:bg-tertiary/90 transition-colors disabled:opacity-50 min-w-[160px]"
           whileTap={{ scale: 0.98 }}
         >
           {isSubmitting ? (

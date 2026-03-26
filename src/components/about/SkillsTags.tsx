@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function SkillsTags() {
   return (
-    <section className="py-16 md:py-24 bg-surface-container dark:bg-surface-dark-container">
+    <section className="py-16 md:py-24 bg-foreground">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <SectionHeading
           label="Expertise"

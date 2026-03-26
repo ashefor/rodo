@@ -4,9 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Menu } from "lucide-react";
+import { Menu, Sparkles } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
-import { Button } from "@/components/ui/Button";
 import { MobileMenu } from "./MobileMenu";
 
 export function Navbar() {
@@ -26,74 +25,61 @@ export function Navbar() {
 
   return (
     <>
-      <div className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
-        <div className="w-full max-w-5xl flex justify-between items-center pointer-events-none">
-          {/* Left: Logo */}
-          <motion.div 
-            className="pointer-events-auto"
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <Link
-              href="/"
-              className="bg-white shadow-sm border border-gray-100 rounded-full w-14 h-14 flex items-center justify-center font-heading text-xl font-bold tracking-tighter hover:text-primary transition-colors"
-            >
-              RL
-            </Link>
-          </motion.div>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-black/10 backdrop-blur-md py-4" : "py-8"
+        }`}>
+        <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
 
-          {/* Middle: Menu */}
-          <motion.nav
-            className={`hidden md:flex pointer-events-auto items-center gap-8 px-8 h-14 rounded-full ${
-              scrolled 
-                ? "bg-white/95 backdrop-blur-md shadow-md border border-gray-100" 
-                : "bg-white shadow-sm border border-transparent"
-            }`}
-            style={{ transition: "background-color 0.3s, box-shadow 0.3s, border-color 0.3s, backdrop-filter 0.3s" }}
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-          >
+          {/* Left: Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="w-8 h-8 bg-tertiary rounded-sm flex items-center justify-center text-white">
+              <Sparkles size={16} />
+            </div>
+            <span className="font-heading font-black text-xl tracking-tighter uppercase text-[#fff5f8] group-hover:text-tertiary transition-colors">
+              RODO
+            </span>
+          </Link>
+
+          {/* Center: Links (Desktop) */}
+          <div className="hidden md:flex items-center gap-12">
             {NAV_LINKS.map((link) => (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === link.href
-                    ? "text-primary"
-                    : "text-black"
-                }`}
+                className={`text-[12px] font-black uppercase tracking-[0.2em] transition-all duration-300 text-[#fff5f8] hover:text-tertiary ${pathname === link.href ? "text-tertiary border-b-2 border-tertiary" : "text-[#fff5f8]"
+                  }`}
               >
                 {link.label}
               </Link>
             ))}
-          </motion.nav>
+          </div>
 
-          {/* Right: Actions */}
-          <motion.div 
-            className="pointer-events-auto flex items-center gap-2 md:gap-4"
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-          >
-            <div className="hidden md:block shadow-sm rounded-full overflow-hidden">
-              <Button href="/contact" variant="primary">
-                Book Me
-              </Button>
+          {/* Right: Status Bubble (Desktop) */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center gap-3 px-5 py-2.5">
+              <div className="relative">
+                <div className="w-2.5 h-2.5 bg-[#17FF00] rounded-full" />
+                <motion.div
+                  animate={{ scale: [1, 2, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 bg-[#17FF00] rounded-full"
+                />
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white">Open to work</span>
             </div>
-            <button
-              className="md:hidden w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer"
-              onClick={() => setMobileOpen(true)}
-              aria-label="Open menu"
-            >
-              <Menu size={22} className="text-black" />
-            </button>
-          </motion.div>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 border border-gray-200"
+            onClick={() => setMobileOpen(true)}
+          >
+            <Menu size={20} className="text-[#fff5f8]" />
+          </button>
         </div>
-      </div>
+      </nav>
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>
   );
 }
+
