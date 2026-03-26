@@ -31,10 +31,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_NG",
     siteName: "Rodo Lens",
+    images: ["/images/rodo-logo.png"],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/images/rodo-logo.png"],
   },
+
   robots: {
     index: true,
     follow: true,
