@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play } from "lucide-react";
 import type { PortfolioItem } from "@/types";
@@ -125,11 +126,12 @@ function PortfolioTile({
           background: "var(--color-paper-2)",
         }}
       >
-        <img
+        <Image
           src={item.poster}
           alt={item.title}
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
         />
 
         <span className="absolute top-3 left-3 font-mono-utility text-ink">

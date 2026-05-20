@@ -44,12 +44,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="h-full"
+      className={`${fontVariableClass} h-full`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body
-        className={`${fontVariableClass} min-h-full flex flex-col antialiased bg-paper text-ink`}
+        className="min-h-full flex flex-col antialiased bg-paper text-ink"
         style={{ background: "var(--color-paper)", color: "var(--color-ink)" }}
       >
         <ThemeProvider>

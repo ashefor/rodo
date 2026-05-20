@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Play } from "lucide-react";
 import { PORTFOLIO_ITEMS, SOCIAL_LINKS, SERVICES } from "@/lib/constants";
 import { getInstagramVideos } from "@/lib/instagram";
@@ -128,11 +129,12 @@ function FeedTile({ item, idx }: { item: WithPoster; idx: number }) {
               background: "var(--color-paper-2)",
             }}
           >
-            <img
+            <Image
               src={item.poster}
               alt={item.title}
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
             />
 
             {/* index */}

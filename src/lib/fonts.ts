@@ -19,7 +19,7 @@ export const fraunces = Fraunces({
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-mono",
+  variable: "--font-mono-jetbrains",
 });
 
 export const fontVariableClass = `${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable}`;

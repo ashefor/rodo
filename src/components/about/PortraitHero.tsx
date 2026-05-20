@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function PortraitHero() {
   return (
@@ -24,17 +25,20 @@ export function PortraitHero() {
             className="lg:col-span-4 order-2 lg:order-1"
           >
             <div
-              className="w-full max-w-sm mx-auto lg:max-w-none overflow-hidden"
+              className="relative w-full max-w-sm mx-auto lg:max-w-none overflow-hidden"
               style={{
                 aspectRatio: "4/5",
                 borderRadius: "var(--radius-figure)",
                 background: "var(--color-paper-2)",
               }}
             >
-              <img
+              <Image
                 src="/images/rodo-portrait.png"
                 alt="Portrait of Divine, the photographer behind Rodo Lens"
-                className="w-full h-full object-cover"
+                fill
+                priority
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 80vw, 100vw"
+                className="object-cover"
               />
             </div>
             <figcaption className="mt-3 font-mono-utility">

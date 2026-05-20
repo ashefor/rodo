@@ -2,6 +2,7 @@ import { BirthdayCard, CorporateCard, FashionCard, RealEstateCard, WeddingCard }
 import type { NavLink, Service, Testimonial, PortfolioItem } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
+  { label: "About", href: "/about" },
   { label: "Services", href: "/#services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },

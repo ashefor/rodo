@@ -13,7 +13,7 @@ export function HeroSection() {
         color: "var(--color-ink)",
       }}
     >
-      {/* Full-bleed reel */}
+      {/* Backdrop — looping silent reel across all viewports */}
       <div className="absolute inset-0 z-0">
         <video
           autoPlay
@@ -21,12 +21,12 @@ export function HeroSection() {
           loop
           playsInline
           preload="auto"
-          poster="/images/wedding-shoot.png"
           className="absolute inset-0 w-full h-full object-cover"
           aria-hidden
         >
           <source src="/videos/video.mp4" type="video/mp4" />
         </video>
+        {/* Vignette */}
         <div
           className="absolute inset-0"
           style={{
@@ -38,11 +38,16 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-40 md:pt-48 pb-24 md:pb-32 min-h-svh flex flex-col justify-end">
-        {/* Top meta */}
+        {/* Top meta — identity + place */}
         <div className="absolute top-32 md:top-36 left-6 md:left-10 right-6 md:right-10 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
           <p className="font-mono-utility">visual storyteller · est. 2020</p>
           <p className="font-mono-utility">abuja · lagos · worldwide</p>
         </div>
+
+        {/* Pitch line — 2-second clarity above the headline */}
+        <p className="font-mono-utility mb-6">
+          reels · short film · event content
+        </p>
 
         {/* Display headline */}
         <h1
@@ -97,10 +102,20 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Footer rule */}
+        {/* Footer rule — booking status replaces decorative scroll prompt */}
         <div className="mt-16 md:mt-20 pt-4 hairline-top flex justify-between items-baseline">
           <span className="font-mono-utility">reel · loop</span>
-          <span className="font-mono-utility">scroll ↓</span>
+          {/*
+           * Booking status — Divine, edit the right-hand string when your
+           * availability changes. Examples that work:
+           *   "currently booking — drop me a date"
+           *   "now booking · jun 2026 onward"
+           *   "booked through july · waitlist open"
+           * Keep it honest; if you're closed, change to "not currently booking".
+           */}
+          <span className="font-mono-utility" style={{ color: "var(--color-accent)" }}>
+            ● currently booking
+          </span>
         </div>
       </div>
     </section>
