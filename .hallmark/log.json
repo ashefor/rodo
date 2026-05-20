@@ -3,6 +3,48 @@
     "date": "2026-05-20",
     "macrostructure": "Marquee Hero",
     "theme": "custom",
+    "theme_axes": "dark / italic-serif / warm-terracotta",
+    "enrichment": "full-bleed silent reel + live IG feed 3-up grid (no hover-to-play)",
+    "brief": "Rodo Lens · revert cinemascope + film-strip; rebuild Selected Work as live IG grid; drop /process + /portfolio/[slug]; restore 3-item nav"
+  },
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Quote-Led",
+    "theme": "custom",
+    "theme_axes": "dark / italic-serif / warm-terracotta",
+    "enrichment": "pull-quote opener + 16:9 hero frame + numbered chapters + stills grid",
+    "brief": "Rodo Lens · new route /portfolio/[slug] — case study deep-dive (one mocked example: lagos-brand-launch)"
+  },
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Long Document",
+    "theme": "custom",
+    "theme_axes": "dark / italic-serif / warm-terracotta",
+    "enrichment": "none — typography only",
+    "brief": "Rodo Lens · new route /process — Long Document (four chapters: scope · day · turnaround · rates)"
+  },
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Marquee Hero · cinemascope variant",
+    "theme": "custom",
+    "theme_axes": "dark / italic-serif / warm-terracotta",
+    "vibe": "atmospheric cinematic italic-serif video-led",
+    "enrichment": "centred 21:9 reel plate + horizontal film-strip Selected Work",
+    "brief": "Rodo Lens · hero cinemascope rebuild + Selected Work film-strip + nav update (About · Portfolio · Process · Contact)"
+  },
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Marquee Hero",
+    "theme": "custom",
+    "theme_axes": "dark / italic-serif / warm-terracotta",
+    "vibe": "atmospheric cinematic italic-serif video-led",
+    "enrichment": "full-bleed silent reel + hover-to-play reel previews",
+    "brief": "Rodo Lens · whole-site direction overhaul — Reel iteration 2 (Fraunces italic display, slight cool paper tilt)"
+  },
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Marquee Hero",
+    "theme": "custom",
     "theme_axes": "dark / sans-grotesque / warm-terracotta",
     "vibe": "atmospheric cinematic mobile-first event",
     "enrichment": "full-bleed silent reel (real /videos/video.mp4)",

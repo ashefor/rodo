@@ -7,6 +7,9 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Contact", href: "/contact" },
 ];
 
+// SERVICES — drop a short looping mp4 (3–5s, muted) into `videoUrl` for any
+// service that has a real clip. If videoUrl is empty, the services row falls
+// back to typography-only on the home page (no broken-looking placeholder).
 export const SERVICES: Service[] = [
   {
     title: "Weddings",
@@ -15,6 +18,7 @@ export const SERVICES: Service[] = [
       "Cinematic mobile video production that captures the essence of every moment. From events to brand stories, I create compelling visual narratives.",
     icon: "Video",
     image: "/images/wedding-shoot.png",
+    // videoUrl: "/videos/services/weddings.mp4",
     card: WeddingCard
   },
   {
@@ -24,6 +28,7 @@ export const SERVICES: Service[] = [
       "Scroll-stopping content for social media and digital platforms. Creative concepts, filming, and editing tailored to your brand voice.",
     icon: "Camera",
     image: "/images/birthday-shoot.png",
+    // videoUrl: "/videos/services/birthdays.mp4",
     card: BirthdayCard
   },
   {
@@ -33,6 +38,7 @@ export const SERVICES: Service[] = [
       "End-to-end event coordination that brings your vision to life. From intimate gatherings to large celebrations, every detail is covered.",
     icon: "CalendarHeart",
     image: "/images/real-estate-shoot.png",
+    // videoUrl: "/videos/services/real-estate.mp4",
     card: RealEstateCard
   },
   {
@@ -42,6 +48,7 @@ export const SERVICES: Service[] = [
       "Crafting visual identities and brand narratives that resonate. From creative direction to full brand kits, I help you stand out.",
     icon: "CalendarHeart",
     image: "/images/corporate-shoot.png",
+    // videoUrl: "/videos/services/brand.mp4",
     card: CorporateCard
   },
   {
@@ -51,6 +58,7 @@ export const SERVICES: Service[] = [
       "Professional photo retouching, color grading, and compositing that transforms raw captures into polished visual masterpieces.",
     icon: "Camera",
     image: "/images/fashion-shoot.png",
+    // videoUrl: "/videos/services/fashion.mp4",
     card: FashionCard
   },
 ];
@@ -106,6 +114,8 @@ export const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
+// PORTFOLIO_ITEMS — placeholder mock data. Used as the fallback when the
+// live Instagram feed is not configured (INSTAGRAM_ACCESS_TOKEN unset).
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: "1",

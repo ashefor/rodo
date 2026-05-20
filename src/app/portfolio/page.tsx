@@ -37,24 +37,32 @@ export default async function PortfolioPage() {
         </div>
 
         <h1
-          className="font-display tracking-tight leading-[0.92] max-w-[14ch]"
+          className="tracking-tight leading-[0.9] max-w-[14ch]"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "var(--text-display-xl)",
             color: "var(--color-ink)",
+            letterSpacing: "-0.03em",
+            fontVariationSettings: "'opsz' 144",
           }}
         >
-          No.{" "}
-          <span className="font-mono-utility align-middle text-[0.4em] mr-2" style={{ color: "var(--color-ink-dim)" }}>
-            cat.
-          </span>
-          {String(items.length).padStart(2, "0")}
+          The work,
+          <br />
+          <em
+            style={{
+              fontStyle: "italic",
+              color: "var(--color-accent)",
+              fontVariationSettings: "'opsz' 144, 'SOFT' 50",
+            }}
+          >
+            in motion.
+          </em>
         </h1>
 
         <p className="mt-8 max-w-xl text-ink-dim text-base md:text-lg leading-relaxed">
-          A running catalogue of reels, event content, and short film. The
-          freshest reels are pulled live from Instagram when the feed key is
-          set; otherwise this is the studio cut.
+          Reels, event content, and short film. The freshest pieces are pulled
+          live from Instagram when the feed key is set; the studio cut is
+          shown otherwise. <span className="font-mono-utility align-middle ml-1">{items.length.toString().padStart(2, "0")} pieces</span>
         </p>
 
         {/* Catalogue rule */}

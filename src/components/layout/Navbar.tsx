@@ -28,7 +28,7 @@ export function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-[background,padding] duration-(--dur-base) ease-out ${
           scrolled
-            ? "py-3 bg-[oklch(14%_0.008_60/0.78)] backdrop-blur-md hairline-bottom"
+            ? "py-3 bg-[oklch(13%_0.010_250/0.78)] backdrop-blur-md hairline-bottom"
             : "py-6 bg-transparent"
         }`}
       >

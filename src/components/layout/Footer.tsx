@@ -10,16 +10,19 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-12">
         {/* Statement line */}
         <p
-          className="font-display tracking-tight leading-[0.95] max-w-[20ch]"
+          className="tracking-tight leading-[0.95] max-w-[20ch]"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "var(--text-display)",
             color: "var(--color-ink)",
+            letterSpacing: "-0.025em",
           }}
         >
           Frames held,
           <br />
-          then sent.
+          <em style={{ fontStyle: "italic", color: "var(--color-accent)" }}>
+            then sent.
+          </em>
         </p>
 
         <p className="mt-8 max-w-md text-ink-dim text-base md:text-lg leading-relaxed">

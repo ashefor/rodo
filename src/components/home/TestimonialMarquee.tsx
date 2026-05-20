@@ -35,11 +35,13 @@ export function TestimonialMarquee({ showHeading = true }: TestimonialMarqueePro
           className="max-w-4xl"
         >
           <p
-            className="font-display tracking-tight leading-[1.05]"
+            className="tracking-tight leading-[1.1]"
             style={{
               fontFamily: "var(--font-display)",
+              fontStyle: "italic",
               fontSize: "var(--text-display-s)",
               color: "var(--color-ink)",
+              letterSpacing: "-0.025em",
             }}
           >
             <span style={{ color: "var(--color-accent)" }}>“</span>

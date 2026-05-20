@@ -44,11 +44,13 @@ export function StorySection() {
               <div className="flex items-baseline gap-4 mb-5">
                 <span className="font-mono-utility">{c.num}</span>
                 <h3
-                  className="font-display tracking-tight leading-tight"
+                  className="tracking-tight leading-tight"
                   style={{
                     fontFamily: "var(--font-display)",
+                    fontStyle: "italic",
                     fontSize: "var(--text-3xl)",
                     color: "var(--color-ink)",
+                    letterSpacing: "-0.02em",
                   }}
                 >
                   {c.heading}
@@ -70,12 +72,13 @@ export function StorySection() {
           className="mt-20 md:mt-28 pt-10 hairline-top"
         >
           <p
-            className="font-display tracking-tight"
+            className="tracking-tight"
             style={{
               fontFamily: "var(--font-display)",
+              fontStyle: "italic",
               fontSize: "var(--text-2xl)",
               color: "var(--color-ink)",
-              fontStyle: "italic",
+              letterSpacing: "-0.02em",
             }}
           >
             — Divine

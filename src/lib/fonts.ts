@@ -1,4 +1,4 @@
-import { Inter, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -6,11 +6,14 @@ export const inter = Inter({
   variable: "--font-inter",
 });
 
-export const bricolageGrotesque = Bricolage_Grotesque({
+// Variable serif with optical sizing and a true italic.
+// Used as the display face — italic emphases pull from the same family.
+export const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-bricolage",
-  axes: ["opsz", "wdth"],
+  variable: "--font-fraunces",
+  axes: ["opsz", "SOFT"],
+  style: ["normal", "italic"],
 });
 
 export const jetbrainsMono = JetBrains_Mono({
@@ -19,4 +22,4 @@ export const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
-export const fontVariableClass = `${inter.variable} ${bricolageGrotesque.variable} ${jetbrainsMono.variable}`;
+export const fontVariableClass = `${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable}`;

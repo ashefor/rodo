@@ -14,16 +14,20 @@ export function SkillsTags() {
           <div className="md:col-span-4">
             <p className="font-mono-utility mb-4">disciplines</p>
             <h2
-              className="font-display tracking-tight leading-[0.95]"
+              className="tracking-tight leading-[0.95]"
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "var(--text-3xl)",
                 color: "var(--color-ink)",
+                letterSpacing: "-0.02em",
               }}
             >
-              Things I bring
-              <br />
-              to set.
+              Things I bring{" "}
+              <em
+                style={{ fontStyle: "italic", color: "var(--color-accent)" }}
+              >
+                to set.
+              </em>
             </h2>
           </div>
 

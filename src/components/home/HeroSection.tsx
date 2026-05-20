@@ -27,12 +27,11 @@ export function HeroSection() {
         >
           <source src="/videos/video.mp4" type="video/mp4" />
         </video>
-        {/* Atmospheric darkening — type read first, footage second */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, oklch(14% 0.008 60 / 0.65) 0%, oklch(14% 0.008 60 / 0.50) 40%, oklch(14% 0.008 60 / 0.92) 100%)",
+              "linear-gradient(180deg, oklch(13% 0.010 250 / 0.65) 0%, oklch(13% 0.010 250 / 0.50) 40%, oklch(13% 0.010 250 / 0.95) 100%)",
           }}
         />
       </div>
@@ -47,17 +46,26 @@ export function HeroSection() {
 
         {/* Display headline */}
         <h1
-          className="font-display tracking-tight leading-[0.92] max-w-[16ch]"
+          className="tracking-tight leading-[0.92] max-w-[16ch]"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "var(--text-display-xl)",
             color: "var(--color-ink)",
-            fontVariationSettings: "'opsz' 96, 'wdth' 100",
+            letterSpacing: "-0.03em",
+            fontVariationSettings: "'opsz' 144",
           }}
         >
           The moment,
           <br />
-          <span style={{ color: "var(--color-accent)" }}>then again.</span>
+          <em
+            style={{
+              fontStyle: "italic",
+              color: "var(--color-accent)",
+              fontVariationSettings: "'opsz' 144, 'SOFT' 50",
+            }}
+          >
+            then again.
+          </em>
         </h1>
 
         {/* Bottom row: tagline + CTA */}
@@ -75,7 +83,10 @@ export function HeroSection() {
               <span className="border-b border-ink group-hover:border-accent transition-colors duration-(--dur-fast) pb-0.5">
                 See the work
               </span>
-              <ArrowUpRight size={18} className="transition-transform duration-(--dur-base) ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight
+                size={18}
+                className="transition-transform duration-(--dur-base) ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </Link>
             <Link
               href="/contact"
@@ -86,9 +97,9 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Footer rule + timecode */}
+        {/* Footer rule */}
         <div className="mt-16 md:mt-20 pt-4 hairline-top flex justify-between items-baseline">
-          <span className="font-mono-utility">reel · 00 : 00 : 42</span>
+          <span className="font-mono-utility">reel · loop</span>
           <span className="font-mono-utility">scroll ↓</span>
         </div>
       </div>

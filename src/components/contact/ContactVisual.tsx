@@ -7,17 +7,22 @@ export function ContactVisual() {
   return (
     <div className="relative">
       <h1
-        className="font-display tracking-tight leading-[0.95] max-w-[16ch]"
+        className="tracking-tight leading-[0.95] max-w-[16ch]"
         style={{
           fontFamily: "var(--font-display)",
           fontSize: "var(--text-display)",
           color: "var(--color-ink)",
+          letterSpacing: "-0.025em",
         }}
       >
         Tell me about
         <br />
         the{" "}
-        <span style={{ color: "var(--color-accent)" }}>moment</span>
+        <em
+          style={{ fontStyle: "italic", color: "var(--color-accent)" }}
+        >
+          moment
+        </em>
         <br />
         you want held.
       </h1>

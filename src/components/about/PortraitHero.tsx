@@ -48,18 +48,24 @@ export function PortraitHero() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.05, ease: [0.22, 0.61, 0.36, 1] }}
-              className="font-display tracking-tight leading-[0.95]"
+              className="tracking-tight leading-[0.95]"
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "var(--text-display)",
                 color: "var(--color-ink)",
+                letterSpacing: "-0.025em",
               }}
             >
               Most days I am
               <br />
-              <span style={{ color: "var(--color-accent)" }}>
+              <em
+                style={{
+                  fontStyle: "italic",
+                  color: "var(--color-accent)",
+                }}
+              >
                 somewhere holding a phone
-              </span>
+              </em>
               <br />
               waiting for the moment.
             </motion.h1>

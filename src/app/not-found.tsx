@@ -18,15 +18,20 @@ export default function NotFound() {
       >
         <p className="font-mono-utility mb-6">404 · page not found</p>
         <h1
-          className="font-display tracking-tight leading-[0.95]"
+          className="tracking-tight leading-[0.95]"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "var(--text-display)",
             color: "var(--color-ink)",
+            letterSpacing: "-0.025em",
           }}
         >
           That frame is{" "}
-          <span style={{ color: "var(--color-accent)" }}>out of focus.</span>
+          <em
+            style={{ fontStyle: "italic", color: "var(--color-accent)" }}
+          >
+            out of focus.
+          </em>
         </h1>
         <p className="mt-6 text-ink-dim text-base md:text-lg leading-relaxed">
           The page you’re looking for isn’t here. Walk back to the work.

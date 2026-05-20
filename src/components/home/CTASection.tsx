@@ -20,16 +20,21 @@ export function CTASection() {
         >
           <p className="font-mono-utility mb-8">04 · what next</p>
           <h2
-            className="font-display tracking-tight leading-[0.95]"
+            className="tracking-tight leading-[0.95]"
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "var(--text-display)",
               color: "var(--color-ink)",
+              letterSpacing: "-0.025em",
             }}
           >
             Tell me about the
             <br />
-            <span style={{ color: "var(--color-accent)" }}>moment you want held.</span>
+            <em
+              style={{ fontStyle: "italic", color: "var(--color-accent)" }}
+            >
+              moment you want held.
+            </em>
           </h2>
           <p className="mt-8 text-ink-dim text-base md:text-lg max-w-xl leading-relaxed">
             Wedding, brand day, opening night, a single afternoon — give me a

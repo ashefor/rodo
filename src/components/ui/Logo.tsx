@@ -95,26 +95,27 @@ function LogoMark({ size }: { size: number }) {
  * Falls back to a serif stack if --font-display fails to load.
  */
 function LogoWordmark({ height }: { height: number }) {
-  // viewBox tuned so "Rodo Lens" at 22px baseline reads at ~size 28 height.
-  // Width 168 ≈ 6:1 aspect for "Rodo Lens" set in Bricolage Grotesque 500.
+  // viewBox tuned for "Rodo Lens" set in Fraunces italic, opsz ~24, ~480 weight.
+  // Fraunces has slightly more width than Bricolage at the same px height.
   return (
     <svg
       height={height}
-      viewBox="0 0 168 28"
+      viewBox="0 0 180 28"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden
       style={{ display: "block" }}
     >
       <text
         x="0"
-        y="21"
+        y="22"
         fill="currentColor"
         style={{
-          fontFamily: "var(--font-display), 'Bricolage Grotesque', Georgia, serif",
+          fontFamily: "var(--font-display), 'Fraunces', Georgia, serif",
+          fontStyle: "italic",
           fontSize: "22px",
           fontWeight: 500,
-          letterSpacing: "-0.02em",
-          fontVariationSettings: "'opsz' 24, 'wdth' 100",
+          letterSpacing: "-0.025em",
+          fontVariationSettings: "'opsz' 24, 'SOFT' 50",
         }}
       >
         Rodo Lens

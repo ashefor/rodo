@@ -1,33 +1,34 @@
 /* Hallmark · macrostructures: Marquee Hero (/) · Letter (/about) · Catalogue (/portfolio) · Bookend (/contact)
  * genre: atmospheric-cinematic · tone: video-led, restrained
- * theme: custom (dark · sans · warm) · paper oklch(14% 0.008 60) · accent oklch(60% 0.16 39)
- * fonts: Bricolage Grotesque (display) + Inter (body) + JetBrains Mono (utility)
- * diversification axes: dark · sans-grotesque · warm-terracotta
- * pre-emit critique: P5 H4 E5 S4 R5 V5
+ * direction: Reel · iteration 2 (italic-serif display, slight cool paper tilt)
+ * theme: custom (dark · italic-serif · warm-accent) · paper oklch(13% 0.010 250) · accent oklch(60% 0.16 39)
+ * fonts: Fraunces variable italic (display) + Inter (body) + JetBrains Mono (utility)
+ * diversification axes: dark · italic-serif · warm-terracotta
+ * pre-emit critique: P5 H5 E5 S5 R5 V4
  */
 
 @import "tailwindcss";
 
 @theme inline {
-  /* ──────────────── Surfaces (paper) ──────────────── */
-  --color-paper: oklch(14% 0.008 60);
-  --color-paper-2: oklch(18% 0.010 60);
-  --color-paper-3: oklch(22% 0.012 60);
-  --color-paper-edge: oklch(28% 0.012 60);
+  /* ──────────────── Surfaces (paper) — slight cool tilt ──────────────── */
+  --color-paper: oklch(13% 0.010 250);
+  --color-paper-2: oklch(17% 0.012 250);
+  --color-paper-3: oklch(21% 0.013 250);
+  --color-paper-edge: oklch(27% 0.013 250);
 
   /* ──────────────── Ink (type) ──────────────── */
-  --color-ink: oklch(96% 0.008 60);
-  --color-ink-dim: oklch(74% 0.010 60);
-  --color-ink-quiet: oklch(56% 0.010 60);
+  --color-ink: oklch(96% 0.005 250);
+  --color-ink-dim: oklch(73% 0.008 250);
+  --color-ink-quiet: oklch(55% 0.010 250);
 
   /* ──────────────── Accent (terracotta) ──────────────── */
-  --color-accent: oklch(60% 0.16 39);
-  --color-accent-hover: oklch(67% 0.17 39);
+  --color-accent: oklch(63% 0.165 39);
+  --color-accent-hover: oklch(70% 0.175 39);
   --color-accent-quiet: oklch(34% 0.10 39);
-  --color-focus: oklch(70% 0.16 39);
+  --color-focus: oklch(72% 0.165 39);
 
   /* ──────────────── Signal ──────────────── */
-  --color-danger: oklch(58% 0.18 25);
+  --color-danger: oklch(60% 0.18 25);
   --color-success: oklch(64% 0.12 145);
 
   /* ──────────────── Compat (legacy refs) ──────────────── */
@@ -49,7 +50,7 @@
   --color-outline-variant-dark: var(--color-paper-edge);
 
   /* ──────────────── Type ──────────────── */
-  --font-display: var(--font-bricolage), ui-serif, Georgia, serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-mono-jetbrains, var(--font-mono)), ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
 
@@ -58,7 +59,7 @@
   --font-brand: var(--font-display);
 
   /* ──────────────── Scale ──────────────── */
-  --text-display-xl: clamp(3.5rem, 9vw, 8rem);
+  --text-display-xl: clamp(3.5rem, 9.5vw, 8.5rem);
   --text-display: clamp(2.75rem, 6.5vw, 5.5rem);
   --text-display-s: clamp(2rem, 4.5vw, 3.5rem);
   --text-4xl: clamp(1.875rem, 3.5vw, 2.5rem);
@@ -84,8 +85,8 @@
   --dur-fast: 150ms;
   --dur-base: 250ms;
   --dur-slow: 400ms;
+  --dur-reveal: 500ms;
 
-  /* legacy keyframe holdouts (used by autoplay reveals only) */
   --animate-fade-in-up: fade-in-up 0.6s var(--ease-out) forwards;
 
   @keyframes fade-in-up {
@@ -96,8 +97,8 @@
 
 /* ──────────────── Root ──────────────── */
 :root {
-  --background: oklch(14% 0.008 60);
-  --foreground: oklch(96% 0.008 60);
+  --background: oklch(13% 0.010 250);
+  --foreground: oklch(96% 0.005 250);
   color-scheme: dark;
 }
 
@@ -150,7 +151,7 @@ h1, h2, h3 {
   }
 }
 
-/* ──────────────── Hide scrollbars (preserved) ──────────────── */
+/* ──────────────── Scrollbars (preserved) ──────────────── */
 ::-webkit-scrollbar { display: none; }
 * {
   -ms-overflow-style: none;
@@ -160,7 +161,16 @@ h1, h2, h3 {
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ──────────────── Typographic utilities ──────────────── */
-.font-display { font-family: var(--font-display); font-feature-settings: "ss01"; letter-spacing: -0.02em; }
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+.font-display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  letter-spacing: -0.025em;
+  font-feature-settings: "ss01";
+}
 .font-mono-utility {
   font-family: var(--font-mono);
   font-size: var(--text-micro);
@@ -176,7 +186,7 @@ h1, h2, h3 {
 .hairline-top { border-top: var(--rule-hairline) solid var(--color-paper-edge); }
 .hairline-bottom { border-bottom: var(--rule-hairline) solid var(--color-paper-edge); }
 
-/* ──────────────── Quiet card (replaces .glass) ──────────────── */
+/* ──────────────── Quiet card ──────────────── */
 .card-quiet {
   background: var(--color-paper-2);
   border: var(--rule-hairline) solid var(--color-paper-edge);

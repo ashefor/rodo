@@ -74,15 +74,20 @@ export function ContactForm() {
       >
         <p className="font-mono-utility mb-4">sent · {new Date().toLocaleDateString()}</p>
         <p
-          className="font-display tracking-tight leading-none max-w-[20ch]"
+          className="tracking-tight leading-none max-w-[20ch]"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "var(--text-3xl)",
             color: "var(--color-ink)",
+            letterSpacing: "-0.02em",
           }}
         >
           Thank you — I’ll reply within{" "}
-          <span style={{ color: "var(--color-accent)" }}>24 hours.</span>
+          <em
+            style={{ fontStyle: "italic", color: "var(--color-accent)" }}
+          >
+            24 hours.
+          </em>
         </p>
         <p className="mt-4 text-ink-dim max-w-md">
           If your shoot date is sooner than that, message Instagram directly —
