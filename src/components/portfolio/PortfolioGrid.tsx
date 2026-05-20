@@ -1,100 +1,144 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play } from "lucide-react";
 import type { PortfolioItem } from "@/types";
+import { SERVICES } from "@/lib/constants";
 import { VideoModal } from "./VideoModal";
+import { FilterToggle } from "./FilterToggle";
+
+type Filter = "all" | "instagram" | "video";
 
 interface PortfolioGridProps {
   initialItems: PortfolioItem[];
 }
 
 export function PortfolioGrid({ initialItems }: PortfolioGridProps) {
+  const [filter, setFilter] = useState<Filter>("all");
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [visibleCount, setVisibleCount] = useState(8);
 
-  const visible = initialItems.slice(0, visibleCount);
-  const hasMore = visibleCount < initialItems.length;
+  // Fallback posters from real service shoot images when item.thumbnail is missing/404
+  const itemsWithPoster = useMemo(
+    () =>
+      initialItems.map((it, idx) => ({
+        ...it,
+        poster: it.thumbnail || SERVICES[idx % SERVICES.length].image,
+      })),
+    [initialItems]
+  );
+
+  const filtered = useMemo(
+    () =>
+      filter === "all"
+        ? itemsWithPoster
+        : itemsWithPoster.filter((i) => i.category === filter),
+    [itemsWithPoster, filter]
+  );
+
+  const visible = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
 
   return (
     <>
-      <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
+      {/* Filter */}
+      <div className="flex justify-between items-baseline mb-8">
+        <FilterToggle activeFilter={filter} onFilterChange={(f) => { setFilter(f); setVisibleCount(8); }} />
+        <p className="font-mono-utility">
+          {filtered.length.toString().padStart(2, "0")} pieces
+        </p>
+      </div>
+
+      {/* Masonry */}
+      <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
         <AnimatePresence mode="popLayout">
-          {visible.map((item, index) => (
-            <motion.div
-              key={item.id}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, delay: (index % 8) * 0.05 }}
-              className="relative break-inside-avoid block w-full group cursor-pointer"
-              onClick={() => setSelectedItem(item)}
-            >
-              {/* Image Container with varied aspect ratios to build the masonry */}
-              <div
-                className={`relative w-full rounded-lg overflow-hidden ${index % 5 === 0
-                  ? "aspect-video"
-                  : index % 5 === 1
-                    ? "aspect-[4/5]"
-                    : index % 5 === 2
-                      ? "aspect-square"
-                      : index % 5 === 3
-                        ? "aspect-[3/4]"
-                        : "aspect-[4/3]"
-                  }`}
+          {visible.map((item, index) => {
+            const num = String(index + 1).padStart(2, "0");
+            const ratios = ["aspect-[4/5]", "aspect-[3/4]", "aspect-[4/5]", "aspect-[5/6]"];
+            const ratio = ratios[index % ratios.length];
+            return (
+              <motion.figure
+                key={item.id}
+                layout
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.35, delay: (index % 8) * 0.04, ease: [0.22, 0.61, 0.36, 1] }}
+                className="break-inside-avoid block w-full mb-4 md:mb-6"
               >
-                {/* As requested, cards are effectively videos, keeping consistent thumbnail structure for performance/mocking, but treating as a video playable thumbnail */}
-                <div
-                  className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
-                  style={{
-                    backgroundImage: `url(${item.thumbnail})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundColor: '#242424'
-                  }}
-                />
-
-                {/* Hover overlay with icon */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                  <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-50 group-hover:scale-100">
-                    <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center shadow-xl">
-                      <Play size={20} className="text-white ml-1" />
-                    </div>
+                <button
+                  onClick={() => setSelectedItem(item)}
+                  className="group block w-full text-left cursor-pointer"
+                >
+                  <div
+                    className={`relative w-full ${ratio} overflow-hidden`}
+                    style={{
+                      borderRadius: "var(--radius-figure)",
+                      background: "var(--color-paper-2)",
+                    }}
+                  >
+                    <img
+                      src={item.poster}
+                      alt={item.title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    />
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-(--dur-base) ease-out"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, transparent 40%, oklch(8% 0.005 60 / 0.55) 100%)",
+                      }}
+                    />
+                    <span className="absolute top-3 left-3 font-mono-utility text-ink">
+                      {num}
+                    </span>
+                    {item.category === "video" && (
+                      <div
+                        aria-hidden
+                        className="absolute bottom-3 right-3 w-8 h-8 inline-flex items-center justify-center"
+                        style={{
+                          background: "oklch(8% 0.005 60 / 0.55)",
+                          borderRadius: "var(--radius-figure)",
+                        }}
+                      >
+                        <Play size={14} className="text-ink ml-0.5" />
+                      </div>
+                    )}
                   </div>
-                </div>
-              </div>
-
-              {/* Text Info Below Image */}
-              <div className="mt-3 px-1 mb-2">
-                <h3 className="font-bold text-base md:text-lg text-background dark:text-white line-clamp-1">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-on-surface-dark-variant mt-1 capitalize font-medium tracking-wide">
-                  {item.category}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+                  <figcaption className="mt-3 flex items-baseline justify-between gap-3">
+                    <span className="text-ink text-base leading-snug">
+                      {item.title}
+                    </span>
+                    <span className="font-mono-utility shrink-0">{item.category}</span>
+                  </figcaption>
+                </button>
+              </motion.figure>
+            );
+          })}
         </AnimatePresence>
       </div>
 
       {hasMore && (
-        <div className="mt-12 text-center">
+        <div className="mt-16 flex justify-center">
           <button
             onClick={() => setVisibleCount((prev) => prev + 8)}
-            className="px-8 py-3 rounded-full text-sm font-medium bg-surface-dark-container text-white hover:bg-tertiary hover:text-white transition-all cursor-pointer"
+            className="group inline-flex items-center gap-3 px-6 py-3 text-base text-ink hover:text-accent transition-colors duration-(--dur-fast)"
+            style={{
+              border: "1px solid var(--color-paper-edge)",
+              borderRadius: "var(--radius-figure)",
+            }}
           >
-            Load More
+            <span>Load more</span>
+            <span className="font-mono-utility">
+              + {Math.min(8, filtered.length - visibleCount)}
+            </span>
           </button>
         </div>
       )}
 
-      <VideoModal
-        item={selectedItem}
-        onClose={() => setSelectedItem(null)}
-      />
+      <VideoModal item={selectedItem} onClose={() => setSelectedItem(null)} />
     </>
   );
 }

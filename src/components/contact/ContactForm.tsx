@@ -1,27 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, ArrowUpRight } from "lucide-react";
 
-import { SERVICE_OPTIONS } from "@/lib/constants";
+import { SERVICE_OPTIONS, SERVICES } from "@/lib/constants";
 
 const contactSchema = z.object({
   firstName: z.string().min(2, "Required"),
   lastName: z.string().min(2, "Required"),
   email: z.string().email("Invalid email"),
   phone: z.string().min(5, "Required"),
-  service: z.string().min(1, "Please select at least one"),
+  service: z.string().min(1, "Please select one"),
   message: z.string().optional(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
+const fieldLabel = "font-mono-utility block mb-2";
+const fieldInput =
+  "w-full bg-transparent border-0 border-b text-base text-ink py-3 focus:outline-none transition-colors duration-(--dur-fast) placeholder:text-[color:var(--color-ink-quiet)]";
+
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+
+  // Deep-link from a service row: /contact?from=<service-id>
+  const searchParams = useSearchParams();
+  const fromService = searchParams.get("from");
+
+  const { prefilledMessage, fromTitle } = useMemo(() => {
+    if (!fromService) return { prefilledMessage: "", fromTitle: null };
+    const matched = SERVICES.find((s) => s.id === fromService);
+    if (!matched) return { prefilledMessage: "", fromTitle: null };
+    const singular = matched.title.replace(/s$/, "");
+    return {
+      prefilledMessage: `I'd like to discuss ${singular.toLowerCase()} coverage. `,
+      fromTitle: matched.title,
+    };
+  }, [fromService]);
+
   const {
     register,
     handleSubmit,
@@ -31,112 +52,198 @@ export function ContactForm() {
     resolver: zodResolver(contactSchema),
     defaultValues: {
       service: SERVICE_OPTIONS[0],
-    }
+      message: prefilledMessage,
+    },
   });
 
   const selectedService = watch("service");
 
-  const onSubmit = async (data: ContactFormData) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    // console.log("Form data:", data);
+  const onSubmit = async (_data: ContactFormData) => {
+    void _data;
+    await new Promise((r) => setTimeout(r, 700));
     setSubmitted(true);
   };
 
   if (submitted) {
     return (
       <motion.div
-        className="flex flex-col items-center justify-center py-16 text-center h-full"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+        className="py-16 hairline-top"
       >
-        <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-6">
-          <Check size={32} className="text-green-600" />
-        </div>
-        <h3 className="font-heading text-2xl font-bold mb-2 text-gray-900">
-          Message Sent!
-        </h3>
-        <p className="text-gray-500">
-          Thank you for reaching out. We'll get back to you soon.
+        <p className="font-mono-utility mb-4">sent · {new Date().toLocaleDateString()}</p>
+        <p
+          className="font-display tracking-tight leading-none max-w-[20ch]"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "var(--text-3xl)",
+            color: "var(--color-ink)",
+          }}
+        >
+          Thank you — I’ll reply within{" "}
+          <span style={{ color: "var(--color-accent)" }}>24 hours.</span>
+        </p>
+        <p className="mt-4 text-ink-dim max-w-md">
+          If your shoot date is sooner than that, message Instagram directly —
+          I check it faster.
         </p>
       </motion.div>
     );
   }
 
-  const labelStyle = "text-[11px] font-bold text-white uppercase tracking-wider mb-1";
-  const inputStyle = "w-full border-0 border-b border-gray-300 px-0 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-600 focus:ring-0 transition-colors bg-transparent";
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-      {/* Grid: Name */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex flex-col">
-          <label className={labelStyle}>First Name</label>
-          <input {...register("firstName")} type="text" className={inputStyle} />
-          {errors.firstName && <span className="text-red-500 text-xs mt-1">{errors.firstName.message}</span>}
+    <form onSubmit={handleSubmit(onSubmit)} className="hairline-top pt-10 space-y-10">
+      {fromTitle && (
+        <p className="font-mono-utility -mt-4">
+          arriving from · {fromTitle.toLowerCase()}
+        </p>
+      )}
+      {/* Names row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+        <div>
+          <label className={fieldLabel} htmlFor="firstName">first name</label>
+          <input
+            id="firstName"
+            type="text"
+            {...register("firstName")}
+            className={fieldInput}
+            style={{ borderColor: errors.firstName ? "var(--color-danger)" : "var(--color-paper-edge)" }}
+            aria-invalid={!!errors.firstName}
+          />
+          {errors.firstName && (
+            <p className="mt-2 text-sm" style={{ color: "var(--color-danger)" }}>{errors.firstName.message}</p>
+          )}
         </div>
-        <div className="flex flex-col">
-          <label className={labelStyle}>Last Name</label>
-          <input {...register("lastName")} type="text" className={inputStyle} />
-          {errors.lastName && <span className="text-red-500 text-xs mt-1">{errors.lastName.message}</span>}
+        <div>
+          <label className={fieldLabel} htmlFor="lastName">last name</label>
+          <input
+            id="lastName"
+            type="text"
+            {...register("lastName")}
+            className={fieldInput}
+            style={{ borderColor: errors.lastName ? "var(--color-danger)" : "var(--color-paper-edge)" }}
+            aria-invalid={!!errors.lastName}
+          />
+          {errors.lastName && (
+            <p className="mt-2 text-sm" style={{ color: "var(--color-danger)" }}>{errors.lastName.message}</p>
+          )}
         </div>
       </div>
 
-      {/* Grid: Contact Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex flex-col">
-          <label className={labelStyle}>Email</label>
-          <input {...register("email")} type="email" className={inputStyle} />
-          {errors.email && <span className="text-red-500 text-xs mt-1">{errors.email.message}</span>}
+      {/* Contact row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+        <div>
+          <label className={fieldLabel} htmlFor="email">email</label>
+          <input
+            id="email"
+            type="email"
+            {...register("email")}
+            className={fieldInput}
+            style={{ borderColor: errors.email ? "var(--color-danger)" : "var(--color-paper-edge)" }}
+            aria-invalid={!!errors.email}
+          />
+          {errors.email && (
+            <p className="mt-2 text-sm" style={{ color: "var(--color-danger)" }}>{errors.email.message}</p>
+          )}
         </div>
-        <div className="flex flex-col">
-          <label className={labelStyle}>Phone</label>
-          <input {...register("phone")} type="tel" className={inputStyle} />
-          {errors.phone && <span className="text-red-500 text-xs mt-1">{errors.phone.message}</span>}
+        <div>
+          <label className={fieldLabel} htmlFor="phone">phone</label>
+          <input
+            id="phone"
+            type="tel"
+            {...register("phone")}
+            className={fieldInput}
+            style={{ borderColor: errors.phone ? "var(--color-danger)" : "var(--color-paper-edge)" }}
+            aria-invalid={!!errors.phone}
+          />
+          {errors.phone && (
+            <p className="mt-2 text-sm" style={{ color: "var(--color-danger)" }}>{errors.phone.message}</p>
+          )}
         </div>
       </div>
 
-      {/* Radio Service Group */}
-      <div className="pt-2">
-        <label className="text-sm font-bold text-tertiary mb-4 block">What type of service do you need?</label>
-        <div className="flex flex-wrap gap-4 md:gap-6">
-          {SERVICE_OPTIONS.map((opt) => (
-            <label key={opt} className="flex items-center gap-2 cursor-pointer group">
-              <input
-                type="radio"
-                value={opt}
-                {...register("service")}
-                className="hidden"
-              />
-              <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${selectedService === opt ? 'border-tertiary bg-tertiary' : 'border-gray-300 group-hover:border-tertiary/50'}`}>
-                {selectedService === opt && <Check size={10} className="text-white" strokeWidth={4} />}
-              </div>
-              <span className={`text-sm ${selectedService === opt ? 'text-tertiary' : 'text-white'}`}>{opt}</span>
-            </label>
-          ))}
+      {/* Service */}
+      <fieldset>
+        <legend className={fieldLabel}>what are we shooting</legend>
+        <div className="flex flex-wrap gap-x-5 gap-y-3 mt-1">
+          {SERVICE_OPTIONS.map((opt) => {
+            const active = selectedService === opt;
+            return (
+              <label key={opt} className="inline-flex items-center gap-2.5 cursor-pointer group">
+                <input
+                  type="radio"
+                  value={opt}
+                  {...register("service")}
+                  className="sr-only"
+                />
+                <span
+                  aria-hidden
+                  className="w-3.5 h-3.5 inline-flex items-center justify-center transition-colors duration-(--dur-fast)"
+                  style={{
+                    border: `1px solid ${active ? "var(--color-accent)" : "var(--color-paper-edge)"}`,
+                    background: active ? "var(--color-accent)" : "transparent",
+                    borderRadius: "9999px",
+                  }}
+                >
+                  {active && <Check size={9} strokeWidth={4} style={{ color: "var(--color-paper)" }} />}
+                </span>
+                <span
+                  className="text-sm transition-colors duration-(--dur-fast)"
+                  style={{ color: active ? "var(--color-accent)" : "var(--color-ink)" }}
+                >
+                  {opt}
+                </span>
+              </label>
+            );
+          })}
         </div>
-        {errors.service && <span className="text-red-500 text-xs mt-2 block">{errors.service.message}</span>}
-      </div>
+        {errors.service && (
+          <p className="mt-3 text-sm" style={{ color: "var(--color-danger)" }}>{errors.service.message}</p>
+        )}
+      </fieldset>
 
-      {/* Message */}
-      <div className="flex flex-col pt-2">
-        <label className={labelStyle}>Message</label>
-        <input {...register("message")} type="text" placeholder="Write your message.." className={`${inputStyle} placeholder:text-gray-300 placeholder:font-normal`} />
+      {/* Message — textarea */}
+      <div>
+        <label className={fieldLabel} htmlFor="message">a sentence about the day</label>
+        <textarea
+          id="message"
+          rows={4}
+          {...register("message")}
+          placeholder="Where, when, who’s involved, what you want to come home with…"
+          className={`${fieldInput} resize-none`}
+          style={{ borderColor: "var(--color-paper-edge)" }}
+        />
       </div>
 
       {/* Submit */}
-      <div className="flex justify-end pt-4">
-        <motion.button
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+        <p className="font-mono-utility">all fields except message are required</p>
+        <button
           type="submit"
           disabled={isSubmitting}
-          className="px-8 py-3.5 rounded-lg bg-tertiary text-white font-medium text-sm hover:bg-tertiary/90 transition-colors disabled:opacity-50 min-w-[160px]"
-          whileTap={{ scale: 0.98 }}
+          className="group inline-flex items-center gap-3 px-7 py-3.5 transition-colors duration-(--dur-fast) ease-out disabled:opacity-60 disabled:cursor-not-allowed"
+          style={{
+            background: "var(--color-accent)",
+            color: "var(--color-paper)",
+            borderRadius: "var(--radius-figure)",
+          }}
         >
           {isSubmitting ? (
-            <div className="w-5 h-5 mx-auto border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <>
+              <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" aria-hidden />
+              <span className="text-base">Sending…</span>
+            </>
           ) : (
-            "Send Message"
+            <>
+              <span className="text-base">Send</span>
+              <ArrowUpRight
+                size={18}
+                className="transition-transform duration-(--dur-base) ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </>
           )}
-        </motion.button>
+        </button>
       </div>
     </form>
   );

@@ -2,32 +2,48 @@
 
 import { motion } from "framer-motion";
 import { SKILLS } from "@/lib/constants";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function SkillsTags() {
   return (
-    <section className="py-16 md:py-24 bg-foreground">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <SectionHeading
-          label="Expertise"
-          title="Skills & Specialties"
-          centered
-        />
-
-        <div className="flex flex-wrap justify-center gap-3">
-          {SKILLS.map((skill, index) => (
-            <motion.span
-              key={skill}
-              className="px-5 py-2.5 rounded-full text-sm font-medium bg-surface-container-high hover:bg-secondary hover:text-white transition-colors cursor-default"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              whileHover={{ scale: 1.05, y: -2 }}
+    <section
+      className="relative py-20 md:py-28 hairline-top"
+      style={{ background: "var(--color-paper)" }}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div className="md:col-span-4">
+            <p className="font-mono-utility mb-4">disciplines</p>
+            <h2
+              className="font-display tracking-tight leading-[0.95]"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "var(--text-3xl)",
+                color: "var(--color-ink)",
+              }}
             >
-              {skill}
-            </motion.span>
-          ))}
+              Things I bring
+              <br />
+              to set.
+            </h2>
+          </div>
+
+          <ul className="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3">
+            {SKILLS.map((skill, idx) => (
+              <motion.li
+                key={skill}
+                initial={{ opacity: 0, y: 6 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.3, delay: idx * 0.03, ease: [0.22, 0.61, 0.36, 1] }}
+                className="flex items-baseline gap-3 py-2 hairline-bottom"
+              >
+                <span className="font-mono-utility">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <span className="text-ink text-base">{skill}</span>
+              </motion.li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

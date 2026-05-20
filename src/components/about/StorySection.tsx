@@ -2,80 +2,86 @@
 
 import { motion } from "framer-motion";
 
-const storyBlocks = [
+// NOTE — copy below is honest placeholder. Replace each block with your own
+// words; the structure (three short chapters, plain language, no metrics) is
+// the design. Don't add numbers, ranks, or invented stories.
+const chapters = [
   {
-    title: "The Passion",
-    text: "Our brand was built from a passion for capturing life as it unfolds: the laughter, the elegance, the quiet emotions, and the unforgettable celebrations. Through intentional storytelling and refined visuals, we ensure your most beautiful moments are remembered forever.",
-    gradient: "from-[#a43800]/20 to-[#cd4800]/20",
+    num: "I",
+    heading: "The brief",
+    body: "Most of what I shoot is something happening once. A wedding day. A brand launch. A birthday that won’t come back. The brief is the same every time — return the day to the people who lived it while it’s still warm.",
   },
   {
-    title: "The Experience",
-    text: "Over the years, we've had the absolute privilege of capturing luxury decor and premium events alongside prestigious vendors like Blue Velvet, Alveena, Perfect Integrated Decor, Wedding Guru, Exquisite Luxury, and The Planning Comp.",
-    gradient: "from-[#5b00df]/20 to-[#7c3aed]/20",
+    num: "II",
+    heading: "The method",
+    body: "Mobile-first cinematography. Two phones, a small kit, one person on the floor. I keep the camera close enough that nobody performs at it and far enough that the moment still gets to be the moment.",
   },
   {
-    title: "The Vision",
-    text: "Every frame we create is intentional. Every story we tell is peculiar. Our vision is simple: to craft visuals that not only document moments, but elevate them into lasting experiences.",
-    gradient: "from-blue-400/20 to-teal-500/20",
+    num: "III",
+    heading: "The handover",
+    body: "I cut the same week. Short edit first, ready for the feed. Long-form reel after. Files come to you without watermark and without a monthly hand-back schedule. Once it’s yours, it’s yours.",
   },
 ];
 
 export function StorySection() {
   return (
-    <section className="py-24 md:py-32 bg-foreground">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {storyBlocks.map((block, index) => {
-          const isEven = index % 2 === 0;
+    <section
+      className="relative py-20 md:py-32 hairline-top"
+      style={{ background: "var(--color-paper)" }}
+    >
+      <div className="max-w-3xl mx-auto px-6 md:px-10">
+        <p className="font-mono-utility mb-12 md:mb-16">the letter, continued</p>
 
-          return (
-            <div
-              key={block.title}
-              className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-                } gap-12 lg:gap-24 items-center mb-20 md:mb-40 last:mb-0`}
+        <ol className="space-y-16 md:space-y-24">
+          {chapters.map((c, idx) => (
+            <motion.li
+              key={c.num}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.4, delay: idx * 0.04, ease: [0.22, 0.61, 0.36, 1] }}
             >
-              {/* Image box - slides from side */}
-              <motion.div
-                className="w-full lg:w-1/2"
-                initial={{ opacity: 0, x: isEven ? -100 : 100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div
-                  className={`aspect-[4/3] rounded-3xl bg-gradient-to-br ${block.gradient} dark:opacity-60 shadow-sm`}
+              <div className="flex items-baseline gap-4 mb-5">
+                <span className="font-mono-utility">{c.num}</span>
+                <h3
+                  className="font-display tracking-tight leading-tight"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "var(--text-3xl)",
+                    color: "var(--color-ink)",
+                  }}
                 >
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="font-heading text-4xl font-bold text-foreground/5 dark:text-white/5">
-                      0{index + 1}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Text content - staggered fade in */}
-              <div className="w-full lg:w-1/2">
-                <motion.h3
-                  className="font-heading text-3xl text-tertiary md:text-4xl font-bold mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  {block.title}
-                </motion.h3>
-                <motion.p
-                  className="text-white text-lg md:text-xl leading-relaxed"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  {block.text}
-                </motion.p>
+                  {c.heading}
+                </h3>
               </div>
-            </div>
-          );
-        })}
+              <p className="text-ink text-lg md:text-xl leading-relaxed">
+                {c.body}
+              </p>
+            </motion.li>
+          ))}
+        </ol>
+
+        {/* Sign-off */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
+          className="mt-20 md:mt-28 pt-10 hairline-top"
+        >
+          <p
+            className="font-display tracking-tight"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "var(--text-2xl)",
+              color: "var(--color-ink)",
+              fontStyle: "italic",
+            }}
+          >
+            — Divine
+          </p>
+          <p className="mt-2 font-mono-utility">rodo lens · abuja & lagos</p>
+        </motion.div>
       </div>
     </section>
   );

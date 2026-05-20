@@ -7,6 +7,7 @@ interface SectionHeadingProps {
   title: string;
   subtitle?: string;
   centered?: boolean;
+  number?: string;
 }
 
 export function SectionHeading({
@@ -14,28 +15,39 @@ export function SectionHeading({
   title,
   subtitle,
   centered = false,
+  number,
 }: SectionHeadingProps) {
   return (
-    <motion.div
+    <motion.header
       className={`mb-12 md:mb-16 ${centered ? "text-center" : ""}`}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
     >
-      {label && (
-        <span className="text-tertiary font-medium text-sm tracking-widest uppercase mb-3 block">
-          {label}
-        </span>
+      {(label || number) && (
+        <div className={`flex gap-3 items-baseline mb-4 ${centered ? "justify-center" : ""}`}>
+          {number && <span className="font-mono-utility">{number}</span>}
+          {label && <span className="font-mono-utility">{label}</span>}
+        </div>
       )}
-      <h2 className="font-brand text-3xl text-white md:text-4xl lg:text-5xl font-bold tracking-tight">
+      <h2
+        className="font-display tracking-tight leading-[0.95]"
+        style={{
+          fontFamily: "var(--font-display)",
+          fontSize: "var(--text-display)",
+          color: "var(--color-ink)",
+        }}
+      >
         {title}
       </h2>
       {subtitle && (
-        <p className={`mt-4 text-[#efefef] font-sans text-base md:text-lg max-w-2xl ${centered ? "mx-auto" : ""}`}>
+        <p
+          className={`mt-6 text-ink-dim text-base md:text-lg leading-relaxed max-w-2xl ${centered ? "mx-auto" : ""}`}
+        >
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </motion.header>
   );
 }

@@ -1,0 +1,35 @@
+[
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Marquee Hero",
+    "theme": "custom",
+    "theme_axes": "dark / sans-grotesque / warm-terracotta",
+    "vibe": "atmospheric cinematic mobile-first event",
+    "enrichment": "full-bleed silent reel (real /videos/video.mp4)",
+    "brief": "Rodo Lens · home page · whole-site redesign"
+  },
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Letter",
+    "theme": "custom",
+    "theme_axes": "dark / sans-grotesque / warm-terracotta",
+    "enrichment": "none — portrait figure only",
+    "brief": "Rodo Lens · about page"
+  },
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Catalogue",
+    "theme": "custom",
+    "theme_axes": "dark / sans-grotesque / warm-terracotta",
+    "enrichment": "masonry tile grid · video posters",
+    "brief": "Rodo Lens · portfolio page"
+  },
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Bookend",
+    "theme": "custom",
+    "theme_axes": "dark / sans-grotesque / warm-terracotta",
+    "enrichment": "none — typography only",
+    "brief": "Rodo Lens · contact page"
+  }
+]

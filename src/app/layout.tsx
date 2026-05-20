@@ -7,27 +7,25 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Rodo Lens | Visual Storyteller in Abuja & Lagos",
-    template: "%s | Rodo Lens",
+    default: "Rodo Lens — Visual storyteller, Abuja & Lagos",
+    template: "%s — Rodo Lens",
   },
   description:
-    "Rodo Lens — visual storyteller, event content creator, brands, and lifestyle. Based in Abuja & Lagos, available to travel globally.",
+    "Rodo Lens is a visual storyteller working in reels, short film, and event content. Based in Abuja and Lagos, available worldwide.",
   keywords: [
     "Abuja videographer",
     "Lagos videographer",
     "mobile videography Nigeria",
-    "event planner Abuja & Lagos",
     "content creator Abuja",
     "content creator Lagos",
     "traveling videographer",
     "visual storyteller",
     "Rodo Lens",
-    "Rodo",
   ],
   openGraph: {
-    title: "Rodo Lens | Creative Portfolio",
+    title: "Rodo Lens",
     description:
-      "Visual storytelling, events, brands, and lifestyle in Abuja, Lagos, and worldwide.",
+      "Reels, short film, event content. Abuja & Lagos, available worldwide.",
     type: "website",
     locale: "en_NG",
     siteName: "Rodo Lens",
@@ -37,23 +35,23 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["/images/rodo-logo.png"],
   },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html data-scroll-behavior="smooth" lang="en" className="h-full" suppressHydrationWarning>
-      <head>
-      </head>
-      <body className={`${fontVariableClass} min-h-full flex flex-col antialiased`}>
+    <html
+      lang="en"
+      className="h-full"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <body
+        className={`${fontVariableClass} min-h-full flex flex-col antialiased bg-paper text-ink`}
+        style={{ background: "var(--color-paper)", color: "var(--color-ink)" }}
+      >
         <ThemeProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
@@ -63,4 +61,3 @@ export default function RootLayout({
     </html>
   );
 }
-

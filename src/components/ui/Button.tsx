@@ -1,16 +1,16 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline" | "tertiary";
+  variant?: "primary" | "secondary" | "outline" | "tertiary" | "ghost";
   href?: string;
   external?: boolean;
   type?: "button" | "submit";
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
 export function Button({
@@ -21,34 +21,39 @@ export function Button({
   type = "button",
   onClick,
   className = "",
+  disabled,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 cursor-pointer";
-  const variants = {
+    "inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium tracking-tight rounded-[2px] " +
+    "transition-colors duration-(--dur-fast) ease-out cursor-pointer whitespace-nowrap " +
+    "focus-visible:outline-2 focus-visible:outline-offset-3 disabled:opacity-50 disabled:cursor-not-allowed";
+
+  const variants: Record<string, string> = {
     primary:
-      "bg-gradient-to-r from-primary to-primary-container text-white hover:shadow-[0_0_24px_rgba(164,56,0,0.3)] hover:scale-105",
+      "bg-accent text-paper hover:bg-accent-hover focus-visible:outline-[var(--color-focus)]",
     secondary:
-      "bg-secondary-container text-secondary backdrop-blur-md hover:backdrop-blur-xl hover:shadow-[0_0_20px_rgba(91,0,223,0.2)] hover:scale-105",
-    outline:
-      "border-2 border-outline-variant text-foreground hover:border-primary hover:text-primary hover:scale-105 dark:border-outline-variant-dark",
+      "bg-paper-2 text-ink hairline border hairline hover:bg-paper-3",
     tertiary:
-      "bg-tertiary text-foreground backdrop-blur-md hover:backdrop-blur-xl hover:shadow-[0_0_20px_rgba(91,0,223,0.2)] hover:scale-105",
+      "bg-accent text-paper hover:bg-accent-hover",
+    outline:
+      "border border-[var(--color-paper-edge)] text-ink hover:border-[var(--color-accent)] hover:text-accent bg-transparent",
+    ghost:
+      "text-ink hover:text-accent bg-transparent",
   };
 
   const classes = `${base} ${variants[variant]} ${className}`;
 
-  if (href) {
+  if (href && !disabled) {
     if (external) {
       return (
-        <motion.a
+        <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
           className={classes}
-          whileTap={{ scale: 0.95 }}
         >
           {children}
-        </motion.a>
+        </a>
       );
     }
     return (
@@ -59,13 +64,13 @@ export function Button({
   }
 
   return (
-    <motion.button
+    <button
       type={type}
       onClick={onClick}
+      disabled={disabled}
       className={classes}
-      whileTap={{ scale: 0.95 }}
     >
       {children}
-    </motion.button>
+    </button>
   );
 }

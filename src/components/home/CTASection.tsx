@@ -1,42 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export function CTASection() {
   return (
-    <section className="py-20 md:py-28 bg-foreground">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      className="relative py-32 md:py-44 hairline-top"
+      style={{ background: "var(--color-paper)" }}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <motion.div
-          className="relative rounded-3xl overflow-hidden bg-tertiary/50 p-12 md:p-20 text-center"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
+          className="max-w-4xl"
         >
-          {/* Decorative blurs */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-secondary/10 rounded-full blur-3xl" />
+          <p className="font-mono-utility mb-8">04 · what next</p>
+          <h2
+            className="font-display tracking-tight leading-[0.95]"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "var(--text-display)",
+              color: "var(--color-ink)",
+            }}
+          >
+            Tell me about the
+            <br />
+            <span style={{ color: "var(--color-accent)" }}>moment you want held.</span>
+          </h2>
+          <p className="mt-8 text-ink-dim text-base md:text-lg max-w-xl leading-relaxed">
+            Wedding, brand day, opening night, a single afternoon — give me a
+            date and a city and I’ll come back with availability and rate.
+          </p>
 
-          <div className="relative z-10">
-            <Sparkles size={32} className="text-white/80 mx-auto mb-6" />
-            <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Let&rsquo;s Create Something
-              <br />
-              Unforgettable
-            </h2>
-            <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto mb-10">
-              Ready to bring your vision to life? Let&rsquo;s talk about your
-              next project and make it extraordinary.
-            </p>
-            <Button
+          <div className="mt-12 flex flex-col sm:flex-row gap-6 sm:items-center">
+            <Link
               href="/contact"
-              variant="outline"
-              className="!border-white !text-white hover:!bg-white hover:!text-primary"
+              className="group inline-flex items-center gap-3 px-7 py-4 transition-colors duration-(--dur-fast) ease-out"
+              style={{
+                background: "var(--color-accent)",
+                color: "var(--color-paper)",
+                borderRadius: "var(--radius-figure)",
+              }}
             >
-              Book Now
-            </Button>
+              <span className="text-base">Start a project</span>
+              <ArrowUpRight
+                size={18}
+                className="transition-transform duration-(--dur-base) ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+            <Link
+              href="/portfolio"
+              className="group inline-flex items-center gap-2 text-ink hover:text-accent transition-colors duration-(--dur-fast)"
+            >
+              <span className="border-b border-ink group-hover:border-accent transition-colors duration-(--dur-fast) pb-0.5">
+                Or browse the work first
+              </span>
+            </Link>
           </div>
         </motion.div>
       </div>

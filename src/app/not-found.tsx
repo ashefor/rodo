@@ -1,30 +1,48 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-4">
+    <section
+      className="min-h-svh flex items-center justify-center px-6"
+      style={{ background: "var(--color-paper)" }}
+    >
       <motion.div
-        className="text-center"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
+        className="max-w-xl"
       >
-        <h1 className="font-heading text-8xl md:text-9xl font-bold text-primary">
-          404
+        <p className="font-mono-utility mb-6">404 · page not found</p>
+        <h1
+          className="font-display tracking-tight leading-[0.95]"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "var(--text-display)",
+            color: "var(--color-ink)",
+          }}
+        >
+          That frame is{" "}
+          <span style={{ color: "var(--color-accent)" }}>out of focus.</span>
         </h1>
-        <p className="mt-4 text-xl md:text-2xl font-heading font-semibold">
-          Page Not Found
+        <p className="mt-6 text-ink-dim text-base md:text-lg leading-relaxed">
+          The page you’re looking for isn’t here. Walk back to the work.
         </p>
-        <p className="mt-2 text-on-surface-variant dark:text-on-surface-dark-variant mb-8">
-          The page you&rsquo;re looking for doesn&rsquo;t exist or has been
-          moved.
-        </p>
-        <Button href="/" variant="primary">
-          Go Home
-        </Button>
+        <Link
+          href="/"
+          className="group inline-flex items-center gap-2 mt-10 text-ink hover:text-accent transition-colors duration-(--dur-fast)"
+        >
+          <span className="border-b border-ink group-hover:border-accent transition-colors duration-(--dur-fast) pb-0.5">
+            Back to home
+          </span>
+          <ArrowUpRight
+            size={18}
+            className="transition-transform duration-(--dur-base) ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </Link>
       </motion.div>
     </section>
   );

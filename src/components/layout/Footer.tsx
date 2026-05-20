@@ -1,91 +1,96 @@
 import Link from "next/link";
-import { Globe, Share2, Mail, MapPin } from "lucide-react";
-import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/constants";
+import { SOCIAL_LINKS } from "@/lib/constants";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-foreground">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Brand */}
+    <footer className="hairline-top mt-32 md:mt-48">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-12">
+        {/* Statement line */}
+        <p
+          className="font-display tracking-tight leading-[0.95] max-w-[20ch]"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "var(--text-display)",
+            color: "var(--color-ink)",
+          }}
+        >
+          Frames held,
+          <br />
+          then sent.
+        </p>
+
+        <p className="mt-8 max-w-md text-ink-dim text-base md:text-lg leading-relaxed">
+          Reels, short film, and event content from Abuja and Lagos.
+          Available worldwide.{" "}
+          <Link
+            href="/contact"
+            className="text-ink underline decoration-(--color-paper-edge) underline-offset-4 hover:decoration-(--color-accent) hover:text-accent transition-colors duration-(--dur-fast)"
+          >
+            Start a project →
+          </Link>
+        </p>
+
+        {/* Meta row */}
+        <div className="mt-20 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8">
           <div>
-            <Link
-              href="/"
-              className="font-heading text-3xl font-bold tracking-tighter"
+            <p className="font-mono-utility mb-3">based in</p>
+            <p className="text-ink text-sm leading-relaxed">Abuja · Lagos</p>
+          </div>
+          <div>
+            <p className="font-mono-utility mb-3">email</p>
+            <a
+              href={`mailto:${SOCIAL_LINKS.email}`}
+              className="text-ink text-sm hover:text-accent transition-colors duration-(--dur-fast)"
             >
-              RL
-            </Link>
-            <p className="mt-3 text-[#fff5f8] text-sm max-w-xs text-white">
-              Capturing moments and creating unforgettable experiences through
-              mobile videography, content creation, and event planning in Abuja & Lagos. Available to travel globally ✈️.
-            </p>
+              {SOCIAL_LINKS.email}
+            </a>
           </div>
-
-          {/* Links */}
           <div>
-            <h3 className="font-heading font-semibold text-lg mb-4">
-              Quick Links
-            </h3>
-            <ul className="space-y-2">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#fff5f8] hover:text-tertiary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <p className="font-mono-utility mb-3">instagram</p>
+            <a
+              href={SOCIAL_LINKS.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink text-sm hover:text-accent transition-colors duration-(--dur-fast)"
+            >
+              @rodos_lens_
+            </a>
           </div>
-
-          {/* Contact */}
           <div>
-            <h3 className="font-heading font-semibold text-lg mb-4">
-              Get In Touch
-            </h3>
-            <ul className="space-y-3 text-sm text-[#fff5f8]">
-              <li className="flex items-center gap-2">
-                <Mail size={16} className="text-tertiary" />
-                <a
-                  href={`mailto:${SOCIAL_LINKS.email}`}
-                  className="hover:text-tertiary transition-colors"
-                >
-                  {SOCIAL_LINKS.email}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <MapPin size={16} className="text-tertiary" />
-                <span>Abuja & Lagos (Available to ✈️)</span>
-              </li>
-            </ul>
-
-            <div className="flex gap-3 mt-5">
-              <a
-                href={SOCIAL_LINKS.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-tertiary hover:text-white transition-all shadow-sm border border-gray-100"
-                aria-label="Instagram"
-              >
-                <Globe size={18} />
-              </a>
+            <p className="font-mono-utility mb-3">elsewhere</p>
+            <div className="flex flex-col gap-1 text-sm">
               <a
                 href={SOCIAL_LINKS.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-tertiary hover:text-white transition-all shadow-sm border border-gray-100"
-                aria-label="Twitter"
+                className="text-ink hover:text-accent transition-colors duration-(--dur-fast)"
               >
-                <Share2 size={18} />
+                Twitter
+              </a>
+              <a
+                href={SOCIAL_LINKS.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink hover:text-accent transition-colors duration-(--dur-fast)"
+              >
+                TikTok
               </a>
             </div>
           </div>
         </div>
 
-        <div className="mt-10 pt-6 text-center text-xs text-[#fff5f8]">
-          <p>&copy; {new Date().getFullYear()} Rodo Lens. All rights reserved.</p>
+        {/* Bottom rule */}
+        <div className="mt-16 pt-6 hairline-top flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span style={{ color: "var(--color-ink-dim)" }}>
+              <Logo variant="mark" size={20} />
+            </span>
+            <p className="font-mono-utility">© {year} Rodo Lens</p>
+          </div>
+          <p className="font-mono-utility">All work © its respective clients</p>
         </div>
       </div>
     </footer>

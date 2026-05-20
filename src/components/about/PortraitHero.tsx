@@ -4,62 +4,79 @@ import { motion } from "framer-motion";
 
 export function PortraitHero() {
   return (
-    <section className="relative pt-32 md:pt-48 pb-20 md:pb-36 bg-foreground overflow-hidden">
-      {/* Background Accent (Dotted Matrix) */}
-      <div
-        className="absolute inset-x-0 top-0 h-[600px] opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(var(--color-tertiary) 1.5px, transparent 1.5px)',
-          backgroundSize: '30px 30px',
-          maskImage: 'linear-gradient(to bottom, black 30%, transparent 90%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 90%)'
-        }}
-      />
+    <section
+      className="relative pt-36 md:pt-44 pb-16 md:pb-24"
+      style={{ background: "var(--color-paper)" }}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        {/* Top meta — letter date + place */}
+        <div className="flex justify-between items-baseline mb-12 md:mb-16">
+          <p className="font-mono-utility">a letter from rodo lens</p>
+          <p className="font-mono-utility">abuja, nigeria</p>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Portrait */}
+          <motion.figure
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-10"
+            transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
+            className="lg:col-span-4 order-2 lg:order-1"
           >
-             <span className="inline-block px-5 py-2 rounded-full bg-tertiary/10 border border-tertiary/30 text-tertiary text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] backdrop-blur-sm">
-                Focusing on Excellence • Est. 2020 ✈️
-             </span>
-          </motion.div> */}
+            <div
+              className="w-full max-w-sm mx-auto lg:max-w-none overflow-hidden"
+              style={{
+                aspectRatio: "4/5",
+                borderRadius: "var(--radius-figure)",
+                background: "var(--color-paper-2)",
+              }}
+            >
+              <img
+                src="/images/rodo-portrait.png"
+                alt="Portrait of Divine, the photographer behind Rodo Lens"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <figcaption className="mt-3 font-mono-utility">
+              divine — rodo lens
+            </figcaption>
+          </motion.figure>
 
-          <motion.h1
-            className="font-heading text-white text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] font-black tracking-tighter leading-[0.9] mb-14 uppercase"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            Capturing life&apos;s most <br />
-            <span className="text-tertiary italic">meaningful</span> stories.
-          </motion.h1>
+          {/* Opening line */}
+          <div className="lg:col-span-8 order-1 lg:order-2">
+            <motion.h1
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.05, ease: [0.22, 0.61, 0.36, 1] }}
+              className="font-display tracking-tight leading-[0.95]"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "var(--text-display)",
+                color: "var(--color-ink)",
+              }}
+            >
+              Most days I am
+              <br />
+              <span style={{ color: "var(--color-accent)" }}>
+                somewhere holding a phone
+              </span>
+              <br />
+              waiting for the moment.
+            </motion.h1>
 
-          <motion.div
-            className="w-32 h-[1.5px] bg-gradient-to-r from-transparent via-tertiary to-transparent mx-auto mb-14"
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: 128, opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.4 }}
-          />
-
-          <motion.p
-            className="text-on-surface-dark-variant text-lg md:text-2xl leading-relaxed max-w-2xl mx-auto font-medium px-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            At Rodo Lens, we transform fleeting moments into cinematic memories.
-            We specialize in capturing the raw emotion and timeless essence of
-            your most monumental stories.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 0.61, 0.36, 1] }}
+              className="mt-10 text-ink-dim text-lg md:text-xl leading-relaxed max-w-2xl"
+            >
+              At Rodo Lens, I shoot reels, short film, and event content for
+              couples, brands, hosts, and planners. Mobile-first, edited the
+              same week, ready for the feed by Friday.
+            </motion.p>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

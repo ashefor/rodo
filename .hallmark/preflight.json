@@ -1,0 +1,33 @@
+{
+  "scanned_at": "2026-05-20",
+  "framework": "Next.js 16 (App Router)",
+  "language": "TypeScript",
+  "styles": "Tailwind v4 (@theme inline) + custom CSS in src/app/globals.css",
+  "fonts": {
+    "method": "next/font/google",
+    "display": "Bricolage_Grotesque",
+    "body": "Inter",
+    "utility": "JetBrains_Mono",
+    "retired": ["Archivo_Black", "Plus_Jakarta_Sans"]
+  },
+  "palette": {
+    "mode": "OKLCH custom properties",
+    "anchor": "terracotta oklch(60% 0.16 39)",
+    "retired_accents": ["#5b00df (purple)", "#FF8D28 (orange)", "#fff5f8 (pink)"]
+  },
+  "motion_library": "framer-motion 12",
+  "spacing": "Tailwind v4 default 4-pt scale",
+  "design_md": true,
+  "system_managed": true,
+  "preserved_data_files": [
+    "src/lib/constants.ts",
+    "src/lib/instagram.ts",
+    "src/lib/fonts.ts",
+    "src/providers/ThemeProvider.tsx",
+    "src/types/index.ts",
+    "src/hooks/useTheme.ts",
+    "src/hooks/useMediaQuery.ts",
+    "src/app/sitemap.ts",
+    "src/app/template.tsx"
+  ]
+}

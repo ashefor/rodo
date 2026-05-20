@@ -1,48 +1,78 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/constants";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { TestimonialCard } from "./TestimonialCard";
 
 interface TestimonialMarqueeProps {
   showHeading?: boolean;
 }
 
-export function TestimonialMarquee({
-  showHeading = true,
-}: TestimonialMarqueeProps) {
-  const row1 = TESTIMONIALS;
-  // const row2 = [...TESTIMONIALS].reverse();
-  const row2 = [...TESTIMONIALS].slice(3).concat([...TESTIMONIALS].slice(0, 3));
+/**
+ * Atmospheric voice asks for one pulled quote, not eight scrolling cards.
+ * If the route wants more weight (About page), we surface a small stack of
+ * three sequential pulls underneath the lead quote.
+ */
+export function TestimonialMarquee({ showHeading = true }: TestimonialMarqueeProps) {
+  const lead = TESTIMONIALS[0];
+  const supporting = TESTIMONIALS.slice(1, 4);
 
   return (
-    <section className="py-20 md:py-28 bg-foreground overflow-hidden">
-      {showHeading && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            label="Testimonials"
-            title="What People Say"
-            subtitle="Hear from clients who trusted me with their moments."
-          />
-        </div>
-      )}
+    <section
+      className="relative py-24 md:py-36"
+      style={{ background: "var(--color-paper)" }}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        {showHeading && (
+          <p className="font-mono-utility mb-12 md:mb-16">03 · in their words</p>
+        )}
 
-      {/* Row 1 - scrolls left */}
-      <div className="marquee-row mb-4">
-        <div className="flex gap-4 w-max animate-[marquee-right_120s_linear_infinite] hover:[animation-play-state:paused]">
-          {[...row1, ...row1, ...row1, ...row1].map((testimonial, i) => (
-            <TestimonialCard key={`r1-${i}`} testimonial={testimonial} />
-          ))}
-        </div>
-      </div>
+        {/* Lead pull-quote */}
+        <motion.blockquote
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
+          className="max-w-4xl"
+        >
+          <p
+            className="font-display tracking-tight leading-[1.05]"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "var(--text-display-s)",
+              color: "var(--color-ink)",
+            }}
+          >
+            <span style={{ color: "var(--color-accent)" }}>“</span>
+            {lead.quote.replace(/^[“"]|[”"]$/g, "")}
+            <span style={{ color: "var(--color-accent)" }}>”</span>
+          </p>
+          <footer className="mt-8 flex items-baseline gap-4">
+            <span className="text-ink text-base">{lead.name}</span>
+            <span className="font-mono-utility">{lead.role}</span>
+          </footer>
+        </motion.blockquote>
 
-      {/* Row 2 - scrolls right */}
-      <div className="marquee-row">
-        <div className="flex gap-4 w-max animate-[marquee-left_120s_linear_infinite] hover:[animation-play-state:paused]">
-          {[...row2, ...row2, ...row2, ...row2].map((testimonial, i) => (
-            <TestimonialCard key={`r2-${i}`} testimonial={testimonial} />
-          ))}
-        </div>
+        {/* Supporting stack — short attributions only */}
+        {supporting.length > 0 && (
+          <ul className="mt-20 md:mt-28 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 hairline-top pt-12">
+            {supporting.map((t, idx) => (
+              <motion.li
+                key={t.name}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.35, delay: idx * 0.05, ease: [0.22, 0.61, 0.36, 1] }}
+              >
+                <p className="text-ink text-base md:text-lg leading-relaxed">
+                  {t.quote}
+                </p>
+                <p className="mt-4 font-mono-utility">
+                  {t.name} · {t.role}
+                </p>
+              </motion.li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );

@@ -1,23 +1,22 @@
-import { Inter, Archivo_Black, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 
 export const inter = Inter({
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
-export const archivoBlack = Archivo_Black({
-    weight: "400",
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-archivo-black",
+export const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-bricolage",
+  axes: ["opsz", "wdth"],
 });
 
-export const plusJakartaSans = Plus_Jakarta_Sans({
-    weight: "400",
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-plus-jakarta-sans",
+export const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
 });
 
-export const fontVariableClass = `${inter.variable} ${archivoBlack.variable} ${plusJakartaSans.variable}`;
+export const fontVariableClass = `${inter.variable} ${bricolageGrotesque.variable} ${jetbrainsMono.variable}`;
