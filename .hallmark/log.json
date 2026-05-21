@@ -3,6 +3,15 @@
     "date": "2026-05-20",
     "macrostructure": "Marquee Hero",
     "theme": "custom",
+    "theme_axes": "light / italic-serif / warm-terracotta",
+    "vibe": "luxury atelier warm cream editorial",
+    "enrichment": "full-bleed silent reel (locally inverted cream-on-dark) + cream-paper body",
+    "brief": "Rodo Lens · ship original Atelier direction — light cream paper, terracotta accent at lower lightness, Fraunces italic preserved, hero stays dark plate with local ink inversion"
+  },
+  {
+    "date": "2026-05-20",
+    "macrostructure": "Marquee Hero",
+    "theme": "custom",
     "theme_axes": "dark / italic-serif / warm-terracotta",
     "enrichment": "full-bleed silent reel + live IG feed 3-up grid (no hover-to-play)",
     "brief": "Rodo Lens · revert cinemascope + film-strip; rebuild Selected Work as live IG grid; drop /process + /portfolio/[slug]; restore 3-item nav"

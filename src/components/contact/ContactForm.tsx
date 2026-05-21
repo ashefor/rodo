@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +9,16 @@ import { motion } from "framer-motion";
 import { Check, ArrowUpRight } from "lucide-react";
 
 import { SERVICE_OPTIONS, SERVICES } from "@/lib/constants";
+
+const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || "";
+
+const SERVICE_OPTION_BY_ID: Record<string, string> = {
+  weddings: "Wedding",
+  birthdays: "Birthday",
+  "event-decor": "Event Decor",
+  brand: "Branding",
+  fashion: "Other",
+};
 
 const contactSchema = z.object({
   firstName: z.string().min(2, "Required"),
@@ -21,46 +31,149 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
+type FormspreeError = {
+  field?: string;
+  message: string;
+};
+
+type FormspreeResponse = {
+  errors?: FormspreeError[];
+};
+
 const fieldLabel = "font-mono-utility block mb-2";
 const fieldInput =
-  "w-full bg-transparent border-0 border-b text-base text-ink py-3 focus:outline-none transition-colors duration-(--dur-fast) placeholder:text-[color:var(--color-ink-quiet)]";
+  "w-full appearance-none bg-[color:var(--color-paper)] border-0 border-b text-base text-ink py-3 focus:outline-none transition-colors duration-(--dur-fast) placeholder:text-[color:var(--color-ink-quiet)]";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Deep-link from a service row: /contact?from=<service-id>
   const searchParams = useSearchParams();
   const fromService = searchParams.get("from");
 
-  const { prefilledMessage, fromTitle } = useMemo(() => {
-    if (!fromService) return { prefilledMessage: "", fromTitle: null };
+  const { prefilledMessage, fromTitle, preselectedService } = useMemo(() => {
+    if (!fromService) {
+      return {
+        prefilledMessage: "",
+        fromTitle: null,
+        preselectedService: SERVICE_OPTIONS[0],
+      };
+    }
+
     const matched = SERVICES.find((s) => s.id === fromService);
-    if (!matched) return { prefilledMessage: "", fromTitle: null };
+    if (!matched) {
+      return {
+        prefilledMessage: "",
+        fromTitle: null,
+        preselectedService: SERVICE_OPTIONS[0],
+      };
+    }
+
     const singular = matched.title.replace(/s$/, "");
+
     return {
       prefilledMessage: `I'd like to discuss ${singular.toLowerCase()} coverage. `,
       fromTitle: matched.title,
+      preselectedService: SERVICE_OPTION_BY_ID[matched.id] || SERVICE_OPTIONS[0],
     };
   }, [fromService]);
 
   const {
     register,
     handleSubmit,
+    reset,
+    setError,
     watch,
+    clearErrors,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      service: SERVICE_OPTIONS[0],
+      service: preselectedService,
       message: prefilledMessage,
     },
   });
 
+  useEffect(() => {
+    reset(
+      {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        service: preselectedService,
+        message: prefilledMessage,
+      },
+      {
+        keepErrors: true,
+        keepSubmitCount: true,
+      },
+    );
+  }, [prefilledMessage, preselectedService, reset]);
+
   const selectedService = watch("service");
 
-  const onSubmit = async (_data: ContactFormData) => {
-    void _data;
-    await new Promise((r) => setTimeout(r, 700));
+  const onSubmit = async (data: ContactFormData) => {
+    setSubmitError(null);
+    clearErrors();
+
+    const response = await fetch("FORMSPREE_ENDPOINT", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        message: data.message?.trim() || "No additional details provided.",
+        _subject: `New ${data.service} inquiry from ${data.firstName} ${data.lastName}`,
+      }),
+    });
+
+    const contentType = response.headers.get("content-type") || "";
+    const payload = contentType.includes("application/json")
+      ? ((await response.json()) as FormspreeResponse)
+      : null;
+
+    if (!response.ok) {
+      let hasFieldError = false;
+
+      payload?.errors?.forEach((issue) => {
+        const field = issue.field as keyof ContactFormData | undefined;
+
+        if (
+          field &&
+          ["firstName", "lastName", "email", "phone", "service", "message"].includes(field)
+        ) {
+          hasFieldError = true;
+          setError(field, {
+            type: "server",
+            message: issue.message,
+          });
+        }
+      });
+
+      const formMessage = payload?.errors
+        ?.filter((issue) => !issue.field || !( ["firstName", "lastName", "email", "phone", "service", "message"] as const).includes(issue.field as keyof ContactFormData))
+        .map((issue) => issue.message)
+        .join(" ");
+
+      setSubmitError(
+        formMessage ||
+          (hasFieldError ? "Please review the highlighted fields and try again." : "Could not send your message right now. Please try again."),
+      );
+      return;
+    }
+
+    reset({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      service: SERVICE_OPTIONS[0],
+      message: prefilledMessage,
+    });
     setSubmitted(true);
   };
 
@@ -98,7 +211,12 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="hairline-top pt-10 space-y-10">
+    <form
+      action={FORMSPREE_ENDPOINT}
+      method="POST"
+      onSubmit={handleSubmit(onSubmit)}
+      className="hairline-top pt-10 space-y-10"
+    >
       {fromTitle && (
         <p className="font-mono-utility -mt-4">
           arriving from · {fromTitle.toLowerCase()}
@@ -223,7 +341,14 @@ export function ContactForm() {
 
       {/* Submit */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
-        <p className="font-mono-utility">all fields except message are required</p>
+        <div>
+          <p className="font-mono-utility">all fields except message are required</p>
+          {submitError && (
+            <p className="mt-3 text-sm" style={{ color: "var(--color-danger)" }}>
+              {submitError}
+            </p>
+          )}
+        </div>
         <button
           type="submit"
           disabled={isSubmitting}

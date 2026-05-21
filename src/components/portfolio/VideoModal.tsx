@@ -37,13 +37,21 @@ export function VideoModal({ item, onClose }: VideoModalProps) {
           role="dialog"
           aria-modal="true"
           aria-label={`Video: ${item.title}`}
+          style={{
+            // Modal is a dark surface regardless of paper theme — locally
+            // invert text tokens to cream-on-dark.
+            ["--color-ink" as string]: "var(--color-paper)",
+            ["--color-ink-dim" as string]: "oklch(82% 0.010 60)",
+            ["--color-accent" as string]: "oklch(72% 0.165 39)",
+            color: "var(--color-paper)",
+          }}
         >
           {/* Backdrop */}
           <div
             className="absolute inset-0"
             onClick={onClose}
             style={{
-              background: "oklch(8% 0.005 60 / 0.88)",
+              background: "oklch(14% 0.012 60 / 0.88)",
               backdropFilter: "blur(8px)",
             }}
           />

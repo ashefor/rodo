@@ -33,13 +33,13 @@ export const SERVICES: Service[] = [
     card: BirthdayCard
   },
   {
-    title: "Real Estate",
-    id: "real-estate",
+    title: "Event Decor",
+    id: "event-decor",
     description:
       "End-to-end event coordination that brings your vision to life. From intimate gatherings to large celebrations, every detail is covered.",
     icon: "CalendarHeart",
-    image: "/images/real-estate-shoot.png",
-    // videoUrl: "/videos/services/real-estate.mp4",
+    image: "/images/event-decor-shoot.png",
+    // videoUrl: "/videos/services/event-decor.mp4",
     card: RealEstateCard
   },
   {
@@ -91,7 +91,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     name: "Tunde B.",
-    role: "CEO, StartUp Lagos",
+    role: "Business Owner",
     quote:
       "The corporate event recap video was exactly what we needed for our investors. Clean, professional, storytelling at its finest.",
   },
@@ -198,16 +198,16 @@ export const SKILLS = [
 
 export const SOCIAL_LINKS = {
   instagram: "https://instagram.com/rodos_lens_",
-  twitter: "https://twitter.com/rodolens",
-  tiktok: "https://tiktok.com/@rodolens",
+  twitter: "https://twitter.com/rodoslens",
+  tiktok: "https://tiktok.com/@rodoslens",
   email: "hello@rodolens.com",
-  phone: "+234 800 000 0000",
+  phone: "+234 806 838 7204",
 };
 
 export const SERVICE_OPTIONS = [
-  "Mobile Videography",
-  "Content Creation",
-  "Event Planning",
-  "Full Package",
+  "Wedding",
+  "Birthday",
+  "Event Decor",
+  "Branding",
   "Other",
 ];

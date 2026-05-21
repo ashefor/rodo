@@ -2,7 +2,7 @@
 
 Locked design system for the Rodo Lens website (Next.js 16 · Tailwind v4 · framer-motion). Source of truth — subsequent design work defers to this file. The diversification rule is *inverted* on system-managed projects: pages share the system, not differ from each other.
 
-**Current direction: Reel · iteration 2** — cinematic, italic-serif display, video on every section it earns. Replaces the earlier sans-grotesque (Bricolage Grotesque) direction. The dark theming, terracotta accent, mobile-first videography focus, and editorial-restraint stance are unchanged from iteration 1.
+**Current direction: Atelier · iteration 1** — luxury-editorial light cream paper, warm near-black ink, terracotta accent, Fraunces italic display. Replaces the atmospheric-cinematic dark direction (Reel iterations 1–3, retired). The Fraunces type system, terracotta accent hue, hairline rules, three-primitive motion vocabulary, and copy voice carry over unchanged. **The hero is the one exception** — it remains a full-bleed video plate with a warm-dark vignette and locally-inverted cream-on-dark text. Below the hero, the rest of the document is editorial cream paper.
 
 ---
 
@@ -11,12 +11,12 @@ Locked design system for the Rodo Lens website (Next.js 16 · Tailwind v4 · fra
 - **Brand** · Rodo Lens — visual storyteller working in reels, short film, and event content. Operator: Divine. Based in Abuja & Lagos, available worldwide.
 - **Audience** · Prospective clients hiring for weddings, birthdays, real estate, brand days, fashion shoots.
 - **Use case** · Browse the work. Portfolio-led. The whole site funnels into case-work; the contact form is a secondary destination.
-- **Tone** · Atmospheric-cinematic. Restrained. Mobile-first. Honest about scope.
+- **Tone** · Luxury-atelier. Restrained, editorial, type-led. Mobile-first videography work positioned aspirationally.
 - **Voice** · First-person *inside* the brand frame — "At Rodo Lens, I…". Signed by Divine.
 
 ## Genre
 
-`atmospheric-cinematic` — dark paper, italic-serif display, video-led. Type is restrained and serves the footage.
+`editorial` — warm cream paper, italic-serif display, type-led. The hero retains a dark video plate as a deliberate magazine-cover contrast; everything below the hero is cream-paper editorial.
 
 ---
 
@@ -24,13 +24,13 @@ Locked design system for the Rodo Lens website (Next.js 16 · Tailwind v4 · fra
 
 | Route | Macrostructure | What carries the page |
 | --- | --- | --- |
-| `/` Home | **Marquee Hero** | Full-bleed silent reel with dark vignette. Top meta strip absolutely-positioned; display-italic headline overlaid in the lower half; CTA stack and a closing hairline bar. Four numbered sections follow (01 services · 02 selected work · 03 in their words · 04 what next). |
+| `/` Home | **Marquee Hero** (dark plate) | Full-bleed silent reel with warm-dark vignette. Top meta strip absolutely-positioned; display-italic headline overlaid in the lower half; CTA stack and a closing hairline bar. **The hero locally inverts the ink tokens to cream-on-dark** — the rest of the page below is light cream paper. Four numbered sections follow on cream (01 services · 02 selected work · 03 in their words · 04 what next). |
 | `/about` | **Letter** | First-person letter from Rodo Lens, signed *Divine*. Three short chapters: I / the brief · II / the method · III / the handover. |
 | `/portfolio` | **Catalogue** | Editorial display headline (`The work, in motion.`). Filter row + masonry grid of static posters. IG-source items click out to the IG permalink (top-right `ig` chip); self-hosted items open the VideoModal. No hover-to-play — IG embeds + Drive shares don't support it reliably. |
 | `/contact` | **Bookend** | Typographic statement panel left; hairline-underlined form right. `?from=<service-id>` prefills the message. |
 | `404` | Specimen-tight | Single-screen italic-display headline; one back-link. |
 
-**Navigation:** `Services · Portfolio · Contact` (3 items). About and process content reach via in-page CTAs or the footer.
+**Navigation:** `About · Services · Portfolio · Contact` (4 items). Services lives as a deep-link inside Home (`/#services`).
 
 ---
 
@@ -84,27 +84,41 @@ Headings with *no* italic feel hollow under this direction; headings with *more 
 ## Colour (OKLCH-only)
 
 ```
---color-paper        oklch(13% 0.010 250)   page background — slight cool tilt
---color-paper-2      oklch(17% 0.012 250)   cards, image wells
---color-paper-3      oklch(21% 0.013 250)   raised cards
---color-paper-edge   oklch(27% 0.013 250)   hairline rules
---color-ink          oklch(96% 0.005 250)   primary type
---color-ink-dim      oklch(73% 0.008 250)   secondary type, body lede
---color-ink-quiet    oklch(55% 0.010 250)   placeholders, captions
---color-accent       oklch(63% 0.165 39)    terracotta — single accent
---color-accent-hover oklch(70% 0.175 39)
---color-focus        oklch(72% 0.165 39)    focus rings (≥ 3:1 contrast)
---color-danger       oklch(60% 0.18 25)
---color-success      oklch(64% 0.12 145)
+--color-paper        oklch(96.5% 0.008 60)   page background — warm cream
+--color-paper-2      oklch(94%   0.010 60)   cards, image wells
+--color-paper-3      oklch(91%   0.012 60)   raised cards
+--color-paper-edge   oklch(82%   0.012 60)   hairline rules
+--color-ink          oklch(18%   0.012 60)   primary type — warm near-black
+--color-ink-dim      oklch(38%   0.014 60)   secondary type, body lede
+--color-ink-quiet    oklch(58%   0.012 60)   placeholders, captions
+--color-accent       oklch(46%   0.155 39)   terracotta — single accent (lower L for cream contrast)
+--color-accent-hover oklch(52%   0.165 39)
+--color-accent-quiet oklch(78%   0.080 39)   wash accent for backgrounds
+--color-focus        oklch(50%   0.155 39)   focus rings (≥ 3:1 contrast)
+--color-danger       oklch(50%   0.18  25)
+--color-success      oklch(48%   0.13  145)
 ```
+
+### Hero-only inversion (the one exception)
+
+The home page hero is a dark plate. Inside `HeroSection.tsx` the section element locally redefines:
+
+```
+--color-ink       → var(--color-paper)        cream on dark
+--color-ink-dim   → oklch(88% 0.010 60)       softened cream
+--color-ink-quiet → oklch(72% 0.010 60)       quietest cream
+--color-accent    → oklch(72% 0.165 39)       lifted terracotta for dark scrim
+```
+
+The VideoModal does the same — modal backdrops stay dark by design regardless of paper.
 
 ### Diversification axes (locked for the project)
 
-- **Paper band** · dark (L 13 %, slight cool tilt)
+- **Paper band** · light (L 96.5 %, warm cream tilt)
 - **Display style** · italic-serif (Fraunces)
 - **Accent hue** · warm-terracotta (h 39°)
 
-The cool paper × warm accent is intentional — the slight blue-shift of the surface makes the terracotta read warmer without changing its hue value.
+The cream paper × warm terracotta keeps the palette in one hue family — atelier discipline.
 
 ### Accent discipline
 
@@ -267,6 +281,6 @@ See [`tokens.css`](./tokens.css) at the project root for a portable OKLCH token 
 ---
 
 *Hallmark · macrostructures: Marquee Hero (/) · Letter (/about) · Catalogue (/portfolio) · Bookend (/contact)*
-*genre: atmospheric-cinematic · direction: Reel · iteration: 2*
-*diversification axes: dark · italic-serif · warm-terracotta*
+*genre: editorial · direction: Atelier · iteration: 1*
+*diversification axes: light · italic-serif · warm-terracotta*
 *pre-emit critique: P5 H5 E5 S5 R5 V4*

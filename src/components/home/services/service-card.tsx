@@ -14,7 +14,7 @@ type ServiceCardProps = {
 const ServiceCard = ({ gradient, children, id }: ServiceCardProps) => {
     const inViewFeature = useFeatureStore((state) => state.inViewFeature);
     return (
-        <div className={twMerge("absolute inset-0  h-full w-full rounded-2xl bg-gradient-to-br transition-opacity duration-300", gradient, inViewFeature === id ? "opacity-100" : "opacity-0")}>
+        <div className={twMerge("absolute inset-0  h-full w-full rounded-2xl bg-linear-to-br transition-opacity duration-300", gradient, inViewFeature === id ? "opacity-100" : "opacity-0")}>
             {children}
         </div>
     )

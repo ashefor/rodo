@@ -56,7 +56,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
       {open && (
         <>
           <motion.div
-            className="fixed inset-0 z-50 bg-[oklch(8%_0.010_250/0.85)] backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-[oklch(18%_0.012_60/0.55)] backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

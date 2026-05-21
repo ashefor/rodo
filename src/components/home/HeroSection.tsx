@@ -10,7 +10,14 @@ export function HeroSection() {
       style={{
         minHeight: "100svh",
         background: "var(--color-paper)",
-        color: "var(--color-ink)",
+        // Hero is a dark plate. All descendants opt into a cream-on-dark
+        // palette locally; the rest of the document stays dark-on-cream.
+        // The accent is also lifted so it stays luminous over the warm scrim.
+        ["--color-ink" as string]: "var(--color-paper)",
+        ["--color-ink-dim" as string]: "oklch(88% 0.010 60)",
+        ["--color-ink-quiet" as string]: "oklch(72% 0.010 60)",
+        ["--color-accent" as string]: "oklch(72% 0.165 39)",
+        color: "var(--color-paper)",
       }}
     >
       {/* Backdrop — looping silent reel across all viewports */}
@@ -31,7 +38,7 @@ export function HeroSection() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, oklch(13% 0.010 250 / 0.65) 0%, oklch(13% 0.010 250 / 0.50) 40%, oklch(13% 0.010 250 / 0.95) 100%)",
+              "linear-gradient(180deg, oklch(18% 0.012 60 / 0.55) 0%, oklch(18% 0.012 60 / 0.35) 40%, oklch(18% 0.012 60 / 0.85) 100%)",
           }}
         />
       </div>
@@ -75,7 +82,7 @@ export function HeroSection() {
 
         {/* Bottom row: tagline + CTA */}
         <div className="mt-10 md:mt-14 flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
-          <p className="max-w-md text-ink text-lg md:text-xl leading-relaxed">
+          <p className="max-w-md text-lg md:text-xl leading-relaxed text-(--color-ink)">
             I shoot reels, short film, and event content for people who want
             their day to stay watchable years later.
           </p>
@@ -83,9 +90,9 @@ export function HeroSection() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
             <Link
               href="/portfolio"
-              className="group inline-flex items-center gap-2 text-base text-ink hover:text-accent transition-colors duration-(--dur-fast)"
+              className="group inline-flex items-center gap-2 text-base text-(--color-ink) hover:text-(--color-accent) transition-colors duration-(--dur-fast)"
             >
-              <span className="border-b border-ink group-hover:border-accent transition-colors duration-(--dur-fast) pb-0.5">
+              <span className="border-b border-(--color-ink) group-hover:border-(--color-accent) transition-colors duration-(--dur-fast) pb-0.5">
                 See the work
               </span>
               <ArrowUpRight
@@ -95,7 +102,7 @@ export function HeroSection() {
             </Link>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 text-base text-ink-dim hover:text-accent transition-colors duration-(--dur-fast)"
+              className="group inline-flex items-center gap-2 text-base text-(--color-ink-dim) hover:text-(--color-accent) transition-colors duration-(--dur-fast)"
             >
               <span>Start a project</span>
             </Link>

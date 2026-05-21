@@ -148,7 +148,7 @@ function FeedTile({ item, idx }: { item: WithPoster; idx: number }) {
                 aria-hidden
                 className="absolute bottom-3 right-3 w-8 h-8 inline-flex items-center justify-center"
                 style={{
-                  background: "oklch(8% 0.005 250 / 0.55)",
+                  background: "oklch(18% 0.012 60 / 0.55)",
                   borderRadius: "var(--radius-figure)",
                 }}
               >
@@ -163,7 +163,7 @@ function FeedTile({ item, idx }: { item: WithPoster; idx: number }) {
                 className="absolute top-3 right-3 font-mono-utility"
                 style={{
                   color: "var(--color-ink)",
-                  background: "oklch(8% 0.005 250 / 0.55)",
+                  background: "oklch(18% 0.012 60 / 0.55)",
                   padding: "2px 6px",
                   borderRadius: "var(--radius-figure)",
                 }}

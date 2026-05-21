@@ -1,35 +1,39 @@
 /* Hallmark · macrostructures: Marquee Hero (/) · Letter (/about) · Catalogue (/portfolio) · Bookend (/contact)
- * genre: atmospheric-cinematic · tone: video-led, restrained
- * direction: Reel · iteration 2 (italic-serif display, slight cool paper tilt)
- * theme: custom (dark · italic-serif · warm-accent) · paper oklch(13% 0.010 250) · accent oklch(60% 0.16 39)
+ * genre: editorial · tone: luxury-atelier, restrained
+ * direction: Atelier · iteration 1 (warm cream paper, Fraunces italic display, terracotta accent)
+ * theme: custom (light · italic-serif · warm-accent) · paper oklch(96.5% 0.008 60) · accent oklch(46% 0.155 39)
  * fonts: Fraunces variable italic (display) + Inter (body) + JetBrains Mono (utility)
- * diversification axes: dark · italic-serif · warm-terracotta
+ * diversification axes: light · italic-serif · warm-terracotta
  * pre-emit critique: P5 H5 E5 S5 R5 V4
  */
 
 @import "tailwindcss";
 
 @theme inline {
-  /* ──────────────── Surfaces (paper) — slight cool tilt ──────────────── */
-  --color-paper: oklch(13% 0.010 250);
-  --color-paper-2: oklch(17% 0.012 250);
-  --color-paper-3: oklch(21% 0.013 250);
-  --color-paper-edge: oklch(27% 0.013 250);
+  /* ──────────────── Surfaces (paper) — warm cream ──────────────── */
+  --color-paper: oklch(96.5% 0.008 60);
+  --color-paper-2: oklch(94% 0.010 60);
+  --color-paper-3: oklch(91% 0.012 60);
+  --color-paper-edge: oklch(82% 0.012 60);
 
-  /* ──────────────── Ink (type) ──────────────── */
-  --color-ink: oklch(96% 0.005 250);
-  --color-ink-dim: oklch(73% 0.008 250);
-  --color-ink-quiet: oklch(55% 0.010 250);
+  /* ──────────────── Ink (type) — warm near-black ──────────────── */
+  --color-ink: oklch(18% 0.012 60);
+  --color-ink-dim: oklch(38% 0.014 60);
+  --color-ink-quiet: oklch(58% 0.012 60);
 
-  /* ──────────────── Accent (terracotta) ──────────────── */
-  --color-accent: oklch(63% 0.165 39);
-  --color-accent-hover: oklch(70% 0.175 39);
-  --color-accent-quiet: oklch(34% 0.10 39);
-  --color-focus: oklch(72% 0.165 39);
+  /* ──────────────── Accent (terracotta — true value on cream) ──────────────── */
+  --color-accent: oklch(46% 0.155 39);
+  --color-accent-hover: oklch(52% 0.165 39);
+  --color-accent-quiet: oklch(78% 0.080 39);
+  --color-focus: oklch(50% 0.155 39);
+
+  /* ──────────────── Scrim — for vignettes over media (warm-dark) ──────────────── */
+  --color-scrim: 22% 0.014 60;
+  --color-scrim-strong: 14% 0.012 60;
 
   /* ──────────────── Signal ──────────────── */
-  --color-danger: oklch(60% 0.18 25);
-  --color-success: oklch(64% 0.12 145);
+  --color-danger: oklch(50% 0.18 25);
+  --color-success: oklch(48% 0.13 145);
 
   /* ──────────────── Compat (legacy refs) ──────────────── */
   --color-background: var(--color-paper);
@@ -97,9 +101,9 @@
 
 /* ──────────────── Root ──────────────── */
 :root {
-  --background: oklch(13% 0.010 250);
-  --foreground: oklch(96% 0.005 250);
-  color-scheme: dark;
+  --background: oklch(96.5% 0.008 60);
+  --foreground: oklch(18% 0.012 60);
+  color-scheme: light;
 }
 
 html,
@@ -124,6 +128,33 @@ body {
 ::selection {
   background: var(--color-accent);
   color: var(--color-paper);
+}
+
+input:autofill,
+input:autofill:hover,
+input:autofill:focus,
+textarea:autofill,
+textarea:autofill:hover,
+textarea:autofill:focus,
+select:autofill,
+select:autofill:hover,
+select:autofill:focus,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background-color: var(--color-paper) !important;
+  color: var(--color-ink) !important;
+  -webkit-text-fill-color: var(--color-ink) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--color-paper) inset !important;
+  box-shadow: 0 0 0 1000px var(--color-paper) inset !important;
+  caret-color: var(--color-ink);
+  transition: background-color 999999s ease-out 0s, color 999999s ease-out 0s;
 }
 
 /* ──────────────── Focus ring (instant, never animated) ──────────────── */
@@ -195,5 +226,5 @@ h1, h2, h3 {
 /* legacy class aliases (kept so any straggler markup doesn't break) */
 .glass { background: var(--color-paper-2); }
 .shadow-ambient { box-shadow: none; }
-.shadow-float { box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.6); }
+.shadow-float { box-shadow: 0 12px 40px -16px oklch(22% 0.014 60 / 0.18); }
 .gradient-primary { background: var(--color-accent); }
